@@ -1,0 +1,284 @@
+﻿namespace OrderSystem2
+{
+    partial class MainForm
+    {
+        /// <summary>
+        ///  Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        ///  Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        ///  Required method for Designer support - do not modify
+        ///  the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            panel1 = new Panel();
+            panel3 = new Panel();
+            pictureBoxTab = new PictureBox();
+            pictureBoxClose = new PictureBox();
+            pictureBoxExpand = new PictureBox();
+            pictureBox1 = new PictureBox();
+            labelFarmerMn = new Label();
+            labelFieldMn = new Label();
+            labelProductMn = new Label();
+            labelOrderMn = new Label();
+            labelMakeOrder = new Label();
+            pictureBox3 = new PictureBox();
+            pictureBox2 = new PictureBox();
+            panel2 = new Panel();
+            label1 = new Label();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxTab).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxClose).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxExpand).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            panel2.SuspendLayout();
+            SuspendLayout();
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.FromArgb(22, 56, 39);
+            panel1.Controls.Add(panel3);
+            panel1.Controls.Add(pictureBoxTab);
+            panel1.Controls.Add(pictureBoxClose);
+            panel1.Controls.Add(pictureBoxExpand);
+            panel1.Controls.Add(pictureBox1);
+            panel1.Controls.Add(labelFarmerMn);
+            panel1.Controls.Add(labelFieldMn);
+            panel1.Controls.Add(labelProductMn);
+            panel1.Controls.Add(labelOrderMn);
+            panel1.Controls.Add(labelMakeOrder);
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1118, 115);
+            panel1.TabIndex = 0;
+            // 
+            // panel3
+            // 
+            panel3.BackColor = Color.AntiqueWhite;
+            panel3.Location = new Point(0, 107);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(1118, 336);
+            panel3.TabIndex = 2;
+            // 
+            // pictureBoxTab
+            // 
+            pictureBoxTab.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            pictureBoxTab.Image = Properties.Resources.tab;
+            pictureBoxTab.Location = new Point(1004, 0);
+            pictureBoxTab.Name = "pictureBoxTab";
+            pictureBoxTab.Size = new Size(37, 31);
+            pictureBoxTab.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBoxTab.TabIndex = 8;
+            pictureBoxTab.TabStop = false;
+            pictureBoxTab.Click += pictureBoxTab_Click;
+            // 
+            // pictureBoxClose
+            // 
+            pictureBoxClose.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            pictureBoxClose.Image = Properties.Resources.close_button;
+            pictureBoxClose.Location = new Point(1080, 0);
+            pictureBoxClose.Name = "pictureBoxClose";
+            pictureBoxClose.Size = new Size(37, 31);
+            pictureBoxClose.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBoxClose.TabIndex = 10;
+            pictureBoxClose.TabStop = false;
+            // 
+            // pictureBoxExpand
+            // 
+            pictureBoxExpand.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            pictureBoxExpand.Image = Properties.Resources.expand;
+            pictureBoxExpand.Location = new Point(1042, 0);
+            pictureBoxExpand.Name = "pictureBoxExpand";
+            pictureBoxExpand.Size = new Size(37, 31);
+            pictureBoxExpand.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBoxExpand.TabIndex = 9;
+            pictureBoxExpand.TabStop = false;
+            pictureBoxExpand.Click += pictureBoxExpand_Click;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(24, 12);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(106, 88);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 2;
+            pictureBox1.TabStop = false;
+            // 
+            // labelFarmerMn
+            // 
+            labelFarmerMn.Anchor = AnchorStyles.Top;
+            labelFarmerMn.AutoSize = true;
+            labelFarmerMn.Font = new Font("Candara Light", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelFarmerMn.ForeColor = Color.AntiqueWhite;
+            labelFarmerMn.Location = new Point(729, 46);
+            labelFarmerMn.Name = "labelFarmerMn";
+            labelFarmerMn.Size = new Size(128, 24);
+            labelFarmerMn.TabIndex = 6;
+            labelFarmerMn.Text = "Çiftçi Yönetimi";
+            labelFarmerMn.Click += labelFarmerMn_Click;
+            // 
+            // labelFieldMn
+            // 
+            labelFieldMn.Anchor = AnchorStyles.Top;
+            labelFieldMn.AutoSize = true;
+            labelFieldMn.Font = new Font("Candara Light", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelFieldMn.ForeColor = Color.AntiqueWhite;
+            labelFieldMn.Location = new Point(912, 46);
+            labelFieldMn.Name = "labelFieldMn";
+            labelFieldMn.Size = new Size(126, 24);
+            labelFieldMn.TabIndex = 5;
+            labelFieldMn.Text = "Tarla Yönetimi";
+            labelFieldMn.Click += labelFieldMn_Click;
+            // 
+            // labelProductMn
+            // 
+            labelProductMn.Anchor = AnchorStyles.Top;
+            labelProductMn.AutoSize = true;
+            labelProductMn.Font = new Font("Candara Light", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelProductMn.ForeColor = Color.AntiqueWhite;
+            labelProductMn.Location = new Point(546, 46);
+            labelProductMn.Name = "labelProductMn";
+            labelProductMn.Size = new Size(129, 24);
+            labelProductMn.TabIndex = 4;
+            labelProductMn.Text = "Ürün Yönetimi";
+            labelProductMn.Click += labelProductMn_Click;
+            // 
+            // labelOrderMn
+            // 
+            labelOrderMn.Anchor = AnchorStyles.Top;
+            labelOrderMn.AutoSize = true;
+            labelOrderMn.Font = new Font("Candara Light", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelOrderMn.ForeColor = Color.AntiqueWhite;
+            labelOrderMn.Location = new Point(350, 46);
+            labelOrderMn.Name = "labelOrderMn";
+            labelOrderMn.Size = new Size(140, 24);
+            labelOrderMn.TabIndex = 3;
+            labelOrderMn.Text = "Sipariş Yönetimi";
+            labelOrderMn.Click += labelOrderMn_Click;
+            // 
+            // labelMakeOrder
+            // 
+            labelMakeOrder.Anchor = AnchorStyles.Top;
+            labelMakeOrder.AutoSize = true;
+            labelMakeOrder.Font = new Font("Candara Light", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelMakeOrder.ForeColor = Color.AntiqueWhite;
+            labelMakeOrder.Location = new Point(167, 46);
+            labelMakeOrder.Name = "labelMakeOrder";
+            labelMakeOrder.Size = new Size(128, 24);
+            labelMakeOrder.TabIndex = 2;
+            labelMakeOrder.Text = "Sipariş Oluştur";
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            pictureBox3.Image = Properties.Resources.floters_Photoroom;
+            pictureBox3.Location = new Point(-44, 109);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(189, 324);
+            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox3.TabIndex = 1;
+            pictureBox3.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            pictureBox2.Image = Properties.Resources.flor_Photoroom;
+            pictureBox2.Location = new Point(928, 121);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(238, 313);
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox2.TabIndex = 0;
+            pictureBox2.TabStop = false;
+            // 
+            // panel2
+            // 
+            panel2.BackColor = Color.FromArgb(22, 56, 39);
+            panel2.Controls.Add(label1);
+            panel2.Dock = DockStyle.Bottom;
+            panel2.Location = new Point(0, 446);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(1118, 50);
+            panel2.TabIndex = 1;
+            // 
+            // label1
+            // 
+            label1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            label1.AutoSize = true;
+            label1.Location = new Point(1032, 12);
+            label1.Name = "label1";
+            label1.Size = new Size(83, 24);
+            label1.TabIndex = 0;
+            label1.Text = "Çıkış Yap";
+            label1.Click += label1_Click;
+            // 
+            // MainForm
+            // 
+            AutoScaleDimensions = new SizeF(11F, 24F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.PapayaWhip;
+            ClientSize = new Size(1118, 496);
+            Controls.Add(pictureBox3);
+            Controls.Add(panel2);
+            Controls.Add(pictureBox2);
+            Controls.Add(panel1);
+            Font = new Font("Candara", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            ForeColor = Color.AntiqueWhite;
+            FormBorderStyle = FormBorderStyle.None;
+            Name = "MainForm";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Form1";
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxTab).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxClose).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxExpand).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
+            ResumeLayout(false);
+        }
+
+        #endregion
+
+        private Panel panel1;
+        private Panel panel2;
+        private Label labelMakeOrder;
+        private PictureBox pictureBox1;
+        private Label labelFarmerMn;
+        private Label labelFieldMn;
+        private Label labelProductMn;
+        private Label labelOrderMn;
+        private Panel panel3;
+        private PictureBox pictureBox3;
+        private PictureBox pictureBox2;
+        private PictureBox pictureBoxExpand;
+        private PictureBox pictureBoxTab;
+        private PictureBox pictureBoxClose;
+        private Label label1;
+    }
+}
