@@ -42,10 +42,12 @@ namespace OrderSystem2.forms.product
         {
             textBoxProductNo.Text = _product.Id.ToString();
             textBoxProductNo.ReadOnly = true;
-            textBoxFactoryNo.Text = _product.FactoryId.ToString();
+            textBoxFactoryNo.Text = _productService.GetFactoryName(_product.Id);
             textBoxFactoryNo.ReadOnly = true;
-            textBoxCategoryNo.Text = _product.CategoryId.ToString();
+            textBoxCategoryNo.Text = _productService.GetCategoryName(_product.Id);
             textBoxCategoryNo.ReadOnly = true;
+            textBoxUnitNo.Text = _productService.GetUnitName(_product.Id);
+            textBoxUnitNo.ReadOnly = true;
             textBoxName.Text = _product.Name;
             textBoxPrice.Text = _product.Price.ToString();
             textBoxStock.Text = _product.Stock.ToString();

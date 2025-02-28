@@ -158,9 +158,9 @@
             label4.Location = new Point(69, 199);
             label4.Margin = new Padding(3, 0, 5, 0);
             label4.Name = "label4";
-            label4.Size = new Size(128, 29);
+            label4.Size = new Size(94, 29);
             label4.TabIndex = 6;
-            label4.Text = "Fabrika No:";
+            label4.Text = "Fabrika:";
             // 
             // label5
             // 
@@ -197,9 +197,9 @@
             label7.Location = new Point(69, 291);
             label7.Margin = new Padding(3, 0, 5, 0);
             label7.Name = "label7";
-            label7.Size = new Size(106, 29);
+            label7.Size = new Size(72, 29);
             label7.TabIndex = 9;
-            label7.Text = "Birim No:";
+            label7.Text = "Birim:";
             // 
             // label8
             // 
@@ -210,9 +210,9 @@
             label8.Location = new Point(69, 245);
             label8.Margin = new Padding(3, 0, 5, 0);
             label8.Name = "label8";
-            label8.Size = new Size(140, 29);
+            label8.Size = new Size(106, 29);
             label8.TabIndex = 10;
-            label8.Text = "Kategori No:";
+            label8.Text = "Kategori:";
             // 
             // textBoxCreatedBy
             // 
@@ -222,7 +222,7 @@
             textBoxCreatedBy.Location = new Point(839, 156);
             textBoxCreatedBy.Name = "textBoxCreatedBy";
             textBoxCreatedBy.Size = new Size(306, 31);
-            textBoxCreatedBy.TabIndex = 38;
+            textBoxCreatedBy.TabStop=false;
             // 
             // textBoxCreatedAt
             // 
@@ -232,7 +232,7 @@
             textBoxCreatedAt.Location = new Point(839, 200);
             textBoxCreatedAt.Name = "textBoxCreatedAt";
             textBoxCreatedAt.Size = new Size(306, 31);
-            textBoxCreatedAt.TabIndex = 37;
+            textBoxCreatedAt.TabStop=false;
             // 
             // textBoxUpdatedBy
             // 
@@ -242,7 +242,7 @@
             textBoxUpdatedBy.Location = new Point(839, 242);
             textBoxUpdatedBy.Name = "textBoxUpdatedBy";
             textBoxUpdatedBy.Size = new Size(306, 31);
-            textBoxUpdatedBy.TabIndex = 36;
+            textBoxUpdatedBy.TabStop = false;
             // 
             // textBoxupdatedAt
             // 
@@ -252,7 +252,7 @@
             textBoxupdatedAt.Location = new Point(839, 285);
             textBoxupdatedAt.Name = "textBoxupdatedAt";
             textBoxupdatedAt.Size = new Size(306, 31);
-            textBoxupdatedAt.TabIndex = 35;
+            textBoxupdatedAt.TabStop = false;
             // 
             // label13
             // 
@@ -305,32 +305,32 @@
             // textBoxProductNo
             // 
             textBoxProductNo.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
-            textBoxProductNo.BackColor = Color.LightYellow;
+            textBoxProductNo.BackColor = SystemColors.ActiveBorder;
             textBoxProductNo.BorderStyle = BorderStyle.FixedSingle;
             textBoxProductNo.Location = new Point(240, 153);
             textBoxProductNo.Name = "textBoxProductNo";
             textBoxProductNo.Size = new Size(306, 31);
-            textBoxProductNo.TabIndex = 39;
+            textBoxProductNo.TabStop = false;
             // 
             // textBoxCategoryNo
             // 
             textBoxCategoryNo.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
-            textBoxCategoryNo.BackColor = Color.LightYellow;
+            textBoxCategoryNo.BackColor = SystemColors.ActiveBorder;
             textBoxCategoryNo.BorderStyle = BorderStyle.FixedSingle;
             textBoxCategoryNo.Location = new Point(240, 245);
             textBoxCategoryNo.Name = "textBoxCategoryNo";
             textBoxCategoryNo.Size = new Size(306, 31);
-            textBoxCategoryNo.TabIndex = 41;
+            textBoxCategoryNo.TabStop = false;
             // 
             // textBoxUnitNo
             // 
             textBoxUnitNo.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
-            textBoxUnitNo.BackColor = Color.LightYellow;
+            textBoxUnitNo.BackColor = SystemColors.ActiveBorder;
             textBoxUnitNo.BorderStyle = BorderStyle.FixedSingle;
             textBoxUnitNo.Location = new Point(240, 289);
             textBoxUnitNo.Name = "textBoxUnitNo";
             textBoxUnitNo.Size = new Size(306, 31);
-            textBoxUnitNo.TabIndex = 42;
+            textBoxUnitNo.TabStop = false;
             // 
             // textBoxName
             // 
@@ -341,6 +341,7 @@
             textBoxName.Name = "textBoxName";
             textBoxName.Size = new Size(306, 31);
             textBoxName.TabIndex = 43;
+            textBoxName.KeyPress += TextBoxName_KeyPress;
             // 
             // textBoxPrice
             // 
@@ -351,6 +352,7 @@
             textBoxPrice.Name = "textBoxPrice";
             textBoxPrice.Size = new Size(306, 31);
             textBoxPrice.TabIndex = 44;
+            textBoxPrice.KeyPress += TextBoxPrice_KeyPress;
             // 
             // textBoxStock
             // 
@@ -361,16 +363,17 @@
             textBoxStock.Name = "textBoxStock";
             textBoxStock.Size = new Size(306, 31);
             textBoxStock.TabIndex = 45;
+            textBoxStock.KeyPress += TextBoxStock_KeyPress;
             // 
             // textBoxFactoryNo
             // 
             textBoxFactoryNo.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
-            textBoxFactoryNo.BackColor = Color.LightYellow;
+            textBoxFactoryNo.BackColor = SystemColors.ActiveBorder;
             textBoxFactoryNo.BorderStyle = BorderStyle.FixedSingle;
             textBoxFactoryNo.Location = new Point(240, 199);
             textBoxFactoryNo.Name = "textBoxFactoryNo";
             textBoxFactoryNo.Size = new Size(306, 31);
-            textBoxFactoryNo.TabIndex = 46;
+            textBoxFactoryNo.TabStop = false;
             // 
             // buttonDelete
             // 
@@ -381,7 +384,7 @@
             buttonDelete.Location = new Point(902, 456);
             buttonDelete.Name = "buttonDelete";
             buttonDelete.Size = new Size(96, 45);
-            buttonDelete.TabIndex = 48;
+            buttonDelete.TabStop = false;
             buttonDelete.Text = "Sil";
             buttonDelete.UseVisualStyleBackColor = false;
             // 
@@ -394,7 +397,7 @@
             buttonSave.Location = new Point(1016, 456);
             buttonSave.Name = "buttonSave";
             buttonSave.Size = new Size(160, 45);
-            buttonSave.TabIndex = 47;
+            buttonSave.TabStop = false;
             buttonSave.Text = "Kaydet";
             buttonSave.UseVisualStyleBackColor = false;
             buttonSave.Click += buttonSave_Click;
@@ -441,6 +444,30 @@
             ((System.ComponentModel.ISupportInitialize)pictureBoxClose).EndInit();
             ResumeLayout(false);
             PerformLayout();
+        }
+
+        private void TextBoxStock_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void TextBoxPrice_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void TextBoxName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) && e.KeyChar != ' ')
+            {
+                e.Handled = true;
+            }
         }
 
         #endregion

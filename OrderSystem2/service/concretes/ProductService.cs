@@ -33,6 +33,21 @@ namespace OrderSystem2.service.concretes
            return _repository.GetById(id);
         }
 
+        public string GetCategoryName(int id)
+        {
+            return _repository.GetCategoryName(id);
+        }
+
+        public string GetFactoryName(int id)
+        {
+            return _repository.GetFactoryName(id);
+        }
+
+        public string GetUnitName(int id)
+        {
+           return _repository.GetUnitName(id);
+        }
+
         public void Update(Product entity, int id)
         {
             entity.UpdatedAt = DateTime.Now;

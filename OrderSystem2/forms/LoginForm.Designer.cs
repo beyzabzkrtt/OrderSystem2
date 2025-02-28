@@ -168,7 +168,7 @@ namespace OrderSystem2
             buttonLogin.Location = new Point(152, 443);
             buttonLogin.Name = "buttonLogin";
             buttonLogin.Size = new Size(168, 52);
-            buttonLogin.TabIndex = 6;
+            buttonLogin.TabIndex = 9;
             buttonLogin.Text = "Giriş Yap";
             buttonLogin.UseVisualStyleBackColor = false;
             buttonLogin.Click += buttonLogin_Click;

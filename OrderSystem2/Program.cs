@@ -28,7 +28,7 @@ namespace OrderSystem2
 
 
             ApplicationConfiguration.Initialize();
-            Application.Run(new MainForm());
+            Application.Run(new LoginForm());
             
         }
     }

@@ -15,83 +15,60 @@ namespace OrderSystem2
         {
             InitializeComponent();
             pictureBoxClose.Click += pictureBoxClose_Click;
-            AttachDragEvents(this);
+            AttachPanelDragEvents(panel1);
         }
-
-        private void AttachDragEvents(Control parent)
+        private void AttachPanelDragEvents(Panel panel)
         {
-            foreach (Control ctrl in parent.Controls)
-            {
-                if (!(ctrl is TextBox))  // TextBox'ları hariç tut, yoksa yazı yazarken sürüklenir.
-                {
-                    ctrl.MouseDown += MouseDownHandler;
-                    ctrl.MouseMove += MouseMoveHandler;
-                    ctrl.MouseUp += MouseUpHandler;
-                }
-
-                // Eğer kontrolün içinde başka kontroller varsa, onlara da ekle
-                if (ctrl.HasChildren)
-                {
-                    AttachDragEvents(ctrl);
-                }
-            }
-
-            // Form'un kendisini de ekleyelim
-            parent.MouseDown += MouseDownHandler;
-            parent.MouseMove += MouseMoveHandler;
-            parent.MouseUp += MouseUpHandler;
+            panel.MouseDown += Panel_MouseDown;
+            panel.MouseMove += Panel_MouseMove;
+            panel.MouseUp += Panel_MouseUp;
         }
 
-        private void MouseDownHandler(object sender, MouseEventArgs e)
+        private void Panel_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
                 isDragging = true;
-                startPoint = new Point(e.X, e.Y);
-                this.BringToFront();
+                startPoint = e.Location; 
             }
-          
         }
 
-        private void MouseMoveHandler(object sender, MouseEventArgs e)
+        private void Panel_MouseMove(object sender, MouseEventArgs e)
         {
             if (isDragging)
             {
-                Point currentScreenPos = PointToScreen(e.Location);
+                Point currentScreenPos = ((Control)sender).PointToScreen(e.Location);
                 this.Location = new Point(currentScreenPos.X - startPoint.X, currentScreenPos.Y - startPoint.Y);
             }
         }
 
-        private void MouseUpHandler(object sender, MouseEventArgs e)
+        private void Panel_MouseUp(object sender, MouseEventArgs e)
         {
             isDragging = false;
         }
+
         private void labelFarmerMn_Click(object sender, EventArgs e)
         {
             FarmerForm farmerForm = new FarmerForm();
-            farmerForm.Owner = this;
-            farmerForm.ShowDialog();
+            farmerForm.Show();
         }
 
         private void labelOrderMn_Click(object sender, EventArgs e)
         {
             OrderForm orderForm = new OrderForm();
-            orderForm.Owner = this;
-            orderForm.ShowDialog();
+            orderForm.Show();
         }
 
         private void labelProductMn_Click(object sender, EventArgs e)
         {
             ProductForm productForm = new ProductForm();
-            productForm.Owner = this;
-            productForm.ShowDialog();
+            productForm.Show();
         }
 
         private void labelFieldMn_Click(object sender, EventArgs e)
         {
             Fieldform fieldform = new Fieldform();
-            fieldform.Owner = this;
-            fieldform.ShowDialog();
+            fieldform.Show();
         }
 
         private void pictureBoxTab_Click(object sender, EventArgs e)
@@ -106,6 +83,7 @@ namespace OrderSystem2
             if (result == DialogResult.Yes)
             {
                 this.Close();
+                Application.Exit();
             }
         }
 
@@ -139,7 +117,7 @@ namespace OrderSystem2
             {
                 this.Close();
                 LoginForm login = new LoginForm();
-                login.ShowDialog();
+                login.Show();
             }
         }
     }

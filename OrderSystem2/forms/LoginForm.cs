@@ -26,14 +26,13 @@ namespace OrderSystem2
         {
             foreach (Control ctrl in parent.Controls)
             {
-                if (!(ctrl is TextBox))  // TextBox'ları hariç tut, yoksa yazı yazarken sürüklenir.
+                if (!(ctrl is TextBox))  
                 {
                     ctrl.MouseDown += MouseDownHandler;
                     ctrl.MouseMove += MouseMoveHandler;
                     ctrl.MouseUp += MouseUpHandler;
                 }
 
-                // Eğer kontrolün içinde başka kontroller varsa, onlara da ekle
                 if (ctrl.HasChildren)
                 {
                     AttachDragEvents(ctrl);
@@ -117,6 +116,7 @@ namespace OrderSystem2
             if (result == DialogResult.Yes)
             {
                 this.Close();
+                Application.Exit();
             }
         }
     }

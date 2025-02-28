@@ -190,7 +190,7 @@
             buttonDelete.Location = new Point(846, 321);
             buttonDelete.Name = "buttonDelete";
             buttonDelete.Size = new Size(96, 45);
-            buttonDelete.TabIndex = 35;
+            buttonDelete.TabStop = false;
             buttonDelete.Text = "Sil";
             buttonDelete.UseVisualStyleBackColor = false;
             buttonDelete.Click += buttonDelete_Click;
@@ -204,7 +204,7 @@
             buttonSave.Location = new Point(942, 321);
             buttonSave.Name = "buttonSave";
             buttonSave.Size = new Size(160, 45);
-            buttonSave.TabIndex = 33;
+            buttonSave.TabStop = false;
             buttonSave.Text = "Kaydet";
             buttonSave.UseVisualStyleBackColor = false;
             buttonSave.Click += buttonSave_Click;
@@ -218,7 +218,7 @@
             buttonShowOrders.Location = new Point(846, 270);
             buttonShowOrders.Name = "buttonShowOrders";
             buttonShowOrders.Size = new Size(256, 45);
-            buttonShowOrders.TabIndex = 32;
+            buttonShowOrders.TabStop = false;
             buttonShowOrders.Text = "Siparişleri Görüntüle";
             buttonShowOrders.UseVisualStyleBackColor = false;
             buttonShowOrders.Click += buttonShowOrders_Click;
@@ -232,7 +232,7 @@
             buttonShowField.Location = new Point(846, 221);
             buttonShowField.Name = "buttonShowField";
             buttonShowField.Size = new Size(256, 43);
-            buttonShowField.TabIndex = 31;
+            buttonShowField.TabStop = false;
             buttonShowField.Text = "Tarlaları Görüntüle";
             buttonShowField.UseVisualStyleBackColor = false;
             buttonShowField.Click += buttonShowField_Click;
@@ -245,7 +245,7 @@
             textBoxCreatedBy.Location = new Point(782, 28);
             textBoxCreatedBy.Name = "textBoxCreatedBy";
             textBoxCreatedBy.Size = new Size(306, 31);
-            textBoxCreatedBy.TabIndex = 30;
+            textBoxCreatedBy.TabStop = false;
             // 
             // textBoxCreatedAt
             // 
@@ -255,7 +255,7 @@
             textBoxCreatedAt.Location = new Point(782, 72);
             textBoxCreatedAt.Name = "textBoxCreatedAt";
             textBoxCreatedAt.Size = new Size(306, 31);
-            textBoxCreatedAt.TabIndex = 29;
+            textBoxCreatedAt.TabStop = false;
             // 
             // textBoxUpdatedBy
             // 
@@ -265,7 +265,7 @@
             textBoxUpdatedBy.Location = new Point(782, 114);
             textBoxUpdatedBy.Name = "textBoxUpdatedBy";
             textBoxUpdatedBy.Size = new Size(306, 31);
-            textBoxUpdatedBy.TabIndex = 28;
+            textBoxUpdatedBy.TabStop = false;
             // 
             // textBoxupdatedAt
             // 
@@ -275,7 +275,7 @@
             textBoxupdatedAt.Location = new Point(782, 157);
             textBoxupdatedAt.Name = "textBoxupdatedAt";
             textBoxupdatedAt.Size = new Size(306, 31);
-            textBoxupdatedAt.TabIndex = 27;
+            textBoxupdatedAt.TabStop = false;
             // 
             // label13
             // 
@@ -328,12 +328,12 @@
             // textBoxZoneId
             // 
             textBoxZoneId.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            textBoxZoneId.BackColor = Color.LightYellow;
+            textBoxZoneId.BackColor = SystemColors.ActiveBorder;
             textBoxZoneId.BorderStyle = BorderStyle.FixedSingle;
             textBoxZoneId.Location = new Point(233, 70);
             textBoxZoneId.Name = "textBoxZoneId";
             textBoxZoneId.Size = new Size(306, 31);
-            textBoxZoneId.TabIndex = 22;
+            textBoxZoneId.TabStop = false;
             // 
             // textBoxName
             // 
@@ -343,7 +343,7 @@
             textBoxName.Location = new Point(233, 113);
             textBoxName.Name = "textBoxName";
             textBoxName.Size = new Size(306, 31);
-            textBoxName.TabIndex = 21;
+            textBoxName.TabIndex = 40;
             textBoxName.KeyPress += TextBoxName_KeyPress;
             // 
             // textBoxSurname
@@ -354,7 +354,7 @@
             textBoxSurname.Location = new Point(233, 165);
             textBoxSurname.Name = "textBoxSurname";
             textBoxSurname.Size = new Size(306, 31);
-            textBoxSurname.TabIndex = 20;
+            textBoxSurname.TabIndex = 41;
             textBoxSurname.KeyPress += TextBoxSurname_KeyPress;
             // 
             // textBoxTc
@@ -363,11 +363,11 @@
             textBoxTc.BackColor = Color.LightYellow;
             textBoxTc.BorderStyle = BorderStyle.FixedSingle;
             textBoxTc.Location = new Point(233, 210);
+            textBoxTc.MaxLength = 11;
             textBoxTc.Name = "textBoxTc";
             textBoxTc.Size = new Size(306, 31);
-            textBoxTc.TabIndex = 19;
+            textBoxTc.TabIndex = 42;
             textBoxTc.KeyPress += TextBoxTc_KeyPress;
-            textBoxTc.MaxLength = 11;
             // 
             // textBoxEmail
             // 
@@ -377,7 +377,7 @@
             textBoxEmail.Location = new Point(233, 255);
             textBoxEmail.Name = "textBoxEmail";
             textBoxEmail.Size = new Size(306, 31);
-            textBoxEmail.TabIndex = 18;
+            textBoxEmail.TabIndex = 43;
             // 
             // textBoxPhone
             // 
@@ -385,11 +385,11 @@
             textBoxPhone.BackColor = Color.LightYellow;
             textBoxPhone.BorderStyle = BorderStyle.FixedSingle;
             textBoxPhone.Location = new Point(233, 299);
+            textBoxPhone.MaxLength = 11;
             textBoxPhone.Name = "textBoxPhone";
             textBoxPhone.Size = new Size(306, 31);
-            textBoxPhone.TabIndex = 17;
+            textBoxPhone.TabIndex = 44;
             textBoxPhone.KeyPress += TextBoxPhone_KeyPress;
-            textBoxPhone.MaxLength = 11;
             // 
             // textBoxAddress
             // 
@@ -399,17 +399,17 @@
             textBoxAddress.Location = new Point(233, 342);
             textBoxAddress.Name = "textBoxAddress";
             textBoxAddress.Size = new Size(306, 31);
-            textBoxAddress.TabIndex = 16;
+            textBoxAddress.TabIndex = 45;
             // 
             // textBoxFarmerID
             // 
             textBoxFarmerID.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            textBoxFarmerID.BackColor = Color.LightYellow;
+            textBoxFarmerID.BackColor = SystemColors.ActiveBorder;
             textBoxFarmerID.BorderStyle = BorderStyle.FixedSingle;
             textBoxFarmerID.Location = new Point(233, 26);
             textBoxFarmerID.Name = "textBoxFarmerID";
             textBoxFarmerID.Size = new Size(306, 31);
-            textBoxFarmerID.TabIndex = 11;
+            textBoxFarmerID.TabStop = false;
             // 
             // label9
             // 
@@ -420,9 +420,9 @@
             label9.Location = new Point(116, 71);
             label9.Margin = new Padding(3, 0, 5, 0);
             label9.Name = "label9";
-            label9.Size = new Size(111, 29);
+            label9.Size = new Size(77, 29);
             label9.TabIndex = 10;
-            label9.Text = "Bölge No:";
+            label9.Text = "Bölge:";
             // 
             // label8
             // 
@@ -563,7 +563,7 @@
 
         private void TextBoxName_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar))
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) && e.KeyChar != ' ')
             {
                 e.Handled = true;
             }

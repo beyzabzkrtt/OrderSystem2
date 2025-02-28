@@ -22,6 +22,12 @@ namespace OrderSystem2.forms.field
         private FieldRepository _fieldRepository;
         private FieldService _fieldService;
 
+        private FactoryRepository _factoryRepository;
+        private FactoryService _factoryService;
+
+        private ZoneRepository _zoneRepository;
+        private ZoneService _zoneService;
+
         private bool isDragging = false;
         private Point startPoint = new Point(0, 0);
         public AddFieldForm()
@@ -31,7 +37,14 @@ namespace OrderSystem2.forms.field
             _fieldRepository = new FieldRepository(_connectionString);
             _fieldService = new FieldService(_fieldRepository);
 
+            _zoneRepository = new ZoneRepository(_connectionString);
+            _zoneService = new ZoneService(_zoneRepository);
+
+            _factoryRepository = new FactoryRepository(_connectionString);
+            _factoryService = new FactoryService(_factoryRepository);
+
             Bind();
+            LoadCombobox();
         }
 
         private void Bind()
@@ -72,22 +85,72 @@ namespace OrderSystem2.forms.field
             isDragging = false;
         }
 
+        private void LoadCombobox()
+        {
+            var factories = _factoryService.GetAll();
+            comboBoxFactory.DataSource = factories;
+            comboBoxFactory.DisplayMember = "Name";
+            comboBoxFactory.ValueMember = "Id";
+
+
+            comboBoxFactory.SelectedIndexChanged += comboBoxFactory_SelectedIndexChanged;
+
+            var zones = _zoneService.GetAll();
+            comboBoxZone.DataSource = zones;
+            comboBoxZone.DisplayMember = "Name";
+            comboBoxZone.ValueMember = "Id";
+
+            comboBoxZone.DataSource = null;
+            comboBoxZone.Items.Clear();
+
+        }
+
+        private void comboBoxFactory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadZones();
+
+            if (comboBoxFactory.SelectedIndex != -1)
+            {
+                labelPlaceholder.Visible = false;
+            }
+            else
+            {
+                labelPlaceholder.Visible = true;
+            }
+        }
+
+        private void LoadZones()
+        {
+            if (comboBoxFactory.SelectedValue != null)
+            {
+                int selectedFactoryId;
+
+                if (comboBoxFactory.SelectedValue is int)
+                {
+                    selectedFactoryId = (int)comboBoxFactory.SelectedValue;
+                }
+                else
+                {
+                    return;
+                }
+
+                var zones = _zoneRepository.GetZoneByFactory(selectedFactoryId);
+
+                comboBoxZone.DataSource = zones;
+                comboBoxZone.DisplayMember = "Name";
+                comboBoxZone.ValueMember = "Id";
+            }
+        }
+
         private void buttonSave_Click(object sender, EventArgs e)
         {
             var field = new Field();
-            int zoneId, farmerId;
-            bool isValidZoneId = int.TryParse(textBoxZoneId.Text.Trim(), out zoneId);
-            bool isValidFarmerId = int.TryParse(textBoxFarmerId.Text.Trim(), out farmerId);
-            double areaSize = Convert.ToDouble(textBoxAreSize.Text.Trim());
+            int  farmerId;       
+            bool isValidFarmerId = int.TryParse(textBoxFarmerArea.Text.Trim(), out farmerId);
+            double areaSize = Convert.ToDouble(textBoxFarmerNo.Text.Trim());
 
 
-            if (!isValidZoneId)
-            {
-                MessageBox.Show("Geçerli bir Zone ID girin.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            field.ZoneId = zoneId;
+            field.ZoneId = Convert.ToInt32(comboBoxZone.SelectedValue);
             field.FarmerId = farmerId;
             field.AreaSize = areaSize;
 
@@ -95,10 +158,13 @@ namespace OrderSystem2.forms.field
             {
                 _fieldService.Add(field);
                 MessageBox.Show("Tarla başarıyla eklendi!", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                if (this.Owner is Fieldform fieldform)
+
+                Fieldform fieldform = Application.OpenForms.OfType<Fieldform>().FirstOrDefault();
+                if (fieldform != null)
                 {
                     fieldform.LoadData();
                 }
+
                 this.Close();
 
             }

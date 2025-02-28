@@ -72,14 +72,13 @@ namespace OrderSystem2.forms
         {
             foreach (Control ctrl in parent.Controls)
             {
-                if (!(ctrl is TextBox))  // TextBox'ları hariç tut, yoksa yazı yazarken sürüklenir.
+                if (!(ctrl is TextBox))
                 {
                     ctrl.MouseDown += MouseDownHandler;
                     ctrl.MouseMove += MouseMoveHandler;
                     ctrl.MouseUp += MouseUpHandler;
                 }
 
-                // Eğer kontrolün içinde başka kontroller varsa, onlara da ekle
                 if (ctrl.HasChildren)
                 {
                     AttachDragEvents(ctrl);
@@ -115,26 +114,19 @@ namespace OrderSystem2.forms
             if (e.RowIndex >= 0)
             {
                 var selectedFarmer = (Farmer)dataGridFarmer.Rows[e.RowIndex].DataBoundItem;
-                FarmerDetail detailForm = new FarmerDetail(selectedFarmer);
-                detailForm.Owner = this;
-                detailForm.ShowDialog();
+                FarmerDetail detailForm = new FarmerDetail(selectedFarmer);                
+                detailForm.Show();
             }
         }
 
         private void pictureBoxClose_Click(object sender, EventArgs e)
         {
-            var result = MessageBox.Show("Formu kapatmak istediğinize emin misiniz?", "Onay", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (result == DialogResult.Yes)
-            {
                 this.Close();
-            }
         }
 
         private void labelAddFarmer_Click(object sender, EventArgs e)
         {
             AddFarmerForm addFarmerForm = new AddFarmerForm();
-            addFarmerForm.Owner = this;
             addFarmerForm.Show();
         }
 

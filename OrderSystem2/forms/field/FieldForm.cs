@@ -89,18 +89,12 @@ namespace OrderSystem2.forms.field
         private void label2_Click(object sender, EventArgs e)
         {
             AddFieldForm addFieldForm = new AddFieldForm();
-            addFieldForm.Owner = this;
             addFieldForm.Show();
         }
 
         private void pictureBoxClose_Click(object sender, EventArgs e)
         {
-            var result = MessageBox.Show("Formu kapatmak istediğinize emin misiniz?", "Onay", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (result == DialogResult.Yes)
-            {
-                this.Close();
-            }
+                this.Close();            
         }
 
         private void pictureBoxExpand_Click(object sender, EventArgs e)
@@ -128,11 +122,6 @@ namespace OrderSystem2.forms.field
         private void pictureBoxTab_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
-        }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
         }
 
         private void pictureBoxBack_Click(object sender, EventArgs e)

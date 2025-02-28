@@ -1,5 +1,6 @@
 ﻿using OrderSystem2.model;
 using OrderSystem2.repository.concretes;
+using OrderSystem2.service.abstracts;
 using OrderSystem2.service.concretes;
 
 namespace OrderSystem2.forms
@@ -11,6 +12,12 @@ namespace OrderSystem2.forms
         private FarmerRepository _farmerRepository;
         private FarmerService _farmerService;
 
+        private ZoneRepository _zoneRepository;
+        private ZoneService _zoneService;
+
+        private FactoryRepository _factoryRepository;
+        private FactoryService _factoryService;
+
         private bool isDragging = false;
         private Point startPoint = new Point(0, 0);
 
@@ -21,32 +28,46 @@ namespace OrderSystem2.forms
             _farmerRepository = new FarmerRepository(_connectionString);
             _farmerService = new FarmerService(_farmerRepository);
 
+            _zoneRepository = new ZoneRepository(_connectionString);
+            _zoneService = new ZoneService(_zoneRepository);
+
+            _factoryRepository = new FactoryRepository(_connectionString);
+            _factoryService = new FactoryService(_factoryRepository);
+
             pictureBoxClose.Click += pictureBoxClose_Click;
 
-            AttachDragEvents(this);
-
+            AttachPanelDragEvents(panel2);
+            LoadCombobox();
+         
+        }
+        private void AttachPanelDragEvents(Panel panel)
+        {
+            panel.MouseDown += Panel_MouseDown;
+            panel.MouseMove += Panel_MouseMove;
+            panel.MouseUp += Panel_MouseUp;
         }
 
-        private void AttachDragEvents(Control parent)
+        private void Panel_MouseDown(object sender, MouseEventArgs e)
         {
-            foreach (Control ctrl in parent.Controls)
+            if (e.Button == MouseButtons.Left)
             {
-                if (!(ctrl is TextBox)) 
-                {
-                    ctrl.MouseDown += MouseDownHandler;
-                    ctrl.MouseMove += MouseMoveHandler;
-                    ctrl.MouseUp += MouseUpHandler;
-                }
-
-                if (ctrl.HasChildren)
-                {
-                    AttachDragEvents(ctrl);
-                }
+                isDragging = true;
+                startPoint = e.Location;
             }
-            
-            parent.MouseDown += MouseDownHandler;
-            parent.MouseMove += MouseMoveHandler;
-            parent.MouseUp += MouseUpHandler;
+        }
+
+        private void Panel_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (isDragging)
+            {
+                Point currentScreenPos = ((Control)sender).PointToScreen(e.Location);
+                this.Location = new Point(currentScreenPos.X - startPoint.X, currentScreenPos.Y - startPoint.Y);
+            }
+        }
+
+        private void Panel_MouseUp(object sender, MouseEventArgs e)
+        {
+            isDragging = false;
         }
 
         private void pictureBoxClose_Click(object? sender, EventArgs e)
@@ -54,21 +75,70 @@ namespace OrderSystem2.forms
            this.Close();
         }
 
+        private void LoadCombobox()
+        {
+            var factories = _factoryService.GetAll();
+            comboBoxFactory.DataSource = factories;
+            comboBoxFactory.DisplayMember = "Name";
+            comboBoxFactory.ValueMember = "Id";
+
+           
+            comboBoxFactory.SelectedIndexChanged += comboBoxFactory_SelectedIndexChanged;
+
+            var zones = _zoneService.GetAll();
+            comboBoxZone.DataSource = zones;
+            comboBoxZone.DisplayMember = "Name";
+            comboBoxZone.ValueMember = "Id";
+
+            comboBoxZone.DataSource = null;
+            comboBoxZone.Items.Clear();
+
+        }
+
+        private void comboBoxFactory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadZones();
+
+            if (comboBoxFactory.SelectedIndex != -1)
+            {
+                labelPlaceholder.Visible = false;
+            }
+            else
+            {
+                labelPlaceholder.Visible = true;
+            }
+        }
+
+        private void LoadZones()
+        {
+            if (comboBoxFactory.SelectedValue != null)
+            {
+                int selectedFactoryId;
+
+                if (comboBoxFactory.SelectedValue is int)
+                {
+                    selectedFactoryId = (int)comboBoxFactory.SelectedValue;
+                }
+                else
+                {
+                    return; 
+                }
+
+                var zones = _zoneRepository.GetZoneByFactory(selectedFactoryId);
+
+                comboBoxZone.DataSource = zones;
+                comboBoxZone.DisplayMember = "Name";
+                comboBoxZone.ValueMember = "Id";
+            }
+        }
+
+
         private void buttonSave_Click(object sender, EventArgs e)
         {
 
-            var farmer = new Farmer();
-            int zoneId;
-            bool isValidZoneId = int.TryParse(textBoxZoneId.Text.Trim(), out zoneId);
+            var farmer = new Farmer();       
 
-
-            if (!isValidZoneId)
-            {
-                MessageBox.Show("Geçerli bir Zone ID girin.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            farmer.ZoneId = zoneId;
+            farmer.ZoneId = Convert.ToInt32(comboBoxZone.SelectedValue);
             farmer.Name = textBoxName.Text.Trim();
             farmer.Surname = textBoxSurname.Text.Trim();
             farmer.Tc = textBoxTc.Text.Trim();
@@ -80,10 +150,13 @@ namespace OrderSystem2.forms
             {
                 _farmerService.Add(farmer);
                 MessageBox.Show("Çiftçi başarıyla eklendi!", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                if (this.Owner is FarmerForm farmerForm)
+
+                FarmerForm farmerForm = Application.OpenForms.OfType<FarmerForm>().FirstOrDefault();
+                if (farmerForm != null)
                 {
                     farmerForm.LoadFarmer();
                 }
+
                 this.Close();
                 
             }
@@ -97,31 +170,6 @@ namespace OrderSystem2.forms
         {
             this.Close();
         }
-
-        private void MouseDownHandler(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                isDragging = true;
-                startPoint = new Point(e.X, e.Y);
-                this.BringToFront();
-            }
-        }
-
-        private void MouseMoveHandler(object sender, MouseEventArgs e)
-        {
-            if (isDragging)
-            {
-                Point currentScreenPos = PointToScreen(e.Location);
-                this.Location = new Point(currentScreenPos.X - startPoint.X, currentScreenPos.Y - startPoint.Y);
-            }
-        }
-
-        private void MouseUpHandler(object sender, MouseEventArgs e)
-        {
-            isDragging = false;
-        }
-
 
 
     }

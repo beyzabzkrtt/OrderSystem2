@@ -124,19 +124,13 @@ namespace OrderSystem2.forms
             {
                 var selectedOrder = (Order)dataGridOrder.Rows[e.RowIndex].DataBoundItem;
                 OrderItemsForm detailForm = new OrderItemsForm(selectedOrder);
-                detailForm.Owner = this;
-                detailForm.ShowDialog();
+                detailForm.Show();
             }
         }
 
         private void pictureBoxClose_Click(object sender, EventArgs e)
         {
-            var result = MessageBox.Show("Formu kapatmak istediğinize emin misiniz?", "Onay", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (result == DialogResult.Yes)
-            {
                 this.Close();
-            }
         }
 
         private void pictureBoxExpand_Click(object sender, EventArgs e)

@@ -13,6 +13,9 @@ namespace OrderSystem2.forms
         private FarmerRepository _farmerRepository;
         private FarmerService _farmerService;
 
+        private ZoneRepository _zoneRepository;
+        private ZoneService _zoneService;
+
         private Farmer _farmer;
 
         private bool isFullScreen = false;
@@ -28,6 +31,9 @@ namespace OrderSystem2.forms
 
             _farmerRepository = new FarmerRepository(_connectionString);
             _farmerService = new FarmerService(_farmerRepository);
+
+            _zoneRepository = new ZoneRepository(_connectionString);
+            _zoneService = new ZoneService(_zoneRepository);
          
             LoadData();
             Bind();
@@ -38,7 +44,7 @@ namespace OrderSystem2.forms
         {
             textBoxFarmerID.Text = _farmer.Id.ToString();
             textBoxFarmerID.ReadOnly = true;
-            textBoxZoneId.Text = _farmer.ZoneId.ToString();
+            textBoxZoneId.Text = _zoneService.GetZoneNameByFarmerId(_farmer.Id);
             textBoxZoneId.ReadOnly = true;
             textBoxName.Text = _farmer.Name;
             textBoxSurname.Text = _farmer.Surname;
@@ -88,9 +94,10 @@ namespace OrderSystem2.forms
                 MessageBox.Show("Güncelleme başarılı!", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoadData();
 
-                if (this.Owner is ProductForm productForm)
+                FarmerForm farmerForm = Application.OpenForms.OfType<FarmerForm>().FirstOrDefault();
+                if (farmerForm != null)
                 {
-                    productForm.LoadData();
+                    farmerForm.LoadFarmer();
                 }
 
             }
@@ -116,7 +123,8 @@ namespace OrderSystem2.forms
 
                     MessageBox.Show("Kayıt başarıyla silindi!", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    if (this.Owner is FarmerForm farmerForm)
+                    FarmerForm farmerForm = Application.OpenForms.OfType<FarmerForm>().FirstOrDefault();
+                    if (farmerForm != null)
                     {
                         farmerForm.LoadFarmer();
                     }
@@ -133,21 +141,18 @@ namespace OrderSystem2.forms
 
         private void pictureBoxClose_Click(object sender, EventArgs e)
         {
-
             this.Close();
         }
 
         private void buttonShowField_Click(object sender, EventArgs e)
         {
             FarmerFieldForm farmerFieldForm = new FarmerFieldForm(_farmer.Id);
-            farmerFieldForm.Owner = this;
             farmerFieldForm.Show();
         }
 
         private void buttonShowOrders_Click(object sender, EventArgs e)
         {
             FarmerOrderForm farmerOrderForm = new FarmerOrderForm(_farmer.Id);
-            farmerOrderForm.Owner = this;
             farmerOrderForm.Show();
         }
 

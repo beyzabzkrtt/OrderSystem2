@@ -155,7 +155,7 @@
             label2.Text = "Ürün Ekle";
             label2.Click += label2_Click;
             // 
-            // dataGridProduct
+            // dataGridProduct  
             // 
             dataGridProduct.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridProduct.BackgroundColor = Color.AntiqueWhite;
@@ -166,7 +166,7 @@
             dataGridProduct.RowHeadersWidth = 62;
             dataGridProduct.Size = new Size(1235, 384);
             dataGridProduct.TabIndex = 2;
-            dataGridProduct.CellContentClick += dataGridProduct_CellContentClick;
+            dataGridProduct.CellDoubleClick += dataGridProduct_CellDoubleClick;
             // 
             // ProductForm
             // 

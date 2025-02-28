@@ -116,7 +116,6 @@ namespace OrderSystem2.forms.product
         private void label2_Click(object sender, EventArgs e)
         {
             AddProductForm addProductForm = new AddProductForm();
-            addProductForm.Owner = this;
             addProductForm.Show();
         }
 
@@ -127,12 +126,7 @@ namespace OrderSystem2.forms.product
 
         private void pictureBoxClose_Click(object sender, EventArgs e)
         {
-            var result = MessageBox.Show("Formu kapatmak istediğinize emin misiniz?", "Onay", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (result == DialogResult.Yes)
-            {
                 this.Close();
-            }
         }
 
         private void pictureBoxExpand_Click(object sender, EventArgs e)
@@ -162,14 +156,13 @@ namespace OrderSystem2.forms.product
             this.WindowState = FormWindowState.Minimized;
         }
 
-        private void dataGridProduct_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridProduct_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
                 var selectedProduct = (Product)dataGridProduct.Rows[e.RowIndex].DataBoundItem;
                 ProductDetailForm detailForm = new ProductDetailForm(selectedProduct);
-                detailForm.Owner = this;
-                detailForm.ShowDialog();
+                detailForm.Show();
             }
         }
     }

@@ -34,10 +34,13 @@
             label2 = new Label();
             label3 = new Label();
             label4 = new Label();
-            textBoxFarmerId = new TextBox();
-            textBoxAreSize = new TextBox();
-            textBoxZoneId = new TextBox();
+            textBoxFarmerArea = new TextBox();
+            textBoxFarmerNo = new TextBox();
             buttonSave = new Button();
+            label5 = new Label();
+            comboBoxFactory = new ComboBox();
+            comboBoxZone = new ComboBox();
+            labelPlaceholder = new Label();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxClose).BeginInit();
             SuspendLayout();
@@ -80,7 +83,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.FromArgb(22, 56, 39);
-            label2.Location = new Point(76, 317);
+            label2.Location = new Point(76, 396);
             label2.Margin = new Padding(3, 0, 5, 0);
             label2.Name = "label2";
             label2.Size = new Size(113, 29);
@@ -92,51 +95,44 @@
             label3.AutoSize = true;
             label3.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.FromArgb(22, 56, 39);
-            label3.Location = new Point(76, 248);
+            label3.Location = new Point(76, 258);
             label3.Margin = new Padding(3, 0, 5, 0);
             label3.Name = "label3";
-            label3.Size = new Size(111, 29);
+            label3.Size = new Size(77, 29);
             label3.TabIndex = 13;
-            label3.Text = "Bölge No:";
+            label3.Text = "Bölge:";
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.FromArgb(22, 56, 39);
-            label4.Location = new Point(76, 178);
+            label4.Location = new Point(76, 329);
             label4.Margin = new Padding(3, 0, 5, 0);
             label4.Name = "label4";
             label4.Size = new Size(104, 29);
             label4.TabIndex = 14;
             label4.Text = "Çiftçi No:";
             // 
-            // textBoxFarmerId
+            // textBoxFarmerArea
             // 
-            textBoxFarmerId.BackColor = Color.LightYellow;
-            textBoxFarmerId.BorderStyle = BorderStyle.FixedSingle;
-            textBoxFarmerId.Location = new Point(197, 179);
-            textBoxFarmerId.Name = "textBoxFarmerId";
-            textBoxFarmerId.Size = new Size(222, 31);
-            textBoxFarmerId.TabIndex = 23;
+            textBoxFarmerArea.BackColor = Color.LightYellow;
+            textBoxFarmerArea.BorderStyle = BorderStyle.FixedSingle;
+            textBoxFarmerArea.Location = new Point(197, 397);
+            textBoxFarmerArea.Name = "textBoxFarmerArea";
+            textBoxFarmerArea.Size = new Size(222, 31);
+            textBoxFarmerArea.TabIndex = 23;
+            textBoxFarmerArea.KeyPress += TextBoxFarmerArea_KeyPress;
             // 
-            // textBoxAreSize
+            // textBoxFarmerNo
             // 
-            textBoxAreSize.BackColor = Color.LightYellow;
-            textBoxAreSize.BorderStyle = BorderStyle.FixedSingle;
-            textBoxAreSize.Location = new Point(197, 318);
-            textBoxAreSize.Name = "textBoxAreSize";
-            textBoxAreSize.Size = new Size(222, 31);
-            textBoxAreSize.TabIndex = 24;
-            // 
-            // textBoxZoneId
-            // 
-            textBoxZoneId.BackColor = Color.LightYellow;
-            textBoxZoneId.BorderStyle = BorderStyle.FixedSingle;
-            textBoxZoneId.Location = new Point(197, 246);
-            textBoxZoneId.Name = "textBoxZoneId";
-            textBoxZoneId.Size = new Size(222, 31);
-            textBoxZoneId.TabIndex = 25;
+            textBoxFarmerNo.BackColor = Color.LightYellow;
+            textBoxFarmerNo.BorderStyle = BorderStyle.FixedSingle;
+            textBoxFarmerNo.Location = new Point(197, 327);
+            textBoxFarmerNo.Name = "textBoxFarmerNo";
+            textBoxFarmerNo.Size = new Size(222, 31);
+            textBoxFarmerNo.TabIndex = 24;
+            textBoxFarmerNo.KeyPress += TextBoxFarmerNo_KeyPress;
             // 
             // buttonSave
             // 
@@ -151,16 +147,60 @@
             buttonSave.UseVisualStyleBackColor = false;
             buttonSave.Click += buttonSave_Click;
             // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.FromArgb(22, 56, 39);
+            label5.Location = new Point(76, 188);
+            label5.Margin = new Padding(3, 0, 5, 0);
+            label5.Name = "label5";
+            label5.Size = new Size(94, 29);
+            label5.TabIndex = 35;
+            label5.Text = "Fabrika:";
+            // 
+            // comboBoxFactory
+            // 
+            comboBoxFactory.BackColor = Color.LightYellow;
+            comboBoxFactory.FormattingEnabled = true;
+            comboBoxFactory.Location = new Point(197, 184);
+            comboBoxFactory.Name = "comboBoxFactory";
+            comboBoxFactory.Size = new Size(222, 33);
+            comboBoxFactory.TabStop = false;
+            // 
+            // comboBoxZone
+            // 
+            comboBoxZone.BackColor = Color.LightYellow;
+            comboBoxZone.FormattingEnabled = true;
+            comboBoxZone.Location = new Point(197, 257);
+            comboBoxZone.Name = "comboBoxZone";
+            comboBoxZone.Size = new Size(222, 33);
+            comboBoxZone.TabStop = false;
+            // 
+            // labelPlaceholder
+            // 
+            labelPlaceholder.AutoSize = true;
+            labelPlaceholder.BackColor = Color.LightYellow;
+            labelPlaceholder.ForeColor = SystemColors.ActiveBorder;
+            labelPlaceholder.Location = new Point(199, 188);
+            labelPlaceholder.Name = "labelPlaceholder";
+            labelPlaceholder.Size = new Size(126, 25);
+            labelPlaceholder.TabIndex = 38;
+            labelPlaceholder.Text = "Fabrika Seçiniz";
+            // 
             // AddFieldForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.AntiqueWhite;
             ClientSize = new Size(524, 652);
+            Controls.Add(labelPlaceholder);
+            Controls.Add(comboBoxZone);
+            Controls.Add(comboBoxFactory);
+            Controls.Add(label5);
             Controls.Add(buttonSave);
-            Controls.Add(textBoxZoneId);
-            Controls.Add(textBoxAreSize);
-            Controls.Add(textBoxFarmerId);
+            Controls.Add(textBoxFarmerNo);
+            Controls.Add(textBoxFarmerArea);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
@@ -176,6 +216,22 @@
             PerformLayout();
         }
 
+        private void TextBoxFarmerNo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void TextBoxFarmerArea_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar ) && e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
+        }
+
         #endregion
 
         private Panel panel2;
@@ -184,9 +240,12 @@
         private Label label2;
         private Label label3;
         private Label label4;
-        private TextBox textBoxFarmerId;
-        private TextBox textBoxAreSize;
-        private TextBox textBoxZoneId;
+        private TextBox textBoxFarmerArea;
+        private TextBox textBoxFarmerNo;
         private Button buttonSave;
+        private Label label5;
+        private ComboBox comboBoxFactory;
+        private ComboBox comboBoxZone;
+        private Label labelPlaceholder;
     }
 }

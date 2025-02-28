@@ -51,6 +51,33 @@ namespace OrderSystem2.repository.concretes
             }
         }
 
+        public string GetCategoryName(int id)
+        {
+            using (IDbConnection conn = new SqlConnection(_connectionString))
+            {
+                string query = $"SELECT Category.Name FROM Category JOIN Product ON Category.Id = Product.CategoryId WHERE Product.Id = @ProductId";
+                return conn.QueryFirstOrDefault<string>(query, new { ProductId = id });
+            }
+        }
+
+        public string GetFactoryName(int id)
+        {
+            using (IDbConnection conn = new SqlConnection(_connectionString))
+            {
+                string query = $"SELECT Factory.Name FROM Factory JOIN Product ON Factory.Id = Product.FactoryId WHERE Product.Id = @ProductId";
+                return conn.QueryFirstOrDefault<string>(query, new { ProductId = id });
+            }
+        }
+
+        public string GetUnitName(int id)
+        {
+            using (IDbConnection conn = new SqlConnection(_connectionString))
+            {
+                string query = $"SELECT Unit.Name FROM Unit JOIN Product ON Unit.Id = Product.UnitId WHERE Product.Id = @ProductId";
+                return conn.QueryFirstOrDefault<string>(query, new { ProductId = id });
+            }
+        }
+
         public void Update(Product entity, int id)
         {
             using (IDbConnection conn = new SqlConnection(_connectionString))

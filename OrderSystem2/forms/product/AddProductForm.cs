@@ -1,6 +1,8 @@
 ﻿using System.Globalization;
 using OrderSystem2.model;
+using OrderSystem2.repository.abstracts;
 using OrderSystem2.repository.concretes;
+using OrderSystem2.service.abstracts;
 using OrderSystem2.service.concretes;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
@@ -13,6 +15,15 @@ namespace OrderSystem2.forms.product
         private ProductRepository _productRepository;
         private ProductService _productService;
 
+        private FactoryRepository _factoryRepository;
+        private FactoryService _factoryService;
+
+        private CategoryRepository _categoryRepository;
+        private CategoryService _categoryService;
+
+        private UnitRepository _unitRepository;
+        private UnitService _unitService;
+
         private bool isDragging = false;
         private Point startPoint = new Point(0, 0);
 
@@ -23,10 +34,20 @@ namespace OrderSystem2.forms.product
             _productRepository = new ProductRepository(_connectionString);
             _productService = new ProductService(_productRepository);
 
+            _categoryRepository = new CategoryRepository(_connectionString);
+            _categoryService = new CategoryService(_categoryRepository);
+
+            _unitRepository = new UnitRepository(_connectionString);
+            _unitService = new UnitService(_unitRepository);
+
+            _factoryRepository = new FactoryRepository(_connectionString);
+            _factoryService = new FactoryService(_factoryRepository);
+
             buttonSave.Click += buttonSave_Click;
             pictureBoxClose.Click += pictureBoxClose_Click_1;
 
             Bind();
+            LoadCombobox();
 
         }
 
@@ -68,28 +89,80 @@ namespace OrderSystem2.forms.product
             isDragging = false;
         }
 
+        private void LoadCombobox()
+        {
+            var factories = _factoryService.GetAll();
+            comboBoxFactory.DataSource = factories;
+            comboBoxFactory.DisplayMember = "Name";
+            comboBoxFactory.ValueMember = "Id";
+
+
+            comboBoxFactory.SelectedIndexChanged += comboBoxFactory_SelectedIndexChanged;
+
+            var categories = _categoryService.GetAll();
+            comboBoxCategory.DataSource = categories;
+            comboBoxCategory.DisplayMember = "Name";
+            comboBoxCategory.ValueMember = "Id";
+
+            comboBoxCategory.DataSource = null;
+            comboBoxCategory.Items.Clear();
+
+            var units = _unitService.GetAll();
+            comboBoxUnit.DataSource = units;
+            comboBoxUnit.DisplayMember = "Name";
+            comboBoxUnit.ValueMember = "Id";
+        }
+
+        private void comboBoxFactory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadCategories();
+
+            if (comboBoxFactory.SelectedIndex != -1)
+            {
+                labelPlaceholder.Visible = false;
+            }
+            else
+            {
+                labelPlaceholder.Visible = true;
+            }
+        }
+
+        private void LoadCategories()
+        {
+            if (comboBoxFactory.SelectedValue != null)
+            {
+                int selectedFactoryId;
+
+                if (comboBoxFactory.SelectedValue is int)
+                {
+                    selectedFactoryId = (int)comboBoxFactory.SelectedValue;
+                }
+                else
+                {
+                    return;
+                }
+
+                var categories = _categoryService.GetCategoryByFactory(selectedFactoryId);
+
+                comboBoxCategory.DataSource = categories;
+                comboBoxCategory.DisplayMember = "Name";
+                comboBoxCategory.ValueMember = "Id";
+            }
+        }
+
         private void buttonSave_Click(object sender, EventArgs e)
         {
 
             var product = new Product();
-            int factoryId, categoryId, unitId, stock;
-            bool isValidFactoryId = int.TryParse(textBoxFactory.Text.Trim(), out factoryId);
-            bool isValidCategoryId = int.TryParse(textBoxCategory.Text.Trim(), out categoryId);
-            bool isValidUnitId = int.TryParse(textBoxUnit.Text.Trim(), out unitId);
+            int stock;
+       
             double price = Convert.ToDouble(textBoxPrice.Text.Trim(), CultureInfo.InvariantCulture);
             bool isValidStock = int.TryParse(textBoxStok.Text.Trim(), out stock);
 
 
-
-            if (!isValidFactoryId)
-            {
-                MessageBox.Show("Geçerli bir Zone ID girin.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            product.FactoryId = factoryId;
-            product.CategoryId = categoryId;
-            product.UnitId = unitId;
+            product.FactoryId = Convert.ToInt32(comboBoxFactory.SelectedValue);
+            product.CategoryId = Convert.ToInt32(comboBoxCategory.SelectedValue);
+            product.UnitId = Convert.ToInt32(comboBoxUnit.SelectedValue);
             product.Name = textBoxName.Text;
             product.Price = price;
             product.Stock = stock;
@@ -99,7 +172,9 @@ namespace OrderSystem2.forms.product
             {
                 _productService.Add(product);
                 MessageBox.Show("Ürün başarıyla eklendi!", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                if (this.Owner is ProductForm productForm)
+
+                ProductForm productForm = Application.OpenForms.OfType<ProductForm>().FirstOrDefault();
+                if (productForm != null)
                 {
                     productForm.LoadData();
                 }
@@ -121,5 +196,7 @@ namespace OrderSystem2.forms.product
         {
             this.Close();
         }
+
+       
     }
 }
