@@ -1,11 +1,10 @@
-﻿using OrderSystem2.service.concretes;
+﻿using OrderSystem2.model;
+using OrderSystem2.service.concretes;
 
 namespace OrderSystem2
 {
     public partial class LoginForm : Form
     {
-
-        private string _connectionString = "Server=localhost;Database=OrderSystem;Integrated Security=True;TrustServerCertificate=True";
 
         private UserRepository _userRepository;
         private UserService _userService;
@@ -16,7 +15,7 @@ namespace OrderSystem2
         public LoginForm()
         {
             InitializeComponent();
-            _userRepository = new UserRepository(_connectionString);
+            _userRepository = new UserRepository();
             _userService = new UserService(_userRepository);
 
            AttachDragEvents(this);
@@ -90,22 +89,32 @@ namespace OrderSystem2
             }
         }
 
-
         private void buttonLogin_Click(object sender, EventArgs e)
         {
             string email = txtEmail.Text.Trim();
             string password = txtPassword.Text;
 
-            if (_userService.ValidateUser(email, password))
+            bool emailExist = _userRepository.IsEmailExist(email);
+
+            if (!emailExist)
             {
-                MessageBox.Show("Giriş başarılı!", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Hide();
-                MainForm mainForm = new MainForm();
-                mainForm.Show();
+                MessageBox.Show("E-posta kayıtlı değil!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                MessageBox.Show("E-posta veya şifre hatalı!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                User user = _userRepository.GetUserByEmail(email);
+
+                if (_userService.ValidateUser(email, password))
+                {
+                    MessageBox.Show("Giriş başarılı!", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Hide();
+                    MainForm mainForm = new MainForm(user);
+                    mainForm.Show();
+                }
+                else
+                {
+                    MessageBox.Show("E-posta veya şifre hatalı!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 

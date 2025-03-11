@@ -37,7 +37,6 @@
             pictureBox1 = new PictureBox();
             label1 = new Label();
             panel2 = new Panel();
-            label2 = new Label();
             dataGridOrder = new DataGridView();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxBack).BeginInit();
@@ -45,7 +44,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBoxTab).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxClose).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridOrder).BeginInit();
             SuspendLayout();
             // 
@@ -136,24 +134,11 @@
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(22, 56, 39);
-            panel2.Controls.Add(label2);
             panel2.Dock = DockStyle.Bottom;
             panel2.Location = new Point(0, 507);
             panel2.Name = "panel2";
             panel2.Size = new Size(1235, 52);
             panel2.TabIndex = 1;
-            // 
-            // label2
-            // 
-            label2.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            label2.AutoSize = true;
-            label2.Font = new Font("Candara", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.AntiqueWhite;
-            label2.Location = new Point(1091, 15);
-            label2.Name = "label2";
-            label2.Size = new Size(131, 24);
-            label2.TabIndex = 0;
-            label2.Text = "Sipariş Oluştur";
             // 
             // dataGridOrder
             // 
@@ -186,8 +171,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBoxTab).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxClose).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridOrder).EndInit();
             ResumeLayout(false);
         }
@@ -197,7 +180,6 @@
         private Panel panel1;
         private Panel panel2;
         private Label label1;
-        private Label label2;
         private DataGridView dataGridOrder;
         private PictureBox pictureBox1;
         private PictureBox pictureBoxExpand;

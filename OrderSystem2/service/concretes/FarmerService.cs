@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OrderSystem2.model;
-using OrderSystem2.repository;
+﻿using OrderSystem2.model;
 using OrderSystem2.repository.abstracts;
-using OrderSystem2.repository.concretes;
 using OrderSystem2.service.abstracts;
 
 namespace OrderSystem2.service.concretes
@@ -57,6 +50,16 @@ namespace OrderSystem2.service.concretes
         public List<Order> GetOrders(int id)
         {
             return _farmerRepository.GetOrders(id);
+        }
+
+        public bool IsFarmerExists(int farmerId)
+        {
+            return _farmerRepository.IsFarmerExists(farmerId);
+        }
+
+        public bool HasAnyOrders(int farmerId)
+        {
+            return _farmerRepository.HasAnyOrders(farmerId);
         }
     }
 }

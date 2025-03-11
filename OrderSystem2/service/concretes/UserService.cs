@@ -30,11 +30,6 @@ namespace OrderSystem2.service.concretes
            return userRepository.ValidateUser(email, password);
         }
 
-        public string HashPassword(string password)
-        {
-            return userRepository.HashPassword(password);
-        }
-
         public bool VerifyPassword(string inputPassword, string storedHash)
         {
             return (userRepository.VerifyPassword(inputPassword, storedHash));

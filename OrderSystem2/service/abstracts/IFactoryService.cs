@@ -9,5 +9,6 @@ namespace OrderSystem2.service.abstracts
 {
     public interface IFactoryService : IGenericService<Factory>
     {
+        public List<Category> GetCategories(int factoryId);
     }
 }

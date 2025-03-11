@@ -5,8 +5,6 @@ namespace OrderSystem2.forms.field
 {
     public partial class Fieldform : Form
     {
-        private string _connectionString = "Server=localhost;Database=OrderSystem;Integrated Security=True;TrustServerCertificate=True";
-
         private FieldRepository _fieldRepository;
         private FieldService _fieldService;
 
@@ -20,7 +18,7 @@ namespace OrderSystem2.forms.field
         {
             InitializeComponent();
 
-            _fieldRepository = new FieldRepository(_connectionString);
+            _fieldRepository = new FieldRepository();
             _fieldService = new FieldService(_fieldRepository);
 
             LoadData();
@@ -38,11 +36,14 @@ namespace OrderSystem2.forms.field
             dataGridField.Columns.Add("FarmerId", "Çiftçi No");
             dataGridField.Columns["FarmerId"].DataPropertyName = "FarmerId";
 
-            dataGridField.Columns.Add("ZoneId", "Bölge No");
-            dataGridField.Columns["ZoneId"].DataPropertyName = "ZoneId";
+            //dataGridField.Columns.Add("ZoneId", "Bölge No");
+            //dataGridField.Columns["ZoneId"].DataPropertyName = "ZoneId";
 
             dataGridField.Columns.Add("AreaSize", "Büyüklük");
             dataGridField.Columns["AreaSize"].DataPropertyName = "AreaSize";
+
+            dataGridField.Columns.Add("Address", "Konum");
+            dataGridField.Columns["Address"].DataPropertyName = "Address";
 
             dataGridField.DataSource = fields;
             dataGridField.ReadOnly = true;

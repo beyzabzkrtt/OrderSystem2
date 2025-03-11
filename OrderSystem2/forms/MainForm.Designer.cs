@@ -43,7 +43,15 @@
             pictureBox3 = new PictureBox();
             pictureBox2 = new PictureBox();
             panel2 = new Panel();
+            label8 = new Label();
             label1 = new Label();
+            label2 = new Label();
+            label3 = new Label();
+            label4 = new Label();
+            label5 = new Label();
+            label6 = new Label();
+            label7 = new Label();
+            panelManager = new Panel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxTab).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxClose).BeginInit();
@@ -52,6 +60,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             panel2.SuspendLayout();
+            panelManager.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -190,6 +199,7 @@
             labelMakeOrder.Size = new Size(128, 24);
             labelMakeOrder.TabIndex = 2;
             labelMakeOrder.Text = "Sipariş Oluştur";
+            labelMakeOrder.Click += labelMakeOrder_Click;
             // 
             // pictureBox3
             // 
@@ -216,12 +226,25 @@
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(22, 56, 39);
+            panel2.Controls.Add(label8);
             panel2.Controls.Add(label1);
             panel2.Dock = DockStyle.Bottom;
             panel2.Location = new Point(0, 446);
             panel2.Name = "panel2";
             panel2.Size = new Size(1118, 50);
             panel2.TabIndex = 1;
+            // 
+            // label8
+            // 
+            label8.Anchor = AnchorStyles.Top;
+            label8.AutoSize = true;
+            label8.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label8.ForeColor = Color.AntiqueWhite;
+            label8.Location = new Point(12, 12);
+            label8.Name = "label8";
+            label8.Size = new Size(75, 29);
+            label8.TabIndex = 17;
+            label8.Text = "Rapor";
             // 
             // label1
             // 
@@ -234,12 +257,99 @@
             label1.Text = "Çıkış Yap";
             label1.Click += label1_Click;
             // 
+            // label2
+            // 
+            label2.Anchor = AnchorStyles.Top;
+            label2.AutoSize = true;
+            label2.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.FromArgb(22, 56, 39);
+            label2.Location = new Point(52, 24);
+            label2.Name = "label2";
+            label2.Size = new Size(192, 29);
+            label2.TabIndex = 11;
+            label2.Text = "Kullanıcı Yönetimi";
+            label2.Click += label2_Click;
+            // 
+            // label3
+            // 
+            label3.Anchor = AnchorStyles.Top;
+            label3.AutoSize = true;
+            label3.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.FromArgb(22, 56, 39);
+            label3.Location = new Point(78, 67);
+            label3.Name = "label3";
+            label3.Size = new Size(141, 29);
+            label3.TabIndex = 12;
+            label3.Text = "Rol Yönetimi";
+            // 
+            // label4
+            // 
+            label4.Anchor = AnchorStyles.Top;
+            label4.AutoSize = true;
+            label4.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.FromArgb(22, 56, 39);
+            label4.Location = new Point(42, 194);
+            label4.Name = "label4";
+            label4.Size = new Size(206, 29);
+            label4.TabIndex = 13;
+            label4.Text = "Ürün Kısıt Yönetimi";
+            // 
+            // label5
+            // 
+            label5.Anchor = AnchorStyles.Top;
+            label5.AutoSize = true;
+            label5.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.FromArgb(22, 56, 39);
+            label5.Location = new Point(56, 106);
+            label5.Name = "label5";
+            label5.Size = new Size(182, 29);
+            label5.TabIndex = 14;
+            label5.Text = "Fabrika Yönetimi";
+            // 
+            // label6
+            // 
+            label6.Anchor = AnchorStyles.Top;
+            label6.AutoSize = true;
+            label6.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label6.ForeColor = Color.FromArgb(22, 56, 39);
+            label6.Location = new Point(40, 239);
+            label6.Name = "label6";
+            label6.Size = new Size(216, 29);
+            label6.TabIndex = 15;
+            label6.Text = "Ürün Birim Yönetimi";
+            // 
+            // label7
+            // 
+            label7.Anchor = AnchorStyles.Top;
+            label7.AutoSize = true;
+            label7.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label7.ForeColor = Color.FromArgb(22, 56, 39);
+            label7.Location = new Point(65, 149);
+            label7.Name = "label7";
+            label7.Size = new Size(165, 29);
+            label7.TabIndex = 16;
+            label7.Text = "Bölge Yönetimi";
+            // 
+            // panelManager
+            // 
+            panelManager.Controls.Add(label5);
+            panelManager.Controls.Add(label7);
+            panelManager.Controls.Add(label2);
+            panelManager.Controls.Add(label6);
+            panelManager.Controls.Add(label3);
+            panelManager.Controls.Add(label4);
+            panelManager.Location = new Point(396, 121);
+            panelManager.Name = "panelManager";
+            panelManager.Size = new Size(289, 297);
+            panelManager.TabIndex = 17;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(11F, 24F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.PapayaWhip;
             ClientSize = new Size(1118, 496);
+            Controls.Add(panelManager);
             Controls.Add(pictureBox3);
             Controls.Add(panel2);
             Controls.Add(pictureBox2);
@@ -260,6 +370,8 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            panelManager.ResumeLayout(false);
+            panelManager.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -280,5 +392,13 @@
         private PictureBox pictureBoxTab;
         private PictureBox pictureBoxClose;
         private Label label1;
+        private Label label2;
+        private Label label3;
+        private Label label4;
+        private Label label5;
+        private Label label6;
+        private Label label8;
+        private Label label7;
+        private Panel panelManager;
     }
 }

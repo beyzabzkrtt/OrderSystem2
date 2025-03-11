@@ -5,8 +5,6 @@ namespace OrderSystem2.forms
 {
     public partial class FarmerFieldForm : Form
     {
-        private string _connectionString = "Server=localhost;Database=OrderSystem;Integrated Security=True;TrustServerCertificate=True";
-
         private FarmerRepository _farmerRepository;
         private FarmerService _farmerService;
 
@@ -21,7 +19,7 @@ namespace OrderSystem2.forms
         {
             InitializeComponent();
 
-            _farmerRepository = new FarmerRepository(_connectionString);
+            _farmerRepository = new FarmerRepository();
             _farmerService = new FarmerService(_farmerRepository);
 
             _farmerId = id;
@@ -39,9 +37,6 @@ namespace OrderSystem2.forms
 
             dataGridFarmerField.Columns.Add("Id", "Tarla No");
             dataGridFarmerField.Columns["Id"].DataPropertyName = "Id";
-
-            dataGridFarmerField.Columns.Add("ZoneId", "Bölge No");
-            dataGridFarmerField.Columns["ZoneId"].DataPropertyName = "ZoneId";
 
             dataGridFarmerField.Columns.Add("AreaSize", "Tarla Büyüklüğü");
             dataGridFarmerField.Columns["AreaSize"].DataPropertyName = "AreaSize";

@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using Dapper;
 using Microsoft.Data.SqlClient;
+using OrderSystem2.database;
 using OrderSystem2.model;
 using OrderSystem2.repository.abstracts;
 
@@ -8,11 +9,12 @@ namespace OrderSystem2.repository.concretes
 {
     public class CategoryRepository : ICategoryRepository
     {
-        private readonly string _connectionString;
+        private readonly IDbConnection conn;
 
-        public CategoryRepository(string connectionString)
+        public CategoryRepository()
         {
-            _connectionString = connectionString;
+            var dbConnectionFactory = new DbConnection();
+            conn = dbConnectionFactory.CreateConnection();
         }
 
         public void Add(Category entity)
@@ -27,10 +29,7 @@ namespace OrderSystem2.repository.concretes
 
         public List<Category> GetAll()
         {
-            using (IDbConnection conn = new SqlConnection(_connectionString))
-            {
                 return conn.Query<Category>($"SELECT * FROM {typeof(Category).Name} WHERE Status = 1").ToList();
-            }
         }
 
         public Category GetById(int id)
@@ -40,11 +39,15 @@ namespace OrderSystem2.repository.concretes
 
         public List<Category> GetCategoryByFactory(int id)
         {
-            using (IDbConnection conn = new SqlConnection(_connectionString))
-            {
+
                 string query = "SELECT * FROM Category WHERE FactoryId = @FactoryId";
                 return conn.Query<Category>(query, new { FactoryId = id }).ToList();
-            }
+        }
+
+        public List<Product> GetProducts(int id)
+        {
+                string query = "SELECT * FROM Product WHERE CategoryId = @CategoryId";
+                return conn.Query<Product>(query, new { CategoryId = id }).ToList();
         }
 
         public void Update(Category entity, int id)

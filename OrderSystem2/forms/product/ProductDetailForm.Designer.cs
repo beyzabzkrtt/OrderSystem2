@@ -40,14 +40,6 @@
             label6 = new Label();
             label7 = new Label();
             label8 = new Label();
-            textBoxCreatedBy = new TextBox();
-            textBoxCreatedAt = new TextBox();
-            textBoxUpdatedBy = new TextBox();
-            textBoxupdatedAt = new TextBox();
-            label13 = new Label();
-            label12 = new Label();
-            label11 = new Label();
-            label10 = new Label();
             textBoxProductNo = new TextBox();
             textBoxCategoryNo = new TextBox();
             textBoxUnitNo = new TextBox();
@@ -142,7 +134,7 @@
             label3.AutoSize = true;
             label3.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.FromArgb(22, 56, 39);
-            label3.Location = new Point(69, 429);
+            label3.Location = new Point(701, 258);
             label3.Margin = new Padding(3, 0, 5, 0);
             label3.Name = "label3";
             label3.Size = new Size(65, 29);
@@ -168,7 +160,7 @@
             label5.AutoSize = true;
             label5.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.FromArgb(22, 56, 39);
-            label5.Location = new Point(69, 383);
+            label5.Location = new Point(701, 212);
             label5.Margin = new Padding(3, 0, 5, 0);
             label5.Name = "label5";
             label5.Size = new Size(62, 29);
@@ -181,7 +173,7 @@
             label6.AutoSize = true;
             label6.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.FromArgb(22, 56, 39);
-            label6.Location = new Point(69, 337);
+            label6.Location = new Point(701, 166);
             label6.Margin = new Padding(3, 0, 5, 0);
             label6.Name = "label6";
             label6.Size = new Size(47, 29);
@@ -214,94 +206,6 @@
             label8.TabIndex = 10;
             label8.Text = "Kategori:";
             // 
-            // textBoxCreatedBy
-            // 
-            textBoxCreatedBy.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
-            textBoxCreatedBy.BackColor = Color.LightYellow;
-            textBoxCreatedBy.BorderStyle = BorderStyle.FixedSingle;
-            textBoxCreatedBy.Location = new Point(839, 156);
-            textBoxCreatedBy.Name = "textBoxCreatedBy";
-            textBoxCreatedBy.Size = new Size(306, 31);
-            textBoxCreatedBy.TabStop=false;
-            // 
-            // textBoxCreatedAt
-            // 
-            textBoxCreatedAt.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
-            textBoxCreatedAt.BackColor = Color.LightYellow;
-            textBoxCreatedAt.BorderStyle = BorderStyle.FixedSingle;
-            textBoxCreatedAt.Location = new Point(839, 200);
-            textBoxCreatedAt.Name = "textBoxCreatedAt";
-            textBoxCreatedAt.Size = new Size(306, 31);
-            textBoxCreatedAt.TabStop=false;
-            // 
-            // textBoxUpdatedBy
-            // 
-            textBoxUpdatedBy.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
-            textBoxUpdatedBy.BackColor = Color.LightYellow;
-            textBoxUpdatedBy.BorderStyle = BorderStyle.FixedSingle;
-            textBoxUpdatedBy.Location = new Point(839, 242);
-            textBoxUpdatedBy.Name = "textBoxUpdatedBy";
-            textBoxUpdatedBy.Size = new Size(306, 31);
-            textBoxUpdatedBy.TabStop = false;
-            // 
-            // textBoxupdatedAt
-            // 
-            textBoxupdatedAt.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
-            textBoxupdatedAt.BackColor = Color.LightYellow;
-            textBoxupdatedAt.BorderStyle = BorderStyle.FixedSingle;
-            textBoxupdatedAt.Location = new Point(839, 285);
-            textBoxupdatedAt.Name = "textBoxupdatedAt";
-            textBoxupdatedAt.Size = new Size(306, 31);
-            textBoxupdatedAt.TabStop = false;
-            // 
-            // label13
-            // 
-            label13.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
-            label13.AutoSize = true;
-            label13.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label13.ForeColor = Color.FromArgb(22, 56, 39);
-            label13.Location = new Point(632, 243);
-            label13.Name = "label13";
-            label13.Size = new Size(143, 29);
-            label13.TabIndex = 34;
-            label13.Text = "Güncelleyen:";
-            // 
-            // label12
-            // 
-            label12.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
-            label12.AutoSize = true;
-            label12.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label12.ForeColor = Color.FromArgb(22, 56, 39);
-            label12.Location = new Point(632, 283);
-            label12.Name = "label12";
-            label12.Size = new Size(199, 29);
-            label12.TabIndex = 33;
-            label12.Text = "Güncelleme Tarihi:";
-            // 
-            // label11
-            // 
-            label11.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
-            label11.AutoSize = true;
-            label11.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label11.ForeColor = Color.FromArgb(22, 56, 39);
-            label11.Location = new Point(632, 197);
-            label11.Name = "label11";
-            label11.Size = new Size(130, 29);
-            label11.TabIndex = 32;
-            label11.Text = "Kayıt Tarihi:";
-            // 
-            // label10
-            // 
-            label10.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
-            label10.AutoSize = true;
-            label10.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label10.ForeColor = Color.FromArgb(22, 56, 39);
-            label10.Location = new Point(632, 153);
-            label10.Name = "label10";
-            label10.Size = new Size(181, 29);
-            label10.TabIndex = 31;
-            label10.Text = "Kaydı Oluşturan:";
-            // 
             // textBoxProductNo
             // 
             textBoxProductNo.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
@@ -310,6 +214,7 @@
             textBoxProductNo.Location = new Point(240, 153);
             textBoxProductNo.Name = "textBoxProductNo";
             textBoxProductNo.Size = new Size(306, 31);
+            textBoxProductNo.TabIndex = 48;
             textBoxProductNo.TabStop = false;
             // 
             // textBoxCategoryNo
@@ -320,6 +225,7 @@
             textBoxCategoryNo.Location = new Point(240, 245);
             textBoxCategoryNo.Name = "textBoxCategoryNo";
             textBoxCategoryNo.Size = new Size(306, 31);
+            textBoxCategoryNo.TabIndex = 47;
             textBoxCategoryNo.TabStop = false;
             // 
             // textBoxUnitNo
@@ -330,6 +236,7 @@
             textBoxUnitNo.Location = new Point(240, 289);
             textBoxUnitNo.Name = "textBoxUnitNo";
             textBoxUnitNo.Size = new Size(306, 31);
+            textBoxUnitNo.TabIndex = 46;
             textBoxUnitNo.TabStop = false;
             // 
             // textBoxName
@@ -337,7 +244,7 @@
             textBoxName.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             textBoxName.BackColor = Color.LightYellow;
             textBoxName.BorderStyle = BorderStyle.FixedSingle;
-            textBoxName.Location = new Point(240, 334);
+            textBoxName.Location = new Point(816, 163);
             textBoxName.Name = "textBoxName";
             textBoxName.Size = new Size(306, 31);
             textBoxName.TabIndex = 43;
@@ -348,7 +255,7 @@
             textBoxPrice.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             textBoxPrice.BackColor = Color.LightYellow;
             textBoxPrice.BorderStyle = BorderStyle.FixedSingle;
-            textBoxPrice.Location = new Point(240, 381);
+            textBoxPrice.Location = new Point(816, 210);
             textBoxPrice.Name = "textBoxPrice";
             textBoxPrice.Size = new Size(306, 31);
             textBoxPrice.TabIndex = 44;
@@ -359,7 +266,7 @@
             textBoxStock.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             textBoxStock.BackColor = Color.LightYellow;
             textBoxStock.BorderStyle = BorderStyle.FixedSingle;
-            textBoxStock.Location = new Point(240, 430);
+            textBoxStock.Location = new Point(816, 259);
             textBoxStock.Name = "textBoxStock";
             textBoxStock.Size = new Size(306, 31);
             textBoxStock.TabIndex = 45;
@@ -373,6 +280,7 @@
             textBoxFactoryNo.Location = new Point(240, 199);
             textBoxFactoryNo.Name = "textBoxFactoryNo";
             textBoxFactoryNo.Size = new Size(306, 31);
+            textBoxFactoryNo.TabIndex = 2;
             textBoxFactoryNo.TabStop = false;
             // 
             // buttonDelete
@@ -384,6 +292,7 @@
             buttonDelete.Location = new Point(902, 456);
             buttonDelete.Name = "buttonDelete";
             buttonDelete.Size = new Size(96, 45);
+            buttonDelete.TabIndex = 0;
             buttonDelete.TabStop = false;
             buttonDelete.Text = "Sil";
             buttonDelete.UseVisualStyleBackColor = false;
@@ -397,6 +306,7 @@
             buttonSave.Location = new Point(1016, 456);
             buttonSave.Name = "buttonSave";
             buttonSave.Size = new Size(160, 45);
+            buttonSave.TabIndex = 1;
             buttonSave.TabStop = false;
             buttonSave.Text = "Kaydet";
             buttonSave.UseVisualStyleBackColor = false;
@@ -417,14 +327,6 @@
             Controls.Add(textBoxUnitNo);
             Controls.Add(textBoxCategoryNo);
             Controls.Add(textBoxProductNo);
-            Controls.Add(textBoxCreatedBy);
-            Controls.Add(textBoxCreatedAt);
-            Controls.Add(textBoxUpdatedBy);
-            Controls.Add(textBoxupdatedAt);
-            Controls.Add(label13);
-            Controls.Add(label12);
-            Controls.Add(label11);
-            Controls.Add(label10);
             Controls.Add(label8);
             Controls.Add(label7);
             Controls.Add(label6);
@@ -448,7 +350,7 @@
 
         private void TextBoxStock_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
             {
                 e.Handled = true;
             }
@@ -481,14 +383,6 @@
         private Label label6;
         private Label label7;
         private Label label8;
-        private TextBox textBoxCreatedBy;
-        private TextBox textBoxCreatedAt;
-        private TextBox textBoxUpdatedBy;
-        private TextBox textBoxupdatedAt;
-        private Label label13;
-        private Label label12;
-        private Label label11;
-        private Label label10;
         private TextBox textBoxProductNo;
         private TextBox textBoxCategoryNo;
         private TextBox textBoxUnitNo;

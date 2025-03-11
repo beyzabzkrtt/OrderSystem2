@@ -29,31 +29,44 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            pictureBoxClose = new PictureBox();
             label1 = new Label();
             label2 = new Label();
             textBoxFarmerId = new TextBox();
-            labelFactory = new Label();
-            comboBox1 = new ComboBox();
-            buttonSave = new Button();
+            buttonLater = new Button();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxClose).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(22, 56, 39);
+            panel1.Controls.Add(pictureBoxClose);
             panel1.Controls.Add(label1);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(398, 99);
+            panel1.Size = new Size(430, 99);
             panel1.TabIndex = 0;
+            // 
+            // pictureBoxClose
+            // 
+            pictureBoxClose.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            pictureBoxClose.Image = Properties.Resources.close_button;
+            pictureBoxClose.Location = new Point(396, 0);
+            pictureBoxClose.Name = "pictureBoxClose";
+            pictureBoxClose.Size = new Size(34, 32);
+            pictureBoxClose.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBoxClose.TabIndex = 12;
+            pictureBoxClose.TabStop = false;
+            pictureBoxClose.Click += pictureBoxClose_Click;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Candara Light", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.AntiqueWhite;
-            label1.Location = new Point(113, 35);
+            label1.Location = new Point(142, 32);
             label1.Name = "label1";
             label1.Size = new Size(158, 29);
             label1.TabIndex = 0;
@@ -65,7 +78,7 @@
             label2.BackColor = Color.AntiqueWhite;
             label2.Font = new Font("Candara", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.FromArgb(22, 56, 39);
-            label2.Location = new Point(53, 131);
+            label2.Location = new Point(75, 184);
             label2.Name = "label2";
             label2.Size = new Size(85, 24);
             label2.TabIndex = 1;
@@ -75,64 +88,52 @@
             // 
             textBoxFarmerId.BackColor = Color.LightYellow;
             textBoxFarmerId.BorderStyle = BorderStyle.FixedSingle;
-            textBoxFarmerId.Location = new Point(144, 131);
+            textBoxFarmerId.Location = new Point(174, 181);
             textBoxFarmerId.Name = "textBoxFarmerId";
-            textBoxFarmerId.Size = new Size(176, 31);
+            textBoxFarmerId.Size = new Size(185, 31);
             textBoxFarmerId.TabIndex = 23;
+            textBoxFarmerId.KeyPress += TextBoxFarmerId_KeyPress;
             // 
-            // labelFactory
+            // buttonLater
             // 
-            labelFactory.AutoSize = true;
-            labelFactory.BackColor = Color.AntiqueWhite;
-            labelFactory.Font = new Font("Candara", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            labelFactory.ForeColor = Color.FromArgb(22, 56, 39);
-            labelFactory.Location = new Point(53, 208);
-            labelFactory.Name = "labelFactory";
-            labelFactory.Size = new Size(77, 24);
-            labelFactory.TabIndex = 24;
-            labelFactory.Text = "Fabrika:";
-            // 
-            // comboBox1
-            // 
-            comboBox1.BackColor = Color.LightYellow;
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Kayseri", "Boğazlıyan", "Turhal" });
-            comboBox1.Location = new Point(144, 208);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(207, 33);
-            comboBox1.TabIndex = 25;
-            // 
-            // buttonSave
-            // 
-            buttonSave.BackColor = Color.FromArgb(22, 56, 39);
-            buttonSave.Font = new Font("Candara", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            buttonSave.ForeColor = Color.AntiqueWhite;
-            buttonSave.Location = new Point(200, 446);
-            buttonSave.Name = "buttonSave";
-            buttonSave.Size = new Size(176, 47);
-            buttonSave.TabIndex = 35;
-            buttonSave.Text = "Sonraki";
-            buttonSave.UseVisualStyleBackColor = false;
+            buttonLater.BackColor = Color.FromArgb(22, 56, 39);
+            buttonLater.Font = new Font("Candara", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            buttonLater.ForeColor = Color.AntiqueWhite;
+            buttonLater.Location = new Point(235, 526);
+            buttonLater.Name = "buttonLater";
+            buttonLater.Size = new Size(176, 47);
+            buttonLater.TabIndex = 35;
+            buttonLater.Text = "Sonraki";
+            buttonLater.UseVisualStyleBackColor = false;
+            buttonLater.Click += buttonLater_Click;
             // 
             // MakeOrderForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.AntiqueWhite;
-            ClientSize = new Size(398, 515);
-            Controls.Add(buttonSave);
-            Controls.Add(comboBox1);
-            Controls.Add(labelFactory);
+            ClientSize = new Size(430, 600);
+            Controls.Add(buttonLater);
             Controls.Add(textBoxFarmerId);
             Controls.Add(label2);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "MakeOrderForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "MakeOrderForm";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxClose).EndInit();
             ResumeLayout(false);
             PerformLayout();
+        }
+
+        private void TextBoxFarmerId_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
 
         #endregion
@@ -141,8 +142,7 @@
         private Label label1;
         private Label label2;
         private TextBox textBoxFarmerId;
-        private Label labelFactory;
-        private ComboBox comboBox1;
-        private Button buttonSave;
+        private Button buttonLater;
+        private PictureBox pictureBoxClose;
     }
 }

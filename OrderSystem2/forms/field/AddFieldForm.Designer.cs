@@ -32,15 +32,15 @@
             pictureBoxClose = new PictureBox();
             label1 = new Label();
             label2 = new Label();
-            label3 = new Label();
             label4 = new Label();
             textBoxFarmerArea = new TextBox();
             textBoxFarmerNo = new TextBox();
             buttonSave = new Button();
             label5 = new Label();
             comboBoxFactory = new ComboBox();
-            comboBoxZone = new ComboBox();
             labelPlaceholder = new Label();
+            label3 = new Label();
+            textBoxAddress = new TextBox();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxClose).BeginInit();
             SuspendLayout();
@@ -83,31 +83,19 @@
             label2.AutoSize = true;
             label2.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.FromArgb(22, 56, 39);
-            label2.Location = new Point(76, 396);
+            label2.Location = new Point(76, 324);
             label2.Margin = new Padding(3, 0, 5, 0);
             label2.Name = "label2";
             label2.Size = new Size(113, 29);
             label2.TabIndex = 12;
             label2.Text = "Büyüklük:";
             // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.FromArgb(22, 56, 39);
-            label3.Location = new Point(76, 258);
-            label3.Margin = new Padding(3, 0, 5, 0);
-            label3.Name = "label3";
-            label3.Size = new Size(77, 29);
-            label3.TabIndex = 13;
-            label3.Text = "Bölge:";
-            // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.FromArgb(22, 56, 39);
-            label4.Location = new Point(76, 329);
+            label4.Location = new Point(76, 257);
             label4.Margin = new Padding(3, 0, 5, 0);
             label4.Name = "label4";
             label4.Size = new Size(104, 29);
@@ -118,7 +106,7 @@
             // 
             textBoxFarmerArea.BackColor = Color.LightYellow;
             textBoxFarmerArea.BorderStyle = BorderStyle.FixedSingle;
-            textBoxFarmerArea.Location = new Point(197, 397);
+            textBoxFarmerArea.Location = new Point(197, 325);
             textBoxFarmerArea.Name = "textBoxFarmerArea";
             textBoxFarmerArea.Size = new Size(222, 31);
             textBoxFarmerArea.TabIndex = 23;
@@ -128,7 +116,7 @@
             // 
             textBoxFarmerNo.BackColor = Color.LightYellow;
             textBoxFarmerNo.BorderStyle = BorderStyle.FixedSingle;
-            textBoxFarmerNo.Location = new Point(197, 327);
+            textBoxFarmerNo.Location = new Point(197, 255);
             textBoxFarmerNo.Name = "textBoxFarmerNo";
             textBoxFarmerNo.Size = new Size(222, 31);
             textBoxFarmerNo.TabIndex = 24;
@@ -166,16 +154,8 @@
             comboBoxFactory.Location = new Point(197, 184);
             comboBoxFactory.Name = "comboBoxFactory";
             comboBoxFactory.Size = new Size(222, 33);
+            comboBoxFactory.TabIndex = 40;
             comboBoxFactory.TabStop = false;
-            // 
-            // comboBoxZone
-            // 
-            comboBoxZone.BackColor = Color.LightYellow;
-            comboBoxZone.FormattingEnabled = true;
-            comboBoxZone.Location = new Point(197, 257);
-            comboBoxZone.Name = "comboBoxZone";
-            comboBoxZone.Size = new Size(222, 33);
-            comboBoxZone.TabStop = false;
             // 
             // labelPlaceholder
             // 
@@ -188,21 +168,43 @@
             labelPlaceholder.TabIndex = 38;
             labelPlaceholder.Text = "Fabrika Seçiniz";
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.FromArgb(22, 56, 39);
+            label3.Location = new Point(76, 392);
+            label3.Margin = new Padding(3, 0, 5, 0);
+            label3.Name = "label3";
+            label3.Size = new Size(78, 29);
+            label3.TabIndex = 41;
+            label3.Text = "Adres:";
+            // 
+            // textBoxAddress
+            // 
+            textBoxAddress.BackColor = Color.LightYellow;
+            textBoxAddress.BorderStyle = BorderStyle.FixedSingle;
+            textBoxAddress.Location = new Point(197, 393);
+            textBoxAddress.Multiline = true;
+            textBoxAddress.Name = "textBoxAddress";
+            textBoxAddress.Size = new Size(222, 68);
+            textBoxAddress.TabIndex = 42;
+            // 
             // AddFieldForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.AntiqueWhite;
             ClientSize = new Size(524, 652);
+            Controls.Add(textBoxAddress);
+            Controls.Add(label3);
             Controls.Add(labelPlaceholder);
-            Controls.Add(comboBoxZone);
             Controls.Add(comboBoxFactory);
             Controls.Add(label5);
             Controls.Add(buttonSave);
             Controls.Add(textBoxFarmerNo);
             Controls.Add(textBoxFarmerArea);
             Controls.Add(label4);
-            Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(panel2);
             FormBorderStyle = FormBorderStyle.None;
@@ -238,14 +240,14 @@
         private PictureBox pictureBoxClose;
         private Label label1;
         private Label label2;
-        private Label label3;
         private Label label4;
         private TextBox textBoxFarmerArea;
         private TextBox textBoxFarmerNo;
         private Button buttonSave;
         private Label label5;
         private ComboBox comboBoxFactory;
-        private ComboBox comboBoxZone;
         private Label labelPlaceholder;
+        private Label label3;
+        private TextBox textBoxAddress;
     }
 }

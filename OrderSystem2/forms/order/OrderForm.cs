@@ -33,7 +33,7 @@ namespace OrderSystem2.forms
         {
             InitializeComponent();
 
-            _orderRepository = new OrderRepository(_connectionString);
+            _orderRepository = new OrderRepository();
             _orderService = new OrderService(_orderRepository);
 
             LoadData();
@@ -44,7 +44,7 @@ namespace OrderSystem2.forms
 
         }
 
-        private void LoadData()
+        public void LoadData()
         {
             var orders = _orderService.GetAll();
 
@@ -55,24 +55,14 @@ namespace OrderSystem2.forms
             dataGridOrder.Columns.Add("Id", "Sipariş No");
             dataGridOrder.Columns["Id"].DataPropertyName = "Id";
 
-
-            dataGridOrder.Columns.Add("UserId", "Kullanıcı No");
-            dataGridOrder.Columns["UserId"].DataPropertyName = "UserId";
-
             dataGridOrder.Columns.Add("FarmerId", "Çiftçi No");
             dataGridOrder.Columns["FarmerId"].DataPropertyName = "FarmerId";
-
-            dataGridOrder.Columns.Add("FieldId", "Tarla No");
-            dataGridOrder.Columns["FieldId"].DataPropertyName = "FieldId";
 
             dataGridOrder.Columns.Add("Date", "Tarih");
             dataGridOrder.Columns["Date"].DataPropertyName = "Date";
 
             dataGridOrder.Columns.Add("TotalPrice", "Tutar");
             dataGridOrder.Columns["TotalPrice"].DataPropertyName = "TotalPrice";
-
-            dataGridOrder.Columns.Add("Phone", "Telefon");
-            dataGridOrder.Columns["Phone"].DataPropertyName = "Phone";
 
             dataGridOrder.Columns.Add("isCompleted", "Tamamlanmış");
             dataGridOrder.Columns["isCompleted"].DataPropertyName = "isCompleted";

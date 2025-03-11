@@ -38,6 +38,11 @@ namespace OrderSystem2.service.concretes
             throw new NotImplementedException();
         }
 
+        public List<Category> GetCategories(int factoryId)
+        {
+            return _factoryRepository.GetCategories(factoryId);
+        }
+
         public void Update(Factory entity, int id)
         {
             throw new NotImplementedException();

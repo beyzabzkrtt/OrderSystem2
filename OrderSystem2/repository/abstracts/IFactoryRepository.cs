@@ -9,5 +9,7 @@ namespace OrderSystem2.repository.abstracts
 {
     public interface IFactoryRepository : IGenericRepository<Factory>
     {
+        public List<Category> GetCategories(int factoryId);
+       
     }
 }

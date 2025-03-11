@@ -43,6 +43,11 @@ namespace OrderSystem2.service.concretes
             return categoryRepository.GetCategoryByFactory(id);
         }
 
+        public List<Product> GetProducts(int id)
+        {
+           return categoryRepository.GetProducts(id);
+        }
+
         public void Update(Category entity, int id)
         {
             throw new NotImplementedException();

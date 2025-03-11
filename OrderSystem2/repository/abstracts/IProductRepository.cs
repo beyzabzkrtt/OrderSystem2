@@ -12,6 +12,7 @@ namespace OrderSystem2.repository.abstracts
         public string GetFactoryName(int id);
         public string GetCategoryName(int id);
         public string GetUnitName(int id);
+        public void UpdateStock(int id,float stock);
 
     }
 }

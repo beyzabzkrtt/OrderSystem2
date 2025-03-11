@@ -10,8 +10,6 @@ namespace OrderSystem2.forms.product
 {
     public partial class AddProductForm : Form
     {
-        private string _connectionString = "Server=localhost;Database=OrderSystem;Integrated Security=True;TrustServerCertificate=True";
-
         private ProductRepository _productRepository;
         private ProductService _productService;
 
@@ -31,20 +29,20 @@ namespace OrderSystem2.forms.product
         {
             InitializeComponent();
 
-            _productRepository = new ProductRepository(_connectionString);
+            _productRepository = new ProductRepository();
             _productService = new ProductService(_productRepository);
 
-            _categoryRepository = new CategoryRepository(_connectionString);
+            _categoryRepository = new CategoryRepository();
             _categoryService = new CategoryService(_categoryRepository);
 
-            _unitRepository = new UnitRepository(_connectionString);
+            _unitRepository = new UnitRepository();
             _unitService = new UnitService(_unitRepository);
 
-            _factoryRepository = new FactoryRepository(_connectionString);
+            _factoryRepository = new FactoryRepository();
             _factoryService = new FactoryService(_factoryRepository);
 
             buttonSave.Click += buttonSave_Click;
-            pictureBoxClose.Click += pictureBoxClose_Click_1;
+            pictureBoxClose.Click += pictureBoxClose_Click;
 
             Bind();
             LoadCombobox();
@@ -150,8 +148,22 @@ namespace OrderSystem2.forms.product
             }
         }
 
+        private bool AreAllFieldsFilled()
+        {
+            // Formdaki tüm textboxları ve comboboxları kontrol et
+            bool allFilled = Controls.OfType<System.Windows.Forms.TextBox>().All(tb => !string.IsNullOrWhiteSpace(tb.Text)) &&
+                             Controls.OfType<System.Windows.Forms.ComboBox>().All(cb => cb.SelectedIndex != -1);
+
+            return allFilled;
+        }
+
         private void buttonSave_Click(object sender, EventArgs e)
         {
+            if (!AreAllFieldsFilled())
+            {
+                MessageBox.Show("Lütfen tüm alanları doldurun!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Kaydetme işlemi yapılmaz
+            }
 
             var product = new Product();
             int stock;
@@ -160,11 +172,11 @@ namespace OrderSystem2.forms.product
             bool isValidStock = int.TryParse(textBoxStok.Text.Trim(), out stock);
 
 
-            product.FactoryId = Convert.ToInt32(comboBoxFactory.SelectedValue);
+            //product.FactoryId = Convert.ToInt32(comboBoxFactory.SelectedValue);
             product.CategoryId = Convert.ToInt32(comboBoxCategory.SelectedValue);
             product.UnitId = Convert.ToInt32(comboBoxUnit.SelectedValue);
             product.Name = textBoxName.Text;
-            product.Price = price;
+            product.UnitPrice = price;
             product.Stock = stock;
 
 
@@ -187,9 +199,9 @@ namespace OrderSystem2.forms.product
             }
         }
 
-        private void pictureBoxClose_Click_1(object sender, EventArgs e)
+        public void buttonSave_Enabled()
         {
-            this.Close();
+
         }
 
         private void pictureBoxClose_Click(object sender, EventArgs e)

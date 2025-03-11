@@ -35,7 +35,7 @@ namespace OrderSystem2.service.concretes
 
         public Unit GetById(int id)
         {
-            throw new NotImplementedException();
+            return unitRepository.GetById(id);
         }
 
         public void Update(Unit entity, int id)

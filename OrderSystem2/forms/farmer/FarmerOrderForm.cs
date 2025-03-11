@@ -5,8 +5,6 @@ namespace OrderSystem2.forms.farmer
 {
     public partial class FarmerOrderForm : Form
     {
-        private string _connectionString = "Server=localhost;Database=OrderSystem;Integrated Security=True;TrustServerCertificate=True";
-
         private FarmerRepository _farmerRepository;
         private FarmerService _farmerService;
 
@@ -22,7 +20,7 @@ namespace OrderSystem2.forms.farmer
         {
             InitializeComponent();
 
-            _farmerRepository = new FarmerRepository(_connectionString);
+            _farmerRepository = new FarmerRepository();
             _farmerService = new FarmerService(_farmerRepository);
 
             _farmerId = id;
@@ -41,12 +39,6 @@ namespace OrderSystem2.forms.farmer
 
             dataGridFarmerField.Columns.Add("Id", "Sipariş No");
             dataGridFarmerField.Columns["Id"].DataPropertyName = "Id";
-
-            dataGridFarmerField.Columns.Add("UserId", "Kullanıcı No");
-            dataGridFarmerField.Columns["UserId"].DataPropertyName = "UserId";
-
-            dataGridFarmerField.Columns.Add("FieldId", "Tarla No");
-            dataGridFarmerField.Columns["FieldId"].DataPropertyName = "FieldId";
 
             dataGridFarmerField.Columns.Add("Date", "Tarih");
             dataGridFarmerField.Columns["Date"].DataPropertyName = "Date";

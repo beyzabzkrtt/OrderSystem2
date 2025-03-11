@@ -29,19 +29,23 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            pictureBoxBack = new PictureBox();
             pictureBoxExpand = new PictureBox();
             pictureBoxTab = new PictureBox();
             pictureBoxClose = new PictureBox();
             label1 = new Label();
             panel2 = new Panel();
+            labelCanceled = new Label();
+            labelPaid = new Label();
+            labelCompleted = new Label();
             dataGridOrderItem = new DataGridView();
-            pictureBoxBack = new PictureBox();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxBack).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxExpand).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxTab).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxClose).BeginInit();
+            panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridOrderItem).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxBack).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -57,6 +61,17 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1235, 109);
             panel1.TabIndex = 0;
+            // 
+            // pictureBoxBack
+            // 
+            pictureBoxBack.Image = Properties.Resources.back;
+            pictureBoxBack.Location = new Point(0, -1);
+            pictureBoxBack.Name = "pictureBoxBack";
+            pictureBoxBack.Size = new Size(29, 32);
+            pictureBoxBack.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBoxBack.TabIndex = 9;
+            pictureBoxBack.TabStop = false;
+            pictureBoxBack.Click += pictureBoxBack_Click;
             // 
             // pictureBoxExpand
             // 
@@ -108,11 +123,50 @@
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(22, 56, 39);
+            panel2.Controls.Add(labelCanceled);
+            panel2.Controls.Add(labelPaid);
+            panel2.Controls.Add(labelCompleted);
             panel2.Dock = DockStyle.Bottom;
             panel2.Location = new Point(0, 498);
             panel2.Name = "panel2";
             panel2.Size = new Size(1235, 61);
             panel2.TabIndex = 1;
+            // 
+            // labelCanceled
+            // 
+            labelCanceled.AutoSize = true;
+            labelCanceled.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelCanceled.ForeColor = Color.AntiqueWhite;
+            labelCanceled.Location = new Point(1060, 15);
+            labelCanceled.Name = "labelCanceled";
+            labelCanceled.Size = new Size(163, 29);
+            labelCanceled.TabIndex = 10;
+            labelCanceled.Text = "Siparişi İptal Et";
+            labelCanceled.Click += labelCanceled_Click;
+            // 
+            // labelPaid
+            // 
+            labelPaid.AutoSize = true;
+            labelPaid.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelPaid.ForeColor = Color.AntiqueWhite;
+            labelPaid.Location = new Point(288, 15);
+            labelPaid.Name = "labelPaid";
+            labelPaid.Size = new Size(146, 29);
+            labelPaid.TabIndex = 11;
+            labelPaid.Text = "Ödeme alındı";
+            labelPaid.Click += labelPaid_Click;
+            // 
+            // labelCompleted
+            // 
+            labelCompleted.AutoSize = true;
+            labelCompleted.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelCompleted.ForeColor = Color.AntiqueWhite;
+            labelCompleted.Location = new Point(26, 15);
+            labelCompleted.Name = "labelCompleted";
+            labelCompleted.Size = new Size(208, 29);
+            labelCompleted.TabIndex = 12;
+            labelCompleted.Text = "Sipariş Teslim Edildi";
+            labelCompleted.Click += labelCompleted_Click;
             // 
             // dataGridOrderItem
             // 
@@ -126,17 +180,6 @@
             dataGridOrderItem.RowHeadersWidth = 62;
             dataGridOrderItem.Size = new Size(1235, 389);
             dataGridOrderItem.TabIndex = 2;
-            // 
-            // pictureBoxBack
-            // 
-            pictureBoxBack.Image = Properties.Resources.back;
-            pictureBoxBack.Location = new Point(0, -1);
-            pictureBoxBack.Name = "pictureBoxBack";
-            pictureBoxBack.Size = new Size(29, 32);
-            pictureBoxBack.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBoxBack.TabIndex = 9;
-            pictureBoxBack.TabStop = false;
-            pictureBoxBack.Click += pictureBoxBack_Click;
             // 
             // OrderItemsForm
             // 
@@ -152,11 +195,13 @@
             Text = "OrderItemsForm";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxBack).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxExpand).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxTab).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxClose).EndInit();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridOrderItem).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxBack).EndInit();
             ResumeLayout(false);
         }
 
@@ -170,5 +215,8 @@
         private PictureBox pictureBoxTab;
         private PictureBox pictureBoxClose;
         private PictureBox pictureBoxBack;
+        private Label labelCanceled;
+        private Label labelPaid;
+        private Label labelCompleted;
     }
 }

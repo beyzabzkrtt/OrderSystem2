@@ -2,7 +2,7 @@
 {   
     public class Farmer : BaseModel
     {
-        public int ZoneId { get; set; }
+        
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Tc {  get; set; }

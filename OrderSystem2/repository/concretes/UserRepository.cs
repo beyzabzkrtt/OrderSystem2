@@ -1,58 +1,102 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using System.Data;
 using Dapper;
+using OrderSystem2.database;
+using OrderSystem2.dto;
 using OrderSystem2.model;
-using OrderSystem2.repository.abstracts;
 
-public class UserRepository : IUserRepository
+public class UserRepository : OrderSystem2.repository.abstracts.IUserRepository
 {
-    private readonly string _connectionString;
+    private readonly IDbConnection conn;
 
-    public UserRepository(string connectionString)
+    public UserRepository()
     {
-        _connectionString = connectionString;
+        var dbConnectionFactory = new DbConnection();
+        conn = dbConnectionFactory.CreateConnection();
     }
 
-    public void AddUser(User user)
+    public void Add(User entity)
     {
-        user.Password = HashPassword(user.Password);
+        throw new NotImplementedException();
+    }
 
-        using (var connection = new SqlConnection(_connectionString))
-        {
-            string query = @"INSERT INTO [User] 
-                            (FactoryId, RoleID, Name, Surname, Email, Password, Tc, Address, Phone, Status, CreatedBy, CreatedAt) 
-                             VALUES 
-                            (@FactoryId, @RoleID, @Name, @Surname, @Email, @Password, @Tc, @Address, @Phone, @Status, @CreatedBy, @CreatedAt)";
+    public void AddUser(OrderSystem2.model.User user)
+    {
+        user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
+        string query = @"INSERT INTO [User] 
+                        (Name, Surname, Email, Password, Tc, Address, Phone, Status, CreatedBy, CreatedAt) 
+                         VALUES 
+                        (@Name, @Surname, @Email, @Password, @Tc, @Address, @Phone, @Status, @CreatedBy, @CreatedAt)";
 
-            connection.Execute(query, user);
-            connection.Dispose();
-            connection.Close();
-        }
+            conn.Execute(query, user);
+
+    }
+
+    public void Delete(int id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public List<User> GetAll()
+    {
+        return conn.Query<User>($"SELECT * FROM [User] WHERE Status = 1").ToList();
+    }
+
+    public User GetById(int id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public string GetRole(int UserId)
+    {
+        string query = @"Select RoleName FROM Role JOIN UserRole ON Role.Id = UserRole.RoleId 
+                                             JOIN [User] ON [User].Id = UserRole.UserId 
+                                             Where [User].Id = @UserId";
+
+        return conn.QueryFirstOrDefault<string>(query, new { UserId });
+    }
+
+    public User GetUserByEmail(string email)
+    {
+        string query = $"SELECT * FROM [User] WHERE Email = @Email";
+        return conn.QueryFirstOrDefault<User>(query, new { Email = email });
+    }
+
+    public List<UserDto> GetUserDto()
+    {
+        return conn.Query<UserDto>(@"SELECT U.Id, U.Name, U.Surname, R.RoleName, U.Email FROM [User] U 
+                                                        JOIN UserRole UR ON U.Id=UR.UserId
+                                                        JOIN [Role] R ON UR.RoleId=R.Id").ToList();
+       
+    }
+
+    public bool IsEmailExist(string email)
+    {
+        string query = "SELECT COUNT(*) FROM [User] WHERE email = @Email";
+        int count = conn.ExecuteScalar<int>(query, new { Email = email });
+        return count > 0;
+    }
+
+    public void Update(User entity, int id)
+    {
+        throw new NotImplementedException();
     }
 
     public bool ValidateUser(string email, string password)
     {
-        using (var connection = new SqlConnection(_connectionString))
-        {
-            string query = "SELECT Password FROM [User] WHERE Email = @Email";  
-            var storedHash = connection.QuerySingleOrDefault<string>(query, new { Email = email });
+        string query = "SELECT Password FROM [User] WHERE Email = @Email";
+
+            var storedHash = conn.QuerySingleOrDefault<string>(query, new { Email = email });
 
             if (storedHash == null)
-                return false; 
+                return false;
 
-            bool isPasswordValid = BCrypt.Net.BCrypt.Verify(password, storedHash);
-
-            return isPasswordValid;
-        }
-    }
-
-    public string HashPassword(string password)
-    {
-        return BCrypt.Net.BCrypt.HashPassword(password);
-
+            return BCrypt.Net.BCrypt.Verify(password, storedHash);
     }
 
     public bool VerifyPassword(string inputPassword, string storedHash)
     {
-        return HashPassword(inputPassword) == storedHash;
+        return BCrypt.Net.BCrypt.HashPassword(inputPassword) == storedHash;
     }
+
+
 }

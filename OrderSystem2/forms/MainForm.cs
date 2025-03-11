@@ -1,6 +1,9 @@
 ﻿using OrderSystem2.forms;
 using OrderSystem2.forms.field;
+using OrderSystem2.forms.order;
 using OrderSystem2.forms.product;
+using OrderSystem2.forms.user;
+using OrderSystem2.model;
 
 namespace OrderSystem2
 {
@@ -11,9 +14,18 @@ namespace OrderSystem2
 
         private bool isDragging = false;
         private Point startPoint = new Point(0, 0);
-        public MainForm()
+
+        private User _user;
+        private UserRepository _userRepository = new UserRepository();
+        public MainForm(User user)
         {
             InitializeComponent();
+
+            _user = user;
+
+            panelManager.Visible = false;
+            ManagerParts();
+
             pictureBoxClose.Click += pictureBoxClose_Click;
             AttachPanelDragEvents(panel1);
         }
@@ -29,7 +41,7 @@ namespace OrderSystem2
             if (e.Button == MouseButtons.Left)
             {
                 isDragging = true;
-                startPoint = e.Location; 
+                startPoint = e.Location;
             }
         }
 
@@ -69,6 +81,12 @@ namespace OrderSystem2
         {
             Fieldform fieldform = new Fieldform();
             fieldform.Show();
+        }
+
+        private void labelMakeOrder_Click(object sender, EventArgs e)
+        {
+            MakeOrderForm makeOrderForm = new MakeOrderForm();
+            makeOrderForm.Show();
         }
 
         private void pictureBoxTab_Click(object sender, EventArgs e)
@@ -119,6 +137,22 @@ namespace OrderSystem2
                 LoginForm login = new LoginForm();
                 login.Show();
             }
+        }
+
+        private void ManagerParts()
+        {
+            string role = _userRepository.GetRole(_user.Id);
+            bool authorization = role.Contains("Müdür");
+            if (authorization)
+            {
+                panelManager.Visible = true;
+            }
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            UserForm userForm = new UserForm();
+            userForm.Show();
         }
     }
 }

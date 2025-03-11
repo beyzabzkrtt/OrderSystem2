@@ -15,8 +15,6 @@ namespace OrderSystem2.forms.product
 {
     public partial class ProductForm : Form
     {
-        private string _connectionString = "Server=localhost;Database=OrderSystem;Integrated Security=True;TrustServerCertificate=True";
-
         private ProductRepository _productRepository;
         private ProductService _productService;
 
@@ -30,7 +28,7 @@ namespace OrderSystem2.forms.product
         {
             InitializeComponent();
 
-            _productRepository = new ProductRepository(_connectionString);
+            _productRepository = new ProductRepository();
             _productService = new ProductService(_productRepository);
 
             pictureBoxBack.Click += pictureBoxBack_Click;
@@ -50,9 +48,6 @@ namespace OrderSystem2.forms.product
             dataGridProduct.Columns.Add("Id", "Ürün No");
             dataGridProduct.Columns["Id"].DataPropertyName = "Id";
 
-            dataGridProduct.Columns.Add("FactoryId", "Fabrika No");
-            dataGridProduct.Columns["FactoryId"].DataPropertyName = "FactoryId";
-
             dataGridProduct.Columns.Add("CategoryId", "Kategori");
             dataGridProduct.Columns["CategoryId"].DataPropertyName = "CategoryId";
 
@@ -62,14 +57,11 @@ namespace OrderSystem2.forms.product
             dataGridProduct.Columns.Add("Name", "İsim");
             dataGridProduct.Columns["Name"].DataPropertyName = "Name";
 
-            dataGridProduct.Columns.Add("Price", "Fiyat");
-            dataGridProduct.Columns["Price"].DataPropertyName = "Price";
+            dataGridProduct.Columns.Add("UnitPrice", "Fiyat");
+            dataGridProduct.Columns["UnitPrice"].DataPropertyName = "UnitPrice";
 
             dataGridProduct.Columns.Add("Stock", "Stok");
             dataGridProduct.Columns["Stock"].DataPropertyName = "Stock";
-
-            dataGridProduct.Columns.Add("Address", "Adres");
-            dataGridProduct.Columns["Address"].DataPropertyName = "Address";
 
             dataGridProduct.DataSource = products;
             dataGridProduct.ReadOnly = true;

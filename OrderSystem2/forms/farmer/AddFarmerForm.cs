@@ -7,7 +7,6 @@ namespace OrderSystem2.forms
 {
     public partial class AddFarmerForm : Form
     {
-        private string _connectionString = "Server=localhost;Database=OrderSystem;Integrated Security=True;TrustServerCertificate=True";
 
         private FarmerRepository _farmerRepository;
         private FarmerService _farmerService;
@@ -25,13 +24,13 @@ namespace OrderSystem2.forms
         {
             InitializeComponent();   
 
-            _farmerRepository = new FarmerRepository(_connectionString);
+            _farmerRepository = new FarmerRepository();
             _farmerService = new FarmerService(_farmerRepository);
 
-            _zoneRepository = new ZoneRepository(_connectionString);
+            _zoneRepository = new ZoneRepository();
             _zoneService = new ZoneService(_zoneRepository);
 
-            _factoryRepository = new FactoryRepository(_connectionString);
+            _factoryRepository = new FactoryRepository();
             _factoryService = new FactoryService(_factoryRepository);
 
             pictureBoxClose.Click += pictureBoxClose_Click;
@@ -132,13 +131,11 @@ namespace OrderSystem2.forms
             }
         }
 
-
         private void buttonSave_Click(object sender, EventArgs e)
         {
 
             var farmer = new Farmer();       
 
-            farmer.ZoneId = Convert.ToInt32(comboBoxZone.SelectedValue);
             farmer.Name = textBoxName.Text.Trim();
             farmer.Surname = textBoxSurname.Text.Trim();
             farmer.Tc = textBoxTc.Text.Trim();
@@ -168,7 +165,12 @@ namespace OrderSystem2.forms
         
         private void pictureBoxClose_Click_1(object sender, EventArgs e)
         {
-            this.Close();
+            var result = MessageBox.Show("Çiftçi eklenmedi. Formu kapatmak istediğinize emin misiniz?", "Onay", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                this.Close();;
+            }
         }
 
 

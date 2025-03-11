@@ -53,5 +53,10 @@ namespace OrderSystem2.service.concretes
             entity.UpdatedAt = DateTime.Now;
             _repository.Update(entity, id);
         }
+
+        public void UpdateStock(int id, float stock)
+        {
+            _repository.UpdateStock(id, stock);
+        }
     }
 }

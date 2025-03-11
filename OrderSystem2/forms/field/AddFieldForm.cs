@@ -17,8 +17,6 @@ namespace OrderSystem2.forms.field
 {
     public partial class AddFieldForm : Form
     {
-        private string _connectionString = "Server=localhost;Database=OrderSystem;Integrated Security=True;TrustServerCertificate=True";
-
         private FieldRepository _fieldRepository;
         private FieldService _fieldService;
 
@@ -34,53 +32,45 @@ namespace OrderSystem2.forms.field
         {
             InitializeComponent();
 
-            _fieldRepository = new FieldRepository(_connectionString);
+            _fieldRepository = new FieldRepository();
             _fieldService = new FieldService(_fieldRepository);
 
-            _zoneRepository = new ZoneRepository(_connectionString);
+            _zoneRepository = new ZoneRepository();
             _zoneService = new ZoneService(_zoneRepository);
 
-            _factoryRepository = new FactoryRepository(_connectionString);
+            _factoryRepository = new FactoryRepository();
             _factoryService = new FactoryService(_factoryRepository);
 
-            Bind();
+            AttachPanelDragEvents(panel2);
             LoadCombobox();
         }
 
-        private void Bind()
+        private void AttachPanelDragEvents(Panel panel)
         {
-            this.MouseDown += new MouseEventHandler(MouseDownHandler);
-            this.MouseMove += new MouseEventHandler(MouseMoveHandler);
-            this.MouseUp += new MouseEventHandler(MouseUpHandler);
-
-
-            foreach (Control ctrl in this.Controls)
-            {
-                ctrl.MouseDown += new MouseEventHandler(MouseDownHandler);
-                ctrl.MouseMove += new MouseEventHandler(MouseMoveHandler);
-                ctrl.MouseUp += new MouseEventHandler(MouseUpHandler);
-            }
+            panel.MouseDown += Panel_MouseDown;
+            panel.MouseMove += Panel_MouseMove;
+            panel.MouseUp += Panel_MouseUp;
         }
 
-        private void MouseDownHandler(object sender, MouseEventArgs e)
+        private void Panel_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
                 isDragging = true;
-                startPoint = new Point(e.X, e.Y);
+                startPoint = e.Location;
             }
         }
 
-        private void MouseMoveHandler(object sender, MouseEventArgs e)
+        private void Panel_MouseMove(object sender, MouseEventArgs e)
         {
             if (isDragging)
             {
-                Point currentScreenPos = PointToScreen(e.Location);
+                Point currentScreenPos = ((Control)sender).PointToScreen(e.Location);
                 this.Location = new Point(currentScreenPos.X - startPoint.X, currentScreenPos.Y - startPoint.Y);
             }
         }
 
-        private void MouseUpHandler(object sender, MouseEventArgs e)
+        private void Panel_MouseUp(object sender, MouseEventArgs e)
         {
             isDragging = false;
         }
@@ -92,67 +82,18 @@ namespace OrderSystem2.forms.field
             comboBoxFactory.DisplayMember = "Name";
             comboBoxFactory.ValueMember = "Id";
 
-
-            comboBoxFactory.SelectedIndexChanged += comboBoxFactory_SelectedIndexChanged;
-
-            var zones = _zoneService.GetAll();
-            comboBoxZone.DataSource = zones;
-            comboBoxZone.DisplayMember = "Name";
-            comboBoxZone.ValueMember = "Id";
-
-            comboBoxZone.DataSource = null;
-            comboBoxZone.Items.Clear();
-
-        }
-
-        private void comboBoxFactory_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            LoadZones();
-
-            if (comboBoxFactory.SelectedIndex != -1)
-            {
-                labelPlaceholder.Visible = false;
-            }
-            else
-            {
-                labelPlaceholder.Visible = true;
-            }
-        }
-
-        private void LoadZones()
-        {
-            if (comboBoxFactory.SelectedValue != null)
-            {
-                int selectedFactoryId;
-
-                if (comboBoxFactory.SelectedValue is int)
-                {
-                    selectedFactoryId = (int)comboBoxFactory.SelectedValue;
-                }
-                else
-                {
-                    return;
-                }
-
-                var zones = _zoneRepository.GetZoneByFactory(selectedFactoryId);
-
-                comboBoxZone.DataSource = zones;
-                comboBoxZone.DisplayMember = "Name";
-                comboBoxZone.ValueMember = "Id";
-            }
         }
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
             var field = new Field();
             int  farmerId;       
-            bool isValidFarmerId = int.TryParse(textBoxFarmerArea.Text.Trim(), out farmerId);
-            double areaSize = Convert.ToDouble(textBoxFarmerNo.Text.Trim());
+            bool isValidFarmerId = int.TryParse(textBoxFarmerNo.Text.Trim(), out farmerId);
+            double areaSize = Convert.ToDouble(textBoxFarmerArea.Text.Trim());
 
-
-            field.ZoneId = Convert.ToInt32(comboBoxZone.SelectedValue);
             field.FarmerId = farmerId;
             field.AreaSize = areaSize;
+            field.Address = textBoxAddress.Text;
 
             try
             {
@@ -164,7 +105,6 @@ namespace OrderSystem2.forms.field
                 {
                     fieldform.LoadData();
                 }
-
                 this.Close();
 
             }

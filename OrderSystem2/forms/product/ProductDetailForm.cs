@@ -1,4 +1,7 @@
-﻿using OrderSystem2.model;
+﻿using System.Diagnostics;
+using System.Windows.Forms;
+using OrderSystem2.forms.order.make_order;
+using OrderSystem2.model;
 using OrderSystem2.repository.concretes;
 using OrderSystem2.service.abstracts;
 using OrderSystem2.service.concretes;
@@ -7,8 +10,6 @@ namespace OrderSystem2.forms.product
 {
     public partial class ProductDetailForm : Form
     {
-        private string _connectionString = "Server=localhost;Database=OrderSystem;Integrated Security=True;TrustServerCertificate=True";
-
         private ProductRepository _productRepository;
         private ProductService _productService;
 
@@ -20,24 +21,38 @@ namespace OrderSystem2.forms.product
         private bool isDragging = false;
         private Point startPoint = new Point(0, 0);
 
+        private Dictionary<TextBox, string> initialValues;
+
         public ProductDetailForm(Product product)
         {
             InitializeComponent();
 
-            _productRepository = new ProductRepository(_connectionString);
+            _productRepository = new ProductRepository();
             _productService = new ProductService(_productRepository);
 
             _product = product;
 
             LoadDetail();
 
+            buttonSave.Click -= buttonSave_Click;
             buttonSave.Click += buttonSave_Click;
+
+            buttonDelete.Click -= buttonDelete_Click;
             buttonDelete.Click += buttonDelete_Click;
 
-            Bind();
+            buttonSave.Enabled = false;
+
+            Bind(); 
+
+            foreach (var control in Controls.OfType<TextBox>())
+            {
+                control.TextChanged -= MarkAsChanged;
+                control.TextChanged += MarkAsChanged;
+            }
+
+            SaveInitialValues();
 
         }
-
         public void LoadDetail()
         {
             textBoxProductNo.Text = _product.Id.ToString();
@@ -49,74 +64,63 @@ namespace OrderSystem2.forms.product
             textBoxUnitNo.Text = _productService.GetUnitName(_product.Id);
             textBoxUnitNo.ReadOnly = true;
             textBoxName.Text = _product.Name;
-            textBoxPrice.Text = _product.Price.ToString();
+            textBoxPrice.Text = _product.UnitPrice.ToString();
             textBoxStock.Text = _product.Stock.ToString();
-            textBoxCreatedBy.Text = _product.CreatedBy.ToString();
-            textBoxCreatedBy.ReadOnly = true;
-            textBoxCreatedAt.Text = _product.CreatedAt.ToString();
-            textBoxCreatedAt.ReadOnly = true;
-            textBoxUpdatedBy.Text = _product.UpdatedBy.ToString();
-            textBoxUpdatedBy.ReadOnly = true;
-            textBoxupdatedAt.Text = _product.UpdatedAt.ToString();
-            textBoxUpdatedBy.ReadOnly = true;
         }
 
-        private void Bind()
+        private void SaveInitialValues()
         {
-            this.MouseDown += new MouseEventHandler(MouseDownHandler);
-            this.MouseMove += new MouseEventHandler(MouseMoveHandler);
-            this.MouseUp += new MouseEventHandler(MouseUpHandler);
+            initialValues = Controls.OfType<TextBox>()
+                   .ToDictionary(tb => tb, tb => tb.Text);
+            Debug.WriteLine("Initial Values Saved: ");
 
-
-            foreach (Control ctrl in this.Controls)
+            foreach (var entry in initialValues)
             {
-                ctrl.MouseDown += new MouseEventHandler(MouseDownHandler);
-                ctrl.MouseMove += new MouseEventHandler(MouseMoveHandler);
-                ctrl.MouseUp += new MouseEventHandler(MouseUpHandler);
+                Debug.WriteLine($"Textbox Name: {entry.Key.Name}, Value: {entry.Value}");
             }
         }
 
-        private void MouseDownHandler(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                isDragging = true;
-                startPoint = new Point(e.X, e.Y);
-            }
+        private bool HasChanges()
+        {           
+            return Controls.OfType<TextBox>().Any(tb => tb.Text != initialValues[tb]);
         }
 
-        private void MouseMoveHandler(object sender, MouseEventArgs e)
+        private bool AreAllFieldsFilled()
         {
-            if (isDragging)
-            {
-                Point currentScreenPos = PointToScreen(e.Location);
-                this.Location = new Point(currentScreenPos.X - startPoint.X, currentScreenPos.Y - startPoint.Y);
-            }
+            return Controls.OfType<TextBox>().All(tb => !string.IsNullOrWhiteSpace(tb.Text));
         }
 
-        private void MouseUpHandler(object sender, MouseEventArgs e)
+        private void MarkAsChanged(object sender, EventArgs e)
         {
-            isDragging = false;
-        }
+            buttonSave.Enabled = HasChanges();
+        }      
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
 
+            if (!AreAllFieldsFilled())
+            {
+                MessageBox.Show("Lütfen tüm alanları doldurun!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             try
             {
                 _product.Name = textBoxName.Text;
-                _product.Price = double.Parse(textBoxPrice.Text);
+                _product.UnitPrice = double.Parse(textBoxPrice.Text);
                 _product.Stock = int.Parse(textBoxStock.Text);
 
                 _productService.Update(_product, _product.Id);
 
                 MessageBox.Show("Güncelleme başarılı!", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                SaveInitialValues();
+                buttonSave.Enabled = false;
 
-                if (this.Owner is ProductForm productForm)
+                ProductForm productForm = Application.OpenForms.OfType<ProductForm>().FirstOrDefault();
+                if (productForm != null)
                 {
                     productForm.LoadData();
                 }
-
             }
             catch (Exception ex)
             {
@@ -140,7 +144,8 @@ namespace OrderSystem2.forms.product
 
                     MessageBox.Show("Kayıt başarıyla silindi!", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    if (this.Owner is ProductForm productForm)
+                    ProductForm productForm = Application.OpenForms.OfType<ProductForm>().FirstOrDefault();
+                    if (productForm != null)
                     {
                         productForm.LoadData();
                     }
@@ -185,6 +190,43 @@ namespace OrderSystem2.forms.product
         private void pictureBoxTab_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void Bind()
+        {
+            this.MouseDown += new MouseEventHandler(MouseDownHandler);
+            this.MouseMove += new MouseEventHandler(MouseMoveHandler);
+            this.MouseUp += new MouseEventHandler(MouseUpHandler);
+
+
+            foreach (Control ctrl in this.Controls)
+            {
+                ctrl.MouseDown += new MouseEventHandler(MouseDownHandler);
+                ctrl.MouseMove += new MouseEventHandler(MouseMoveHandler);
+                ctrl.MouseUp += new MouseEventHandler(MouseUpHandler);
+            }
+        }
+
+        private void MouseDownHandler(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                isDragging = true;
+                startPoint = new Point(e.X, e.Y);
+            }
+        }
+
+        private void MouseMoveHandler(object sender, MouseEventArgs e)
+        {
+            if (isDragging)
+            {
+                Point currentScreenPos = PointToScreen(e.Location);
+                this.Location = new Point(currentScreenPos.X - startPoint.X, currentScreenPos.Y - startPoint.Y);
+            }
+        }
+        private void MouseUpHandler(object sender, MouseEventArgs e)
+        {
+            isDragging = false;
         }
     }
 }
