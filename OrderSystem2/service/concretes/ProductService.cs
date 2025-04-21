@@ -48,6 +48,16 @@ namespace OrderSystem2.service.concretes
            return _repository.GetUnitName(id);
         }
 
+        public bool HasAnyStocks(int id)
+        {
+            return _repository.HasAnyStocks(id);  
+        }
+
+        public bool HasOrders(int id)
+        {
+            return _repository.HasAnyOrders(id);
+        }
+
         public void Update(Product entity, int id)
         {
             entity.UpdatedAt = DateTime.Now;

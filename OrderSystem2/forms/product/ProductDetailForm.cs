@@ -2,24 +2,19 @@
 using System.Windows.Forms;
 using OrderSystem2.forms.order.make_order;
 using OrderSystem2.model;
+using OrderSystem2.Properties;
 using OrderSystem2.repository.concretes;
 using OrderSystem2.service.abstracts;
 using OrderSystem2.service.concretes;
 
 namespace OrderSystem2.forms.product
 {
-    public partial class ProductDetailForm : Form
+    public partial class ProductDetailForm : BaseForm
     {
         private ProductRepository _productRepository;
         private ProductService _productService;
 
         private Product _product;
-
-        private bool isFullScreen = false;
-        private Rectangle prevBounds;
-
-        private bool isDragging = false;
-        private Point startPoint = new Point(0, 0);
 
         private Dictionary<TextBox, string> initialValues;
 
@@ -42,7 +37,8 @@ namespace OrderSystem2.forms.product
 
             buttonSave.Enabled = false;
 
-            Bind(); 
+            AttachPanelDragEvents(panel1);
+            
 
             foreach (var control in Controls.OfType<TextBox>())
             {
@@ -81,7 +77,7 @@ namespace OrderSystem2.forms.product
         }
 
         private bool HasChanges()
-        {           
+        {
             return Controls.OfType<TextBox>().Any(tb => tb.Text != initialValues[tb]);
         }
 
@@ -93,7 +89,7 @@ namespace OrderSystem2.forms.product
         private void MarkAsChanged(object sender, EventArgs e)
         {
             buttonSave.Enabled = HasChanges();
-        }      
+        }
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
@@ -138,95 +134,52 @@ namespace OrderSystem2.forms.product
 
             if (confirmResult == DialogResult.Yes)
             {
-                try
+                bool canDeleteO = _productService.HasOrders(_product.Id);
+                bool canDeleteS = _productService.HasAnyStocks(_product.Id);
+                if(canDeleteO)
                 {
-                    _productService.Delete(_product.Id);
-
-                    MessageBox.Show("Kayıt başarıyla silindi!", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    ProductForm productForm = Application.OpenForms.OfType<ProductForm>().FirstOrDefault();
-                    if (productForm != null)
+                    if(canDeleteS)
                     {
-                        productForm.LoadData();
+                        try
+                        {
+                            _productService.Delete(_product.Id);
+
+                            MessageBox.Show("Kayıt başarıyla silindi!", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            ProductForm productForm = Application.OpenForms.OfType<ProductForm>().FirstOrDefault();
+                            if (productForm != null)
+                            {
+                                productForm.LoadData();
+                            }
+
+                            this.Close();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Hata: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Ürün silinemiyor! Stoğu mevcut.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
 
-                    this.Close();
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show($"Hata: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Ürün silinemiyor! Sipariş için kullanılmış.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+               
             }
 
         }
+        
 
-        private void pictureBoxClose_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            this.Close();
+            ProductConstraintForm productConstraintForm = new ProductConstraintForm(_product.Id);
+            productConstraintForm.Show();
         }
 
-        private void pictureBoxExpand_Click(object sender, EventArgs e)
-        {
-            if (!isFullScreen)
-            {
-                prevBounds = this.Bounds;
-
-                this.FormBorderStyle = FormBorderStyle.None;
-                this.WindowState = FormWindowState.Maximized;
-
-                pictureBoxExpand.Image = Image.FromFile("C:\\Users\\beboz\\source\\repos\\OrderSystem2\\OrderSystem2\\Resources\\contract.png");
-                isFullScreen = true;
-            }
-            else
-            {
-                this.WindowState = FormWindowState.Normal;
-                this.Bounds = prevBounds;
-
-                pictureBoxExpand.Image = Image.FromFile("C:\\Users\\beboz\\source\\repos\\OrderSystem2\\OrderSystem2\\Resources\\expand.png");
-                isFullScreen = false;
-            }
-        }
-
-        private void pictureBoxTab_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
-        }
-
-        private void Bind()
-        {
-            this.MouseDown += new MouseEventHandler(MouseDownHandler);
-            this.MouseMove += new MouseEventHandler(MouseMoveHandler);
-            this.MouseUp += new MouseEventHandler(MouseUpHandler);
-
-
-            foreach (Control ctrl in this.Controls)
-            {
-                ctrl.MouseDown += new MouseEventHandler(MouseDownHandler);
-                ctrl.MouseMove += new MouseEventHandler(MouseMoveHandler);
-                ctrl.MouseUp += new MouseEventHandler(MouseUpHandler);
-            }
-        }
-
-        private void MouseDownHandler(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                isDragging = true;
-                startPoint = new Point(e.X, e.Y);
-            }
-        }
-
-        private void MouseMoveHandler(object sender, MouseEventArgs e)
-        {
-            if (isDragging)
-            {
-                Point currentScreenPos = PointToScreen(e.Location);
-                this.Location = new Point(currentScreenPos.X - startPoint.X, currentScreenPos.Y - startPoint.Y);
-            }
-        }
-        private void MouseUpHandler(object sender, MouseEventArgs e)
-        {
-            isDragging = false;
-        }
     }
 }

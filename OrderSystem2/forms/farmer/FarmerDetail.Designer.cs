@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             panel2 = new Panel();
+            label1 = new Label();
+            pictureBoxClose = new PictureBox();
             pictureBoxBack = new PictureBox();
             pictureBoxExpand = new PictureBox();
             pictureBoxTab = new PictureBox();
-            pictureBoxClose = new PictureBox();
-            label1 = new Label();
             buttonDelete = new Button();
             buttonSave = new Button();
             buttonShowOrders = new Button();
@@ -53,19 +53,15 @@
             label3 = new Label();
             label2 = new Label();
             panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxClose).BeginInit();           
             ((System.ComponentModel.ISupportInitialize)pictureBoxBack).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxExpand).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxTab).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxClose).BeginInit();
             SuspendLayout();
             // 
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(22, 56, 39);
-            panel2.Controls.Add(pictureBoxBack);
-            panel2.Controls.Add(pictureBoxExpand);
-            panel2.Controls.Add(pictureBoxTab);
-            panel2.Controls.Add(pictureBoxClose);
             panel2.Controls.Add(label1);
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(0, 0);
@@ -73,63 +69,40 @@
             panel2.Size = new Size(1235, 114);
             panel2.TabIndex = 3;
             // 
-            // pictureBoxBack
-            // 
-            pictureBoxBack.Image = Properties.Resources.back;
-            pictureBoxBack.Location = new Point(0, -1);
-            pictureBoxBack.Name = "pictureBoxBack";
-            pictureBoxBack.Size = new Size(29, 32);
-            pictureBoxBack.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBoxBack.TabIndex = 9;
-            pictureBoxBack.TabStop = false;
-            pictureBoxBack.Click += pictureBoxBack_Click;
-            // 
-            // pictureBoxExpand
-            // 
-            pictureBoxExpand.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            pictureBoxExpand.Image = Properties.Resources.expand;
-            pictureBoxExpand.Location = new Point(1172, -1);
-            pictureBoxExpand.Name = "pictureBoxExpand";
-            pictureBoxExpand.Size = new Size(34, 32);
-            pictureBoxExpand.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBoxExpand.TabIndex = 8;
-            pictureBoxExpand.TabStop = false;
-            pictureBoxExpand.Click += pictureBoxExpand_Click;
-            // 
-            // pictureBoxTab
-            // 
-            pictureBoxTab.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            pictureBoxTab.Image = Properties.Resources.tab;
-            pictureBoxTab.Location = new Point(1139, -1);
-            pictureBoxTab.Name = "pictureBoxTab";
-            pictureBoxTab.Size = new Size(34, 32);
-            pictureBoxTab.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBoxTab.TabIndex = 7;
-            pictureBoxTab.TabStop = false;
-            pictureBoxTab.Click += pictureBoxTab_Click;
-            // 
-            // pictureBoxClose
-            // 
-            pictureBoxClose.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            pictureBoxClose.Image = Properties.Resources.close_button;
-            pictureBoxClose.Location = new Point(1201, -1);
-            pictureBoxClose.Name = "pictureBoxClose";
-            pictureBoxClose.Size = new Size(34, 32);
-            pictureBoxClose.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBoxClose.TabIndex = 3;
-            pictureBoxClose.TabStop = false;
-            pictureBoxClose.Click += pictureBoxClose_Click;
-            // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Candara Light", 16F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.AntiqueWhite;
-            label1.Location = new Point(53, 35);
+            label1.Location = new Point(74, 37);
             label1.Name = "label1";
             label1.Size = new Size(167, 39);
             label1.TabIndex = 0;
             label1.Text = "Çiftçi Detay";
+            // 
+            // pictureBoxBack
+            // 
+            pictureBoxBack.Location = new Point(0, 0);
+            pictureBoxBack.Name = "pictureBoxBack";
+            pictureBoxBack.Size = new Size(100, 50);
+            pictureBoxBack.TabIndex = 0;
+            pictureBoxBack.TabStop = false;
+            // 
+            // pictureBoxExpand
+            // 
+            pictureBoxExpand.Location = new Point(0, 0);
+            pictureBoxExpand.Name = "pictureBoxExpand";
+            pictureBoxExpand.Size = new Size(100, 50);
+            pictureBoxExpand.TabIndex = 0;
+            pictureBoxExpand.TabStop = false;
+            // 
+            // pictureBoxTab
+            // 
+            pictureBoxTab.Location = new Point(0, 0);
+            pictureBoxTab.Name = "pictureBoxTab";
+            pictureBoxTab.Size = new Size(100, 50);
+            pictureBoxTab.TabIndex = 0;
+            pictureBoxTab.TabStop = false;
             // 
             // buttonDelete
             // 
@@ -196,6 +169,7 @@
             textBoxName.Name = "textBoxName";
             textBoxName.Size = new Size(306, 31);
             textBoxName.TabIndex = 58;
+            textBoxName.KeyPress += TextBoxName_KeyPress;
             // 
             // textBoxSurname
             // 
@@ -206,6 +180,7 @@
             textBoxSurname.Name = "textBoxSurname";
             textBoxSurname.Size = new Size(306, 31);
             textBoxSurname.TabIndex = 59;
+            textBoxSurname.KeyPress += TextBoxSurname_KeyPress;
             // 
             // textBoxTc
             // 
@@ -217,6 +192,7 @@
             textBoxTc.Name = "textBoxTc";
             textBoxTc.Size = new Size(306, 31);
             textBoxTc.TabIndex = 60;
+            textBoxTc.KeyPress += TextBoxTc_KeyPress;
             // 
             // textBoxEmail
             // 
@@ -238,6 +214,7 @@
             textBoxPhone.Name = "textBoxPhone";
             textBoxPhone.Size = new Size(306, 31);
             textBoxPhone.TabIndex = 62;
+            textBoxPhone.KeyPress += TextBoxPhone_KeyPress;
             // 
             // textBoxAddress
             // 
@@ -377,16 +354,33 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(panel2);
-            FormBorderStyle = FormBorderStyle.None;
             Name = "FarmerDetail";
-            StartPosition = FormStartPosition.CenterScreen;
             Text = "FarmerDetail";
+            Controls.SetChildIndex(panel2, 0);
+            Controls.SetChildIndex(label2, 0);
+            Controls.SetChildIndex(label3, 0);
+            Controls.SetChildIndex(label4, 0);
+            Controls.SetChildIndex(label5, 0);
+            Controls.SetChildIndex(label6, 0);
+            Controls.SetChildIndex(label7, 0);
+            Controls.SetChildIndex(label8, 0);
+            Controls.SetChildIndex(textBoxFarmerID, 0);
+            Controls.SetChildIndex(textBoxAddress, 0);
+            Controls.SetChildIndex(textBoxPhone, 0);
+            Controls.SetChildIndex(textBoxEmail, 0);
+            Controls.SetChildIndex(textBoxTc, 0);
+            Controls.SetChildIndex(textBoxSurname, 0);
+            Controls.SetChildIndex(textBoxName, 0);
+            Controls.SetChildIndex(buttonShowField, 0);
+            Controls.SetChildIndex(buttonShowOrders, 0);
+            Controls.SetChildIndex(buttonSave, 0);
+            Controls.SetChildIndex(buttonDelete, 0);
+            ((System.ComponentModel.ISupportInitialize)pictureBoxClose).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxBack).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxExpand).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxTab).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxClose).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }

@@ -6,6 +6,6 @@
         public int UnitId   { get; set; }
         public string Name { get; set; }    
         public double UnitPrice { get; set; }
-        public float Stock {  get; set; }
+        public double Stock {  get; set; }
     }
 }

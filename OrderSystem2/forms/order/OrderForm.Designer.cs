@@ -71,7 +71,6 @@
             pictureBoxBack.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxBack.TabIndex = 9;
             pictureBoxBack.TabStop = false;
-            pictureBoxBack.Click += pictureBoxBack_Click;
             // 
             // pictureBoxExpand
             // 
@@ -83,7 +82,6 @@
             pictureBoxExpand.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxExpand.TabIndex = 8;
             pictureBoxExpand.TabStop = false;
-            pictureBoxExpand.Click += pictureBoxExpand_Click;
             // 
             // pictureBoxTab
             // 
@@ -95,7 +93,6 @@
             pictureBoxTab.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxTab.TabIndex = 7;
             pictureBoxTab.TabStop = false;
-            pictureBoxTab.Click += pictureBoxTab_Click;
             // 
             // pictureBoxClose
             // 
@@ -107,7 +104,6 @@
             pictureBoxClose.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxClose.TabIndex = 6;
             pictureBoxClose.TabStop = false;
-            pictureBoxClose.Click += pictureBoxClose_Click;
             // 
             // pictureBox1
             // 

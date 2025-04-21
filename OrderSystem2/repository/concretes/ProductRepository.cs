@@ -59,6 +59,20 @@ namespace OrderSystem2.repository.concretes
                 return conn.QueryFirstOrDefault<string>(query, new { ProductId = id });
         }
 
+        public bool HasAnyOrders(int id)
+        {
+            string query = "SELECT CASE WHEN EXISTS (SELECT 1 FROM [OrderItem] WHERE ProductId = @ProductId) THEN 1 ELSE 0 END";
+            int count = conn.ExecuteScalar<int>(query, new { ProductId = id });
+            return count > 0;
+        }
+
+        public bool HasAnyStocks(int id)
+        {
+            string query = "SELECT CASE WHEN Stock > 0 THEN 1 ELSE 0 END FROM Product WHERE Id = @ProductId;";
+            int count = conn.ExecuteScalar<int>(query, new { ProductId = id });
+            return count > 0;
+        }
+
         public void Update(Product entity, int id)
         {
                 string query = $"UPDATE Product SET Name=@Name, UnitPrice=@UnitPrice, Stock=@Stock WHERE id =@Id";

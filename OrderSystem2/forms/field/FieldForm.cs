@@ -1,18 +1,14 @@
-﻿using OrderSystem2.repository.concretes;
+﻿using OrderSystem2.model;
+using OrderSystem2.Properties;
+using OrderSystem2.repository.concretes;
 using OrderSystem2.service.concretes;
 
 namespace OrderSystem2.forms.field
 {
-    public partial class Fieldform : Form
+    public partial class Fieldform : BaseForm
     {
         private FieldRepository _fieldRepository;
         private FieldService _fieldService;
-
-        private bool isFullScreen = false;
-        private Rectangle prevBounds;
-
-        private bool isDragging = false;
-        private Point startPoint = new Point(0, 0);
 
         public Fieldform()
         {
@@ -22,7 +18,9 @@ namespace OrderSystem2.forms.field
             _fieldService = new FieldService(_fieldRepository);
 
             LoadData();
-            Bind();
+            AttachPanelDragEvents(panel2);
+            panel2.SendToBack();
+
         }
 
         public void LoadData()
@@ -36,9 +34,6 @@ namespace OrderSystem2.forms.field
             dataGridField.Columns.Add("FarmerId", "Çiftçi No");
             dataGridField.Columns["FarmerId"].DataPropertyName = "FarmerId";
 
-            //dataGridField.Columns.Add("ZoneId", "Bölge No");
-            //dataGridField.Columns["ZoneId"].DataPropertyName = "ZoneId";
-
             dataGridField.Columns.Add("AreaSize", "Büyüklük");
             dataGridField.Columns["AreaSize"].DataPropertyName = "AreaSize";
 
@@ -47,45 +42,7 @@ namespace OrderSystem2.forms.field
 
             dataGridField.DataSource = fields;
             dataGridField.ReadOnly = true;
-        }
-
-        private void Bind()
-        {
-            this.MouseDown += new MouseEventHandler(MouseDownHandler);
-            this.MouseMove += new MouseEventHandler(MouseMoveHandler);
-            this.MouseUp += new MouseEventHandler(MouseUpHandler);
-
-
-            foreach (Control ctrl in this.Controls)
-            {
-                ctrl.MouseDown += new MouseEventHandler(MouseDownHandler);
-                ctrl.MouseMove += new MouseEventHandler(MouseMoveHandler);
-                ctrl.MouseUp += new MouseEventHandler(MouseUpHandler);
-            }
-        }
-
-        private void MouseDownHandler(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                isDragging = true;
-                startPoint = new Point(e.X, e.Y);
-            }
-        }
-
-        private void MouseMoveHandler(object sender, MouseEventArgs e)
-        {
-            if (isDragging)
-            {
-                Point currentScreenPos = PointToScreen(e.Location);
-                this.Location = new Point(currentScreenPos.X - startPoint.X, currentScreenPos.Y - startPoint.Y);
-            }
-        }
-
-        private void MouseUpHandler(object sender, MouseEventArgs e)
-        {
-            isDragging = false;
-        }
+        }      
 
         private void label2_Click(object sender, EventArgs e)
         {
@@ -93,41 +50,14 @@ namespace OrderSystem2.forms.field
             addFieldForm.Show();
         }
 
-        private void pictureBoxClose_Click(object sender, EventArgs e)
+        private void dataGridField_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-                this.Close();            
-        }
-
-        private void pictureBoxExpand_Click(object sender, EventArgs e)
-        {
-            if (!isFullScreen)
+            if (e.RowIndex >= 0)
             {
-                prevBounds = this.Bounds;
-
-                this.FormBorderStyle = FormBorderStyle.None;
-                this.WindowState = FormWindowState.Maximized;
-
-                pictureBoxExpand.Image = Image.FromFile("C:\\Users\\beboz\\source\\repos\\OrderSystem2\\OrderSystem2\\Resources\\contract.png");
-                isFullScreen = true;
+                var selectedField = (Field)dataGridField.Rows[e.RowIndex].DataBoundItem;
+                FieldDetail detailForm = new FieldDetail(selectedField.Id);
+                detailForm.Show();
             }
-            else
-            {
-                this.WindowState = FormWindowState.Normal;
-                this.Bounds = prevBounds;
-
-                pictureBoxExpand.Image = Image.FromFile("C:\\Users\\beboz\\source\\repos\\OrderSystem2\\OrderSystem2\\Resources\\expand.png");
-                isFullScreen = false;
-            }
-        }
-
-        private void pictureBoxTab_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
-        }
-
-        private void pictureBoxBack_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
     }
 }

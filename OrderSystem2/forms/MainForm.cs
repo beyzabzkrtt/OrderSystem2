@@ -4,6 +4,7 @@ using OrderSystem2.forms.order;
 using OrderSystem2.forms.product;
 using OrderSystem2.forms.user;
 using OrderSystem2.model;
+using OrderSystem2.Properties;
 
 namespace OrderSystem2
 {
@@ -23,12 +24,41 @@ namespace OrderSystem2
 
             _user = user;
 
-            panelManager.Visible = false;
+            comboBoxManager.Visible = false;
+            comboBoxLiable.Visible = false;
             ManagerParts();
+            comboBoxManager.SelectedIndexChanged += ComboBoxManager_SelectedIndexChanged;
+            comboBoxLiable.SelectedIndexChanged += ComboBoxLiable_SelectedIndexChanged;
 
             pictureBoxClose.Click += pictureBoxClose_Click;
             AttachPanelDragEvents(panel1);
         }
+
+        private void ComboBoxLiable_SelectedIndexChanged(object? sender, EventArgs e)
+        {
+            string selectedItem = comboBoxLiable.SelectedItem.ToString();
+
+            switch (selectedItem)
+            {
+                case "Kullanıcı Yönetimi":
+                    UserForm userform = new UserForm();
+                    userform.Show();
+                    break;
+                case "Rol Yönetimi":
+
+                    break;
+                case "Fabrika Yönetimi":
+
+                    break;
+                case "Bölge Yönetimi":
+
+                    break;
+                default:
+                    MessageBox.Show("Bilinmeyen seçim!");
+                    break;
+            }
+        }
+
         private void AttachPanelDragEvents(Panel panel)
         {
             panel.MouseDown += Panel_MouseDown;
@@ -114,7 +144,7 @@ namespace OrderSystem2
                 this.FormBorderStyle = FormBorderStyle.None;
                 this.WindowState = FormWindowState.Maximized;
 
-                pictureBoxExpand.Image = Image.FromFile("C:\\Users\\beboz\\source\\repos\\OrderSystem2\\OrderSystem2\\Resources\\contract.png");
+                pictureBoxExpand.Image = Resources.contract;
                 isFullScreen = true;
             }
             else
@@ -122,7 +152,7 @@ namespace OrderSystem2
                 this.WindowState = FormWindowState.Normal;
                 this.Bounds = prevBounds;
 
-                pictureBoxExpand.Image = Image.FromFile("C:\\Users\\beboz\\source\\repos\\OrderSystem2\\OrderSystem2\\Resources\\expand.png");
+                pictureBoxExpand.Image = Resources.expand;
                 isFullScreen = false;
             }
         }
@@ -142,10 +172,21 @@ namespace OrderSystem2
         private void ManagerParts()
         {
             string role = _userRepository.GetRole(_user.Id);
-            bool authorization = role.Contains("Müdür");
-            if (authorization)
+
+            if (role.Contains("Müdür"))
             {
-                panelManager.Visible = true;
+                comboBoxManager.Visible = true;
+                comboBoxLiable.Visible = true; 
+            }
+            else if (role.Contains("Sorumlu"))
+            {
+                comboBoxLiable.Visible = true;
+                comboBoxManager.Visible = false;
+            }
+            else
+            {
+                comboBoxManager.Visible = false;
+                comboBoxLiable.Visible = false;
             }
         }
 
@@ -153,6 +194,31 @@ namespace OrderSystem2
         {
             UserForm userForm = new UserForm();
             userForm.Show();
+        }
+
+        private void ComboBoxManager_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedItem = comboBoxManager.SelectedItem.ToString();
+
+            switch (selectedItem)
+            {
+                case "Kullanıcı Yönetimi":
+                    UserForm userform = new UserForm();
+                    userform.Show();
+                    break;
+                case "Rol Yönetimi":
+                    
+                    break;
+                case "Fabrika Yönetimi":
+                    
+                    break;
+                case "Bölge Yönetimi":
+                    
+                    break;
+                default:
+                    MessageBox.Show("Bilinmeyen seçim!");
+                    break;
+            }
         }
     }
 }

@@ -9,11 +9,39 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\back.png" />
+    <None Remove="Resources\close.png" />
+    <None Remove="Resources\closed_eye.png" />
+    <None Remove="Resources\close_button.png" />
+    <None Remove="Resources\contract.png" />
+    <None Remove="Resources\expand.png" />
+    <None Remove="Resources\flor-Photoroom.png" />
+    <None Remove="Resources\floters-Photoroom.png" />
+    <None Remove="Resources\logo.png" />
+    <None Remove="Resources\open_eye.png" />
+    <None Remove="Resources\tab.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="Dapper" Version="2.1.66" />
     <PackageReference Include="Dapper.Contrib" Version="2.0.78" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\back.png" />
+    <Resource Include="Resources\close.png" />
+    <Resource Include="Resources\closed_eye.png" />
+    <Resource Include="Resources\close_button.png" />
+    <Resource Include="Resources\contract.png" />
+    <Resource Include="Resources\expand.png" />
+    <Resource Include="Resources\flor-Photoroom.png" />
+    <Resource Include="Resources\floters-Photoroom.png" />
+    <Resource Include="Resources\logo.png" />
+    <Resource Include="Resources\open_eye.png" />
+    <Resource Include="Resources\tab.png" />
   </ItemGroup>
 
   <ItemGroup>

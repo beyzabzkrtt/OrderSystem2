@@ -22,9 +22,9 @@ namespace OrderSystem2.forms.order.make_order
         private Point startPoint = new Point(0, 0);
 
         private int _orderId;
-        private OrderItemDetail _itemDetail;
+        private int _fieldId;
 
-        public ConfirmORder(int orderId)
+        public ConfirmORder(int orderId,int fieldId)
         {
             InitializeComponent();
 
@@ -38,6 +38,7 @@ namespace OrderSystem2.forms.order.make_order
             _fieldService = new FieldService(_fieldRepository);
 
             _orderId = orderId;
+            _fieldId = fieldId;
 
             buttonAdd.Click -= buttonAdd_Click;
             buttonAdd.Click += buttonAdd_Click;
@@ -117,7 +118,8 @@ namespace OrderSystem2.forms.order.make_order
             {
                 this.Close();
                 _orderService.Delete(_orderId);
-            }
+                _fieldService.SetUsed(_fieldId, false);
+           }
         }
         private void buttonAdd_Click(object sender, EventArgs e)
         {
@@ -135,7 +137,7 @@ namespace OrderSystem2.forms.order.make_order
             foreach (var orderItem in orderItems)
             { 
                 var product = _productService.GetById(orderItem.ProductId);
-                float stock = product.Stock;
+                float stock = (float)product.Stock;
                 float newStock = stock - orderItem.Quantity;
 
                 _productService.UpdateStock(orderItem.ProductId,newStock);

@@ -4,7 +4,6 @@ namespace OrderSystem2.repository.abstracts
 {
     public interface IFieldRepository : IGenericRepository<Field>
     {      
-        public int GetAreaSize(int id);
-        public List<Order?> GetOrders(int id);
+        public void SetUsed(int id,bool inUsed);
     }
 }

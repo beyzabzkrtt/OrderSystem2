@@ -24,9 +24,6 @@ namespace OrderSystem2.forms.order
         private OrderItemRepository orderItemRepository;
         private OrderItemService orderItemService;
 
-        private OrderRepository orderRepository;
-        private OrderService orderService;
-
         private UnitRepository unitRepository;
         private UnitService unitService;
 
@@ -37,8 +34,8 @@ namespace OrderSystem2.forms.order
         private int _productId;
         private int _orderId;
 
-        public Constraint minFieldConstraint;// = constraintService.GetMinByProductId(_productId);
-        public Constraint maxAmountConstraint;// = constraintService.GetMaxByProductId(_productId);
+        public Constraint minFieldConstraint;
+        public Constraint maxAmountConstraint;
 
         public AmountEntry(int productId, int fieldId, int orderId)
         {
@@ -60,9 +57,6 @@ namespace OrderSystem2.forms.order
 
             orderItemRepository = new OrderItemRepository();
             orderItemService = new OrderItemService(orderItemRepository);
-
-            orderRepository = new OrderRepository();
-            orderService = new OrderService(orderRepository);
 
             unitRepository = new UnitRepository();
             unitService = new UnitService(unitRepository);
@@ -187,6 +181,7 @@ namespace OrderSystem2.forms.order
                 detail.UnitPrice = unitPrice;
                 detail.AreaSize = (decimal)field.AreaSize;
                 detail.Price = (decimal)(unitPrice * amount);
+                fieldRepository.SetUsed(_fieldId,true);
 
                 MessageBox.Show("Ürün eklendi");
                    
@@ -201,7 +196,7 @@ namespace OrderSystem2.forms.order
                 }
                 else
                 {
-                    ConfirmORder confirmORder = new ConfirmORder(_orderId);
+                    ConfirmORder confirmORder = new ConfirmORder(_orderId,_fieldId);
                     confirmORder.LoadData(detail);
                     confirmORder.Show();
                 }

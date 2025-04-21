@@ -66,7 +66,6 @@ namespace OrderSystem2.forms.farmer
             pictureBoxExpand.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxExpand.TabIndex = 9;
             pictureBoxExpand.TabStop = false;
-            pictureBoxExpand.Click += pictureBoxExpand_Click;
             // 
             // pictureBoxTab
             // 
@@ -78,7 +77,6 @@ namespace OrderSystem2.forms.farmer
             pictureBoxTab.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxTab.TabIndex = 8;
             pictureBoxTab.TabStop = false;
-            pictureBoxTab.Click += pictureBoxTab_Click;
             // 
             // pictureBoxClose
             // 
@@ -90,7 +88,6 @@ namespace OrderSystem2.forms.farmer
             pictureBoxClose.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxClose.TabIndex = 4;
             pictureBoxClose.TabStop = false;
-            pictureBoxClose.Click += pictureBoxClose_Click_1;
             // 
             // label1
             // 

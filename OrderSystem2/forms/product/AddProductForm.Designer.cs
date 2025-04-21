@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             panel2 = new Panel();
-            pictureBoxClose = new PictureBox();
             label1 = new Label();
             label9 = new Label();
             label2 = new Label();
@@ -45,31 +44,20 @@
             comboBoxUnit = new ComboBox();
             comboBoxCategory = new ComboBox();
             labelPlaceholder = new Label();
+            labelCategory = new Label();
+            labelUnit = new Label();
             panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxClose).BeginInit();
             SuspendLayout();
             // 
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(22, 56, 39);
-            panel2.Controls.Add(pictureBoxClose);
             panel2.Controls.Add(label1);
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
             panel2.Size = new Size(524, 114);
             panel2.TabIndex = 4;
-            // 
-            // pictureBoxClose
-            // 
-            pictureBoxClose.Image = Properties.Resources.close_button;
-            pictureBoxClose.Location = new Point(489, 0);
-            pictureBoxClose.Name = "pictureBoxClose";
-            pictureBoxClose.Size = new Size(38, 35);
-            pictureBoxClose.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBoxClose.TabIndex = 0;
-            pictureBoxClose.TabStop = false;
-            pictureBoxClose.Click += pictureBoxClose_Click;
             // 
             // label1
             // 
@@ -237,12 +225,35 @@
             labelPlaceholder.TabIndex = 41;
             labelPlaceholder.Text = "Fabrika Seçiniz";
             // 
+            // labelCategory
+            // 
+            labelCategory.AutoSize = true;
+            labelCategory.BackColor = Color.LightYellow;
+            labelCategory.ForeColor = SystemColors.ActiveBorder;
+            labelCategory.Location = new Point(219, 224);
+            labelCategory.Name = "labelCategory";
+            labelCategory.Size = new Size(136, 25);
+            labelCategory.TabIndex = 42;
+            labelCategory.Text = "Kategori Seçiniz";
+            // 
+            // labelUnit
+            // 
+            labelUnit.AutoSize = true;
+            labelUnit.BackColor = Color.LightYellow;
+            labelUnit.ForeColor = SystemColors.ActiveBorder;
+            labelUnit.Location = new Point(219, 280);
+            labelUnit.Name = "labelUnit";
+            labelUnit.Size = new Size(110, 25);
+            labelUnit.TabIndex = 43;
+            labelUnit.Text = "Birim Seçiniz";
+            // 
             // AddProductForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.AntiqueWhite;
-            ClientSize = new Size(524, 652);
+            Controls.Add(labelUnit);
+            Controls.Add(labelCategory);
             Controls.Add(labelPlaceholder);
             Controls.Add(comboBoxCategory);
             Controls.Add(comboBoxUnit);
@@ -264,7 +275,6 @@
             Text = "AddProductForm";
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxClose).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -296,7 +306,6 @@
         #endregion
 
         private Panel panel2;
-        private PictureBox pictureBoxClose;
         private Label label1;
         private Label label9;
         private Label label2;
@@ -312,5 +321,7 @@
         private ComboBox comboBoxUnit;
         private ComboBox comboBoxCategory;
         private Label labelPlaceholder;
+        private Label labelCategory;
+        private Label labelUnit;
     }
 }

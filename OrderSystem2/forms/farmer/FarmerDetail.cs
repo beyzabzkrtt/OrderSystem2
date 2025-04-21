@@ -2,24 +2,18 @@
 using System.Text.RegularExpressions;
 using OrderSystem2.forms.farmer;
 using OrderSystem2.model;
+using OrderSystem2.Properties;
 using OrderSystem2.repository.concretes;
 using OrderSystem2.service.concretes;
 
 namespace OrderSystem2.forms
 {
-    public partial class FarmerDetail : Form
+    public partial class FarmerDetail : BaseForm
     {
         private FarmerRepository _farmerRepository;
         private FarmerService _farmerService;
 
-
         private Farmer _farmer;
-
-        private bool isFullScreen = false;
-        private Rectangle prevBounds;
-
-        private bool isDragging = false;
-        private Point startPoint = new Point(0, 0);
 
         private Dictionary<TextBox, string> initialValues;
 
@@ -33,6 +27,10 @@ namespace OrderSystem2.forms
 
             LoadData();
             AttachPanelDragEvents(panel2);
+            panel2.SendToBack();
+
+            buttonShowOrders.Click += buttonShowOrders_Click;
+            buttonShowField.Click += buttonShowField_Click;
 
             buttonSave.Click -= buttonSave_Click;
             buttonSave.Click += buttonSave_Click;
@@ -49,7 +47,6 @@ namespace OrderSystem2.forms
             }
 
             SaveInitialValues();
-
 
         }
 
@@ -118,7 +115,7 @@ namespace OrderSystem2.forms
             if (textBoxTc.Text.Length != 11)
             {
                 MessageBox.Show("Lütfen Tc'yi doğru giriniz!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return; 
+                return;
             }
             if (!IsValidEmail(textBoxEmail.Text))
             {
@@ -201,15 +198,6 @@ namespace OrderSystem2.forms
             }
 
         }
-        private void pictureBoxClose_Click(object sender, EventArgs e)
-        {
-            FarmerForm farmerForm = Application.OpenForms.OfType<FarmerForm>().FirstOrDefault();
-            if (farmerForm != null)
-            {
-                farmerForm.LoadFarmer();
-            }
-            this.Close();
-        }
 
         private void buttonShowField_Click(object sender, EventArgs e)
         {
@@ -223,68 +211,14 @@ namespace OrderSystem2.forms
             farmerOrderForm.Show();
         }
 
-        private void pictureBoxTab_Click(object sender, EventArgs e)
+        protected override void pictureBoxClose_Click(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Minimized;
-        }
-
-        private void pictureBoxExpand_Click(object sender, EventArgs e)
-        {
-            if (!isFullScreen)
+            FarmerForm farmerForm = Application.OpenForms.OfType<FarmerForm>().FirstOrDefault();
+            if (farmerForm != null)
             {
-                prevBounds = this.Bounds;
-
-                this.FormBorderStyle = FormBorderStyle.None;
-                this.WindowState = FormWindowState.Maximized;
-
-                pictureBoxExpand.Image = Image.FromFile("C:\\Users\\beboz\\source\\repos\\OrderSystem2\\OrderSystem2\\Resources\\contract.png");
-                isFullScreen = true;
+                farmerForm.LoadFarmer();
             }
-            else
-            {
-                this.WindowState = FormWindowState.Normal;
-                this.Bounds = prevBounds;
-
-                pictureBoxExpand.Image = Image.FromFile("C:\\Users\\beboz\\source\\repos\\OrderSystem2\\OrderSystem2\\Resources\\expand.png");
-                isFullScreen = false;
-            }
-        }
-
-        private void pictureBoxBack_Click(object sender, EventArgs e)
-        {
             this.Close();
         }
-
-        private void AttachPanelDragEvents(Panel panel)
-        {
-            panel.MouseDown += Panel_MouseDown;
-            panel.MouseMove += Panel_MouseMove;
-            panel.MouseUp += Panel_MouseUp;
-        }
-
-        private void Panel_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                isDragging = true;
-                startPoint = e.Location;
-            }
-        }
-
-        private void Panel_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (isDragging)
-            {
-                Point currentScreenPos = ((Control)sender).PointToScreen(e.Location);
-                this.Location = new Point(currentScreenPos.X - startPoint.X, currentScreenPos.Y - startPoint.Y);
-            }
-        }
-
-        private void Panel_MouseUp(object sender, MouseEventArgs e)
-        {
-            isDragging = false;
-        }
-
-
     }
 }

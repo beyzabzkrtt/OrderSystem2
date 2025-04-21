@@ -29,19 +29,11 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            pictureBoxBack = new PictureBox();
-            pictureBoxExpand = new PictureBox();
-            pictureBoxTab = new PictureBox();
-            pictureBoxClose = new PictureBox();
             label1 = new Label();
             panel2 = new Panel();
             labelAddFarmer = new Label();
             dataGridUsers = new DataGridView();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxBack).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxExpand).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxTab).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxClose).BeginInit();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridUsers).BeginInit();
             SuspendLayout();
@@ -49,63 +41,12 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(22, 56, 39);
-            panel1.Controls.Add(pictureBoxBack);
-            panel1.Controls.Add(pictureBoxExpand);
-            panel1.Controls.Add(pictureBoxTab);
-            panel1.Controls.Add(pictureBoxClose);
             panel1.Controls.Add(label1);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
             panel1.Size = new Size(1118, 88);
-            panel1.TabIndex = 0;
-            // 
-            // pictureBoxBack
-            // 
-            pictureBoxBack.Image = Properties.Resources.back;
-            pictureBoxBack.Location = new Point(0, 0);
-            pictureBoxBack.Name = "pictureBoxBack";
-            pictureBoxBack.Size = new Size(29, 32);
-            pictureBoxBack.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBoxBack.TabIndex = 9;
-            pictureBoxBack.TabStop = false;
-            pictureBoxBack.Click += pictureBoxBack_Click;
-            // 
-            // pictureBoxExpand
-            // 
-            pictureBoxExpand.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            pictureBoxExpand.Image = Properties.Resources.expand;
-            pictureBoxExpand.Location = new Point(1051, 3);
-            pictureBoxExpand.Name = "pictureBoxExpand";
-            pictureBoxExpand.Size = new Size(34, 32);
-            pictureBoxExpand.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBoxExpand.TabIndex = 8;
-            pictureBoxExpand.TabStop = false;
-            pictureBoxExpand.Click += pictureBoxExpand_Click;
-            // 
-            // pictureBoxTab
-            // 
-            pictureBoxTab.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            pictureBoxTab.Image = Properties.Resources.tab;
-            pictureBoxTab.Location = new Point(1019, 3);
-            pictureBoxTab.Name = "pictureBoxTab";
-            pictureBoxTab.Size = new Size(34, 32);
-            pictureBoxTab.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBoxTab.TabIndex = 7;
-            pictureBoxTab.TabStop = false;
-            pictureBoxTab.Click += pictureBoxTab_Click;
-            // 
-            // pictureBoxClose
-            // 
-            pictureBoxClose.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            pictureBoxClose.Image = Properties.Resources.close_button;
-            pictureBoxClose.Location = new Point(1081, 3);
-            pictureBoxClose.Name = "pictureBoxClose";
-            pictureBoxClose.Size = new Size(34, 32);
-            pictureBoxClose.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBoxClose.TabIndex = 6;
-            pictureBoxClose.TabStop = false;
-            pictureBoxClose.Click += pictureBoxClose_Click;
+            panel1.TabIndex = 0;           
             // 
             // label1
             // 
@@ -140,6 +81,7 @@
             labelAddFarmer.Size = new Size(146, 29);
             labelAddFarmer.TabIndex = 1;
             labelAddFarmer.Text = "Kullanıcı Ekle";
+            labelAddFarmer.Click += labelAddFarmer_Click;
             // 
             // dataGridUsers
             // 
@@ -157,7 +99,6 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.AntiqueWhite;
-            ClientSize = new Size(1118, 496);
             Controls.Add(dataGridUsers);
             Controls.Add(panel2);
             Controls.Add(panel1);
@@ -166,10 +107,6 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "UserForm";
             panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBoxBack).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxExpand).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxTab).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxClose).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridUsers).EndInit();
@@ -182,10 +119,6 @@
         private Label label1;
         private Panel panel2;
         private DataGridView dataGridUsers;
-        private PictureBox pictureBoxExpand;
-        private PictureBox pictureBoxTab;
-        private PictureBox pictureBoxClose;
         private Label labelAddFarmer;
-        private PictureBox pictureBoxBack;
     }
 }

@@ -4,6 +4,7 @@ using Dapper;
 using System.Data;
 using Constraint = OrderSystem2.entity.Constraint;
 using OrderSystem2.database;
+using OrderSystem2.model;
 
 namespace OrderSystem2.repository.concretes
 {
@@ -29,12 +30,14 @@ namespace OrderSystem2.repository.concretes
 
         public List<Constraint> GetAll()
         {
-            throw new NotImplementedException();
+            return conn.Query<Constraint>($"SELECT * FROM [Constraint] WHERE Status = 1").ToList();
         }
 
-        public Constraint GetById(int id)
+        public List<Constraint> GetListById(int id)
         {
-            throw new NotImplementedException();
+
+            string query = $"SELECT * FROM [Constraint] WHERE ProductId = @ProductId";
+            return (List<Constraint>)conn.Query<Constraint>(query, new { ProductId = id });
         }
 
         public Constraint GetMaxByProductId(int id)
@@ -50,6 +53,11 @@ namespace OrderSystem2.repository.concretes
         }
 
         public void Update(Constraint entity, int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        Constraint IGenericRepository<Constraint>.GetById(int id)
         {
             throw new NotImplementedException();
         }

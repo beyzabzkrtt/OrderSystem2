@@ -30,12 +30,17 @@ namespace OrderSystem2.service.concretes
 
         public List<Constraint> GetAll()
         {
-            throw new NotImplementedException();
+           return constraintRepository.GetAll();
         }
 
         public Constraint GetById(int id)
         {
-            throw new NotImplementedException();
+            return constraintRepository.GetById(id);
+        }
+
+        public List<Constraint> GetListById(int id)
+        {
+            return constraintRepository.GetListById(id);
         }
 
         public Constraint GetMaxByProductId(int id)

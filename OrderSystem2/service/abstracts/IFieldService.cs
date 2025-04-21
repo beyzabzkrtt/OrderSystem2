@@ -9,6 +9,6 @@ namespace OrderSystem2.service.abstracts
 {
     public interface IFieldService : IGenericService<Field>
     {
-        public List<Order?> GetOrders(int id);
+        public void SetUsed(int id, bool inUsed);
     }
 }

@@ -16,7 +16,8 @@ public class UserRepository : OrderSystem2.repository.abstracts.IUserRepository
 
     public void Add(User entity)
     {
-        throw new NotImplementedException();
+        string sql = "INSERT INTO [User] ( Name, Surname, Email,Password, Tc, Address, Phone, Status, CreatedBy, CreatedAt, UpdatedBy, UpdatedAt) VALUES (@Name, @Surname, @Email, @Password, @Tc, @Address, @Phone, @Status, @CreatedBy, @CreatedAt, @UpdatedBy, @UpdatedAt)";
+        conn.Execute(sql, entity);
     }
 
     public void AddUser(OrderSystem2.model.User user)

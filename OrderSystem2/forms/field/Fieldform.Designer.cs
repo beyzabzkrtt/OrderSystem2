@@ -62,13 +62,14 @@
             // 
             dataGridField.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridField.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridField.BackgroundColor = SystemColors.Control;
+            dataGridField.BackgroundColor = Color.AntiqueWhite;
             dataGridField.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridField.Location = new Point(0, 117);
             dataGridField.Name = "dataGridField";
             dataGridField.RowHeadersWidth = 62;
             dataGridField.Size = new Size(1235, 380);
             dataGridField.TabIndex = 4;
+            dataGridField.CellDoubleClick += dataGridField_CellDoubleClick;
             // 
             // panel2
             // 
@@ -93,7 +94,6 @@
             pictureBoxBack.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxBack.TabIndex = 10;
             pictureBoxBack.TabStop = false;
-            pictureBoxBack.Click += pictureBoxBack_Click;
             // 
             // pictureBoxExpand
             // 
@@ -105,7 +105,6 @@
             pictureBoxExpand.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxExpand.TabIndex = 8;
             pictureBoxExpand.TabStop = false;
-            pictureBoxExpand.Click += pictureBoxExpand_Click;
             // 
             // pictureBoxTab
             // 
@@ -117,7 +116,6 @@
             pictureBoxTab.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxTab.TabIndex = 7;
             pictureBoxTab.TabStop = false;
-            pictureBoxTab.Click += pictureBoxTab_Click;
             // 
             // pictureBoxClose
             // 
@@ -129,7 +127,6 @@
             pictureBoxClose.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxClose.TabIndex = 6;
             pictureBoxClose.TabStop = false;
-            pictureBoxClose.Click += pictureBoxClose_Click;
             // 
             // label3
             // 

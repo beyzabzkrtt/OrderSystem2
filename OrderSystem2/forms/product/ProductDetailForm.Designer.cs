@@ -49,15 +49,19 @@
             textBoxFactoryNo = new TextBox();
             buttonDelete = new Button();
             buttonSave = new Button();
+            button1 = new Button();
+            pictureBoxBack = new PictureBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxExpand).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxTab).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxClose).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxBack).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(22, 56, 39);
+            panel1.Controls.Add(pictureBoxBack);
             panel1.Controls.Add(pictureBoxExpand);
             panel1.Controls.Add(pictureBoxTab);
             panel1.Controls.Add(pictureBoxClose);
@@ -78,7 +82,6 @@
             pictureBoxExpand.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxExpand.TabIndex = 11;
             pictureBoxExpand.TabStop = false;
-            pictureBoxExpand.Click += pictureBoxExpand_Click;
             // 
             // pictureBoxTab
             // 
@@ -90,7 +93,6 @@
             pictureBoxTab.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxTab.TabIndex = 10;
             pictureBoxTab.TabStop = false;
-            pictureBoxTab.Click += pictureBoxTab_Click;
             // 
             // pictureBoxClose
             // 
@@ -102,14 +104,13 @@
             pictureBoxClose.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxClose.TabIndex = 9;
             pictureBoxClose.TabStop = false;
-            pictureBoxClose.Click += pictureBoxClose_Click;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Candara Light", 16F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.AntiqueWhite;
-            label1.Location = new Point(40, 30);
+            label1.Location = new Point(69, 31);
             label1.Name = "label1";
             label1.Size = new Size(169, 39);
             label1.TabIndex = 0;
@@ -312,12 +313,38 @@
             buttonSave.UseVisualStyleBackColor = false;
             buttonSave.Click += buttonSave_Click;
             // 
+            // button1
+            // 
+            button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            button1.BackColor = Color.FromArgb(22, 56, 39);
+            button1.Font = new Font("Candara", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button1.ForeColor = Color.AntiqueWhite;
+            button1.Location = new Point(902, 396);
+            button1.Name = "button1";
+            button1.Size = new Size(274, 45);
+            button1.TabIndex = 49;
+            button1.TabStop = false;
+            button1.Text = "Kısıtları Görüntüle";
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
+            // 
+            // pictureBoxBack
+            // 
+            pictureBoxBack.Image = Properties.Resources.back;
+            pictureBoxBack.Location = new Point(4, 1);
+            pictureBoxBack.Name = "pictureBoxBack";
+            pictureBoxBack.Size = new Size(29, 32);
+            pictureBoxBack.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBoxBack.TabIndex = 12;
+            pictureBoxBack.TabStop = false;
+            // 
             // ProductDetailForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.AntiqueWhite;
             ClientSize = new Size(1235, 559);
+            Controls.Add(button1);
             Controls.Add(buttonDelete);
             Controls.Add(buttonSave);
             Controls.Add(textBoxFactoryNo);
@@ -344,6 +371,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBoxExpand).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxTab).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxClose).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxBack).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -395,5 +423,7 @@
         private PictureBox pictureBoxExpand;
         private PictureBox pictureBoxTab;
         private PictureBox pictureBoxClose;
+        private Button button1;
+        private PictureBox pictureBoxBack;
     }
 }

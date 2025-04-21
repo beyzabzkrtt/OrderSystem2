@@ -22,6 +22,7 @@ namespace OrderSystem2.service.concretes
 
         public void Delete(int id)
         {
+
             _fieldRepository.Delete(id);
         }
 
@@ -35,14 +36,14 @@ namespace OrderSystem2.service.concretes
             return _fieldRepository.GetById(id);
         }
 
-        public List<Order?> GetOrders(int id)
+        public void SetUsed(int id, bool inUsed)
         {
-            return _fieldRepository.GetOrders(id);
+           _fieldRepository.SetUsed(id, inUsed);
         }
 
         public void Update(Field entity, int id)
         {
-            throw new NotImplementedException();
+           _fieldRepository.Update(entity, id);
         }
     }
 }

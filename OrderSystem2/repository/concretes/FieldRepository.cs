@@ -18,7 +18,7 @@ namespace OrderSystem2.repository.concretes
         }
         public void Add(Field entity)
         {
-                string sql = "INSERT INTO Field (FarmerId, AreaSize,Address, Status, CreatedBy, CreatedAt, UpdatedBy, UpdatedAt) VALUES (@FarmerId, @AreaSize,@Address, @Status, @CreatedBy, @CreatedAt, @UpdatedBy, @UpdatedAt)";
+                string sql = "INSERT INTO Field (FarmerId, AreaSize,Address,inUsed, Status, CreatedBy, CreatedAt, UpdatedBy, UpdatedAt) VALUES (@FarmerId, @AreaSize,@Address, @inUsed, @Status, @CreatedBy, @CreatedAt, @UpdatedBy, @UpdatedAt)";
                 conn.Execute(sql, entity);
         }
 
@@ -27,14 +27,6 @@ namespace OrderSystem2.repository.concretes
                 string query = $"UPDATE Field SET Status = 0 WHERE Id = @Id";
                 conn.Execute(query, new { Id = id });
 
-                string updateOrdersQuery = "UPDATE [Order] SET Status = 0 WHERE FieldId = @FieldId";
-                conn.Execute(updateOrdersQuery, new { FieldId = id });
-
-        }
-
-        public List<Order?> GetOrders(int id)
-        {
-                return conn.Query<Order>($"SELECT Id,UserId,FieldId,Date,TotalPrice,isCompleted  FROM [{typeof(Order).Name}] WHERE FieldId = @FieldId and Status=1", new { FieldId = id }).ToList();
         }
 
         public List<Field> GetAll()
@@ -50,12 +42,20 @@ namespace OrderSystem2.repository.concretes
 
         public void Update(Field entity, int id)
         {
-            throw new NotImplementedException();
+            string query = $"UPDATE Field SET AreaSize=@AreaSize, Address=@Address WHERE id =@Id";
+
+            var parameters = new DynamicParameters();
+            parameters.Add("@AreaSize", entity.AreaSize);
+            parameters.Add("@Address", entity.Address);
+            parameters.Add("@Id", id);
+
+            conn.Execute(query, parameters);
         }
 
-        public int GetAreaSize(int id)
+        public void SetUsed(int fieldId, bool inUsed)
         {
-            throw new NotImplementedException();
+                string query = "UPDATE Field SET inUsed = @InUsed WHERE Id = @FieldId";
+                conn.Execute(query, new { InUsed = inUsed, FieldId = fieldId });
         }
     }
 }

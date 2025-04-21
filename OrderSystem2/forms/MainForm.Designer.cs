@@ -40,18 +40,15 @@
             labelProductMn = new Label();
             labelOrderMn = new Label();
             labelMakeOrder = new Label();
+            label2 = new Label();
             pictureBox3 = new PictureBox();
             pictureBox2 = new PictureBox();
             panel2 = new Panel();
             label8 = new Label();
             label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
+            comboBoxManager = new ComboBox();
+            comboBoxLiable = new ComboBox();
             label4 = new Label();
-            label5 = new Label();
-            label6 = new Label();
-            label7 = new Label();
-            panelManager = new Panel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxTab).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxClose).BeginInit();
@@ -60,7 +57,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             panel2.SuspendLayout();
-            panelManager.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -94,9 +90,9 @@
             // 
             pictureBoxTab.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             pictureBoxTab.Image = Properties.Resources.tab;
-            pictureBoxTab.Location = new Point(1004, 0);
+            pictureBoxTab.Location = new Point(1027, 0);
             pictureBoxTab.Name = "pictureBoxTab";
-            pictureBoxTab.Size = new Size(37, 31);
+            pictureBoxTab.Size = new Size(32, 31);
             pictureBoxTab.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxTab.TabIndex = 8;
             pictureBoxTab.TabStop = false;
@@ -106,9 +102,9 @@
             // 
             pictureBoxClose.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             pictureBoxClose.Image = Properties.Resources.close_button;
-            pictureBoxClose.Location = new Point(1080, 0);
+            pictureBoxClose.Location = new Point(1086, 0);
             pictureBoxClose.Name = "pictureBoxClose";
-            pictureBoxClose.Size = new Size(37, 31);
+            pictureBoxClose.Size = new Size(32, 31);
             pictureBoxClose.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxClose.TabIndex = 10;
             pictureBoxClose.TabStop = false;
@@ -117,9 +113,9 @@
             // 
             pictureBoxExpand.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             pictureBoxExpand.Image = Properties.Resources.expand;
-            pictureBoxExpand.Location = new Point(1042, 0);
+            pictureBoxExpand.Location = new Point(1057, 0);
             pictureBoxExpand.Name = "pictureBoxExpand";
-            pictureBoxExpand.Size = new Size(37, 31);
+            pictureBoxExpand.Size = new Size(32, 31);
             pictureBoxExpand.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxExpand.TabIndex = 9;
             pictureBoxExpand.TabStop = false;
@@ -129,9 +125,9 @@
             // 
             pictureBox1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(24, 12);
+            pictureBox1.Location = new Point(15, 8);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(106, 88);
+            pictureBox1.Size = new Size(93, 88);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 2;
             pictureBox1.TabStop = false;
@@ -201,6 +197,19 @@
             labelMakeOrder.Text = "Sipariş Oluştur";
             labelMakeOrder.Click += labelMakeOrder_Click;
             // 
+            // label2
+            // 
+            label2.Anchor = AnchorStyles.Top;
+            label2.AutoSize = true;
+            label2.BackColor = Color.AntiqueWhite;
+            label2.Font = new Font("Candara", 10F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            label2.ForeColor = Color.FromArgb(22, 56, 39);
+            label2.Location = new Point(270, 161);
+            label2.Name = "label2";
+            label2.Size = new Size(179, 24);
+            label2.TabIndex = 11;
+            label2.Text = "Yönetici Paneli            ";
+            // 
             // pictureBox3
             // 
             pictureBox3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
@@ -257,99 +266,53 @@
             label1.Text = "Çıkış Yap";
             label1.Click += label1_Click;
             // 
-            // label2
+            // comboBoxManager
             // 
-            label2.Anchor = AnchorStyles.Top;
-            label2.AutoSize = true;
-            label2.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.FromArgb(22, 56, 39);
-            label2.Location = new Point(52, 24);
-            label2.Name = "label2";
-            label2.Size = new Size(192, 29);
-            label2.TabIndex = 11;
-            label2.Text = "Kullanıcı Yönetimi";
-            label2.Click += label2_Click;
+            comboBoxManager.BackColor = Color.AntiqueWhite;
+            comboBoxManager.ForeColor = Color.FromArgb(22, 59, 36);
+            comboBoxManager.FormattingEnabled = true;
+            comboBoxManager.Items.AddRange(new object[] { "Kullanıcı Yönetimi", "Rol Yönetimi", "Fabrika Yönetimi", "Bölge Yönetimi" });
+            comboBoxManager.Location = new Point(268, 159);
+            comboBoxManager.Name = "comboBoxManager";
+            comboBoxManager.Size = new Size(222, 32);
+            comboBoxManager.TabIndex = 19;
+            comboBoxManager.TabStop = false;
             // 
-            // label3
+            // comboBoxLiable
             // 
-            label3.Anchor = AnchorStyles.Top;
-            label3.AutoSize = true;
-            label3.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.FromArgb(22, 56, 39);
-            label3.Location = new Point(78, 67);
-            label3.Name = "label3";
-            label3.Size = new Size(141, 29);
-            label3.TabIndex = 12;
-            label3.Text = "Rol Yönetimi";
+            comboBoxLiable.BackColor = Color.AntiqueWhite;
+            comboBoxLiable.ForeColor = Color.FromArgb(22, 59, 36);
+            comboBoxLiable.FormattingEnabled = true;
+            comboBoxLiable.Items.AddRange(new object[] { "Ürün Kısıt Yönetimi", "Ürün Birim Yönetimi" });
+            comboBoxLiable.Location = new Point(559, 159);
+            comboBoxLiable.Name = "comboBoxLiable";
+            comboBoxLiable.Size = new Size(222, 32);
+            comboBoxLiable.TabIndex = 20;
+            comboBoxLiable.TabStop = false;
             // 
             // label4
             // 
             label4.Anchor = AnchorStyles.Top;
             label4.AutoSize = true;
-            label4.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.BackColor = Color.AntiqueWhite;
+            label4.Font = new Font("Candara", 10F, FontStyle.Regular, GraphicsUnit.Point, 162);
             label4.ForeColor = Color.FromArgb(22, 56, 39);
-            label4.Location = new Point(42, 194);
+            label4.Location = new Point(562, 162);
             label4.Name = "label4";
-            label4.Size = new Size(206, 29);
-            label4.TabIndex = 13;
-            label4.Text = "Ürün Kısıt Yönetimi";
-            // 
-            // label5
-            // 
-            label5.Anchor = AnchorStyles.Top;
-            label5.AutoSize = true;
-            label5.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.ForeColor = Color.FromArgb(22, 56, 39);
-            label5.Location = new Point(56, 106);
-            label5.Name = "label5";
-            label5.Size = new Size(182, 29);
-            label5.TabIndex = 14;
-            label5.Text = "Fabrika Yönetimi";
-            // 
-            // label6
-            // 
-            label6.Anchor = AnchorStyles.Top;
-            label6.AutoSize = true;
-            label6.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label6.ForeColor = Color.FromArgb(22, 56, 39);
-            label6.Location = new Point(40, 239);
-            label6.Name = "label6";
-            label6.Size = new Size(216, 29);
-            label6.TabIndex = 15;
-            label6.Text = "Ürün Birim Yönetimi";
-            // 
-            // label7
-            // 
-            label7.Anchor = AnchorStyles.Top;
-            label7.AutoSize = true;
-            label7.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label7.ForeColor = Color.FromArgb(22, 56, 39);
-            label7.Location = new Point(65, 149);
-            label7.Name = "label7";
-            label7.Size = new Size(165, 29);
-            label7.TabIndex = 16;
-            label7.Text = "Bölge Yönetimi";
-            // 
-            // panelManager
-            // 
-            panelManager.Controls.Add(label5);
-            panelManager.Controls.Add(label7);
-            panelManager.Controls.Add(label2);
-            panelManager.Controls.Add(label6);
-            panelManager.Controls.Add(label3);
-            panelManager.Controls.Add(label4);
-            panelManager.Location = new Point(396, 121);
-            panelManager.Name = "panelManager";
-            panelManager.Size = new Size(289, 297);
-            panelManager.TabIndex = 17;
+            label4.Size = new Size(136, 24);
+            label4.TabIndex = 22;
+            label4.Text = "Sorumlu Paneli";
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(11F, 24F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.PapayaWhip;
+            BackColor = Color.AntiqueWhite;
             ClientSize = new Size(1118, 496);
-            Controls.Add(panelManager);
+            Controls.Add(label4);
+            Controls.Add(comboBoxLiable);
+            Controls.Add(label2);
+            Controls.Add(comboBoxManager);
             Controls.Add(pictureBox3);
             Controls.Add(panel2);
             Controls.Add(pictureBox2);
@@ -370,9 +333,8 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
-            panelManager.ResumeLayout(false);
-            panelManager.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -392,13 +354,10 @@
         private PictureBox pictureBoxTab;
         private PictureBox pictureBoxClose;
         private Label label1;
-        private Label label2;
-        private Label label3;
-        private Label label4;
-        private Label label5;
-        private Label label6;
         private Label label8;
-        private Label label7;
-        private Panel panelManager;
+        private Label label2;
+        private ComboBox comboBoxManager;
+        private ComboBox comboBoxLiable;
+        private Label label4;
     }
 }

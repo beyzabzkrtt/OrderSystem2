@@ -64,7 +64,6 @@
             pictureBoxExpand.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxExpand.TabIndex = 7;
             pictureBoxExpand.TabStop = false;
-            pictureBoxExpand.Click += pictureBoxExpand_Click;
             // 
             // pictureBoxTab
             // 
@@ -76,7 +75,6 @@
             pictureBoxTab.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxTab.TabIndex = 6;
             pictureBoxTab.TabStop = false;
-            pictureBoxTab.Click += pictureBoxTab_Click;
             // 
             // pictureBoxClose
             // 

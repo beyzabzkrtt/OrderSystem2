@@ -29,18 +29,18 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            pictureBoxBack = new PictureBox();
             pictureBox1 = new PictureBox();
+            label1 = new Label();
+            pictureBoxBack = new PictureBox();
             pictureBoxExpand = new PictureBox();
             pictureBoxTab = new PictureBox();
             pictureBoxClose = new PictureBox();
-            label1 = new Label();
             panel2 = new Panel();
             label2 = new Label();
             dataGridProduct = new DataGridView();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxBack).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxBack).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxExpand).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxTab).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxClose).BeginInit();
@@ -51,17 +51,37 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(22, 56, 39);
-            panel1.Controls.Add(pictureBoxBack);
             panel1.Controls.Add(pictureBox1);
-            panel1.Controls.Add(pictureBoxExpand);
-            panel1.Controls.Add(pictureBoxTab);
-            panel1.Controls.Add(pictureBoxClose);
             panel1.Controls.Add(label1);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
             panel1.Size = new Size(1235, 111);
             panel1.TabIndex = 0;
+            panel1.Controls.SetChildIndex(label1, 0);
+            panel1.Controls.SetChildIndex(pictureBox1, 0);
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources.logo;
+            pictureBox1.Location = new Point(59, 16);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(80, 75);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 9;
+            pictureBox1.TabStop = false;
+            // 
+            // label1
+            // 
+            label1.Anchor = AnchorStyles.Top;
+            label1.AutoSize = true;
+            label1.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.AntiqueWhite;
+            label1.Location = new Point(573, 36);
+            label1.Name = "label1";
+            label1.Size = new Size(132, 29);
+            label1.TabIndex = 0;
+            label1.Text = "Ürün Listesi";
             // 
             // pictureBoxBack
             // 
@@ -72,17 +92,6 @@
             pictureBoxBack.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxBack.TabIndex = 10;
             pictureBoxBack.TabStop = false;
-            pictureBoxBack.Click += pictureBoxBack_Click;
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.Image = Properties.Resources.Ekran_görüntüsü_2025_02_18_091012;
-            pictureBox1.Location = new Point(59, 16);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(80, 75);
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.TabIndex = 9;
-            pictureBox1.TabStop = false;
             // 
             // pictureBoxExpand
             // 
@@ -94,7 +103,6 @@
             pictureBoxExpand.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxExpand.TabIndex = 8;
             pictureBoxExpand.TabStop = false;
-            pictureBoxExpand.Click += pictureBoxExpand_Click;
             // 
             // pictureBoxTab
             // 
@@ -106,7 +114,6 @@
             pictureBoxTab.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxTab.TabIndex = 7;
             pictureBoxTab.TabStop = false;
-            pictureBoxTab.Click += pictureBoxTab_Click;
             // 
             // pictureBoxClose
             // 
@@ -118,19 +125,6 @@
             pictureBoxClose.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxClose.TabIndex = 6;
             pictureBoxClose.TabStop = false;
-            pictureBoxClose.Click += pictureBoxClose_Click;
-            // 
-            // label1
-            // 
-            label1.Anchor = AnchorStyles.Top;
-            label1.AutoSize = true;
-            label1.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.AntiqueWhite;
-            label1.Location = new Point(541, 37);
-            label1.Name = "label1";
-            label1.Size = new Size(132, 29);
-            label1.TabIndex = 0;
-            label1.Text = "Ürün Listesi";
             // 
             // panel2
             // 
@@ -155,7 +149,7 @@
             label2.Text = "Ürün Ekle";
             label2.Click += label2_Click;
             // 
-            // dataGridProduct  
+            // dataGridProduct
             // 
             dataGridProduct.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridProduct.BackgroundColor = Color.AntiqueWhite;
@@ -176,14 +170,12 @@
             Controls.Add(dataGridProduct);
             Controls.Add(panel2);
             Controls.Add(panel1);
-            FormBorderStyle = FormBorderStyle.None;
             Name = "ProductForm";
-            StartPosition = FormStartPosition.CenterScreen;
             Text = "ProductForm";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxBack).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxBack).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxExpand).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxTab).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxClose).EndInit();
