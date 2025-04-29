@@ -16,9 +16,9 @@ namespace OrderSystem2
         private bool isDragging = false;
         private Point startPoint = new Point(0, 0);
 
-        private User _user;
+        private CurrentUser _user;
         private UserRepository _userRepository = new UserRepository();
-        public MainForm(User user)
+        public MainForm(CurrentUser user)
         {
             InitializeComponent();
 

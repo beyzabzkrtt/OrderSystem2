@@ -47,15 +47,24 @@ public class UserRepository : OrderSystem2.repository.abstracts.IUserRepository
         throw new NotImplementedException();
     }
 
-    public string GetRole(int UserId)
+     public string GetRole(int UserId)
+     {
+         string query = @"Select RoleName FROM Role JOIN UserRole ON Role.Id = UserRole.RoleId 
+                                              JOIN [User] ON [User].Id = UserRole.UserId 
+                                              Where [User].Id = @UserId";
+
+         return conn.QueryFirstOrDefault<string>(query, new { UserId });
+     }
+    public Role GetRoleByUserId(int userId)
     {
-        string query = @"Select RoleName FROM Role JOIN UserRole ON Role.Id = UserRole.RoleId 
-                                             JOIN [User] ON [User].Id = UserRole.UserId 
-                                             Where [User].Id = @UserId";
+        string query = @"
+        SELECT R.Id, R.RoleTypeId, R.ZoneId, R.RoleName
+        FROM [Role] R
+        INNER JOIN UserRole UR ON R.Id = UR.RoleId
+        WHERE UR.UserId = @UserId";
 
-        return conn.QueryFirstOrDefault<string>(query, new { UserId });
+        return conn.QueryFirstOrDefault<Role>(query, new { UserId = userId });
     }
-
     public User GetUserByEmail(string email)
     {
         string query = $"SELECT * FROM [User] WHERE Email = @Email";

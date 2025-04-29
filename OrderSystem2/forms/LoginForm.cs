@@ -1,4 +1,5 @@
-﻿using OrderSystem2.model;
+﻿using System.Data;
+using OrderSystem2.model;
 using OrderSystem2.service.concretes;
 
 namespace OrderSystem2
@@ -103,12 +104,22 @@ namespace OrderSystem2
             else
             {
                 User user = _userRepository.GetUserByEmail(email);
+                Role rol = _userRepository.GetRoleByUserId(user.Id);
 
                 if (_userService.ValidateUser(email, password))
                 {
-                    MessageBox.Show("Giriş başarılı!", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Hide();
-                    MainForm mainForm = new MainForm(user);
+                    var currentUser = new CurrentUser
+                    {
+                        Id = user.Id,
+                        Name = user.Name,
+                        Surname = user.Surname,
+                        Email = user.Email,
+                        RoleType = rol.RoleTypeEnum,  // enum dönüşümü 
+                        Zone = rol.ZoneEnum
+                    };
+
+                    MessageBox.Show($"{currentUser.RoleType}");
+                    MainForm mainForm = new MainForm(currentUser);
                     mainForm.Show();
                 }
                 else

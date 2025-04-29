@@ -1,4 +1,6 @@
-﻿namespace OrderSystem2.model
+﻿using OrderSystem2.enums;
+
+namespace OrderSystem2.model
 {
     public class Role : BaseModel
     {
@@ -7,5 +9,8 @@
         public string RoleName{  get; set; }
 
         public List<User> Users { get; set; }
+
+        public RoleTypes RoleTypeEnum => (RoleTypes)RoleTypeId;
+        public Zones ZoneEnum => (Zones)ZoneId;
     }
 }
