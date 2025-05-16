@@ -5,6 +5,9 @@ using OrderSystem2.forms.product;
 using OrderSystem2.forms.user;
 using OrderSystem2.model;
 using OrderSystem2.Properties;
+using OrderSystem2.enums;
+using OrderSystem2.forms.adminPanel;
+using OrderSystem2.forms.liablePanel;
 
 namespace OrderSystem2
 {
@@ -24,39 +27,8 @@ namespace OrderSystem2
 
             _user = user;
 
-            comboBoxManager.Visible = false;
-            comboBoxLiable.Visible = false;
-            ManagerParts();
-            comboBoxManager.SelectedIndexChanged += ComboBoxManager_SelectedIndexChanged;
-            comboBoxLiable.SelectedIndexChanged += ComboBoxLiable_SelectedIndexChanged;
-
             pictureBoxClose.Click += pictureBoxClose_Click;
             AttachPanelDragEvents(panel1);
-        }
-
-        private void ComboBoxLiable_SelectedIndexChanged(object? sender, EventArgs e)
-        {
-            string selectedItem = comboBoxLiable.SelectedItem.ToString();
-
-            switch (selectedItem)
-            {
-                case "Kullanıcı Yönetimi":
-                    UserForm userform = new UserForm();
-                    userform.Show();
-                    break;
-                case "Rol Yönetimi":
-
-                    break;
-                case "Fabrika Yönetimi":
-
-                    break;
-                case "Bölge Yönetimi":
-
-                    break;
-                default:
-                    MessageBox.Show("Bilinmeyen seçim!");
-                    break;
-            }
         }
 
         private void AttachPanelDragEvents(Panel panel)
@@ -169,55 +141,29 @@ namespace OrderSystem2
             }
         }
 
-        private void ManagerParts()
+        private void buttonAdmin_Click(object sender, EventArgs e)
         {
-            string role = _userRepository.GetRole(_user.Id);
-
-            if (role.Contains("Müdür"))
+            if (_user.RoleType == RoleTypes.Admin)
             {
-                comboBoxManager.Visible = true;
-                comboBoxLiable.Visible = true; 
-            }
-            else if (role.Contains("Sorumlu"))
-            {
-                comboBoxLiable.Visible = true;
-                comboBoxManager.Visible = false;
+                adminPanel adminPanel = new adminPanel();
+                adminPanel.Show();
             }
             else
             {
-                comboBoxManager.Visible = false;
-                comboBoxLiable.Visible = false;
+                MessageBox.Show("Yetki yetersiz!");
             }
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        private void buttonLiable_Click(object sender, EventArgs e)
         {
-            UserForm userForm = new UserForm();
-            userForm.Show();
-        }
-
-        private void ComboBoxManager_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string selectedItem = comboBoxManager.SelectedItem.ToString();
-
-            switch (selectedItem)
+            if(_user.RoleType == RoleTypes.BolgeSorumlusu || _user.RoleType == RoleTypes.Admin)
             {
-                case "Kullanıcı Yönetimi":
-                    UserForm userform = new UserForm();
-                    userform.Show();
-                    break;
-                case "Rol Yönetimi":
-                    
-                    break;
-                case "Fabrika Yönetimi":
-                    
-                    break;
-                case "Bölge Yönetimi":
-                    
-                    break;
-                default:
-                    MessageBox.Show("Bilinmeyen seçim!");
-                    break;
+                LiablePanel liablePanel = new LiablePanel();
+                liablePanel.Show();
+            }
+            else
+            {
+                MessageBox.Show("Yetki yetersiz!");
             }
         }
     }

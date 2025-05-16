@@ -40,15 +40,13 @@
             labelProductMn = new Label();
             labelOrderMn = new Label();
             labelMakeOrder = new Label();
-            label2 = new Label();
             pictureBox3 = new PictureBox();
             pictureBox2 = new PictureBox();
             panel2 = new Panel();
             label8 = new Label();
             label1 = new Label();
-            comboBoxManager = new ComboBox();
-            comboBoxLiable = new ComboBox();
-            label4 = new Label();
+            buttonAdmin = new Button();
+            buttonLiable = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxTab).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxClose).BeginInit();
@@ -197,19 +195,6 @@
             labelMakeOrder.Text = "Sipariş Oluştur";
             labelMakeOrder.Click += labelMakeOrder_Click;
             // 
-            // label2
-            // 
-            label2.Anchor = AnchorStyles.Top;
-            label2.AutoSize = true;
-            label2.BackColor = Color.AntiqueWhite;
-            label2.Font = new Font("Candara", 10F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            label2.ForeColor = Color.FromArgb(22, 56, 39);
-            label2.Location = new Point(270, 161);
-            label2.Name = "label2";
-            label2.Size = new Size(179, 24);
-            label2.TabIndex = 11;
-            label2.Text = "Yönetici Paneli            ";
-            // 
             // pictureBox3
             // 
             pictureBox3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
@@ -266,42 +251,29 @@
             label1.Text = "Çıkış Yap";
             label1.Click += label1_Click;
             // 
-            // comboBoxManager
+            // buttonAdmin
             // 
-            comboBoxManager.BackColor = Color.AntiqueWhite;
-            comboBoxManager.ForeColor = Color.FromArgb(22, 59, 36);
-            comboBoxManager.FormattingEnabled = true;
-            comboBoxManager.Items.AddRange(new object[] { "Kullanıcı Yönetimi", "Rol Yönetimi", "Fabrika Yönetimi", "Bölge Yönetimi" });
-            comboBoxManager.Location = new Point(268, 159);
-            comboBoxManager.Name = "comboBoxManager";
-            comboBoxManager.Size = new Size(222, 32);
-            comboBoxManager.TabIndex = 19;
-            comboBoxManager.TabStop = false;
+            buttonAdmin.BackColor = Color.FromArgb(22, 56, 39);
+            buttonAdmin.ForeColor = Color.AntiqueWhite;
+            buttonAdmin.Location = new Point(262, 236);
+            buttonAdmin.Name = "buttonAdmin";
+            buttonAdmin.Size = new Size(209, 47);
+            buttonAdmin.TabIndex = 23;
+            buttonAdmin.Text = "Admin Paneli";
+            buttonAdmin.UseVisualStyleBackColor = false;
+            buttonAdmin.Click += buttonAdmin_Click;
             // 
-            // comboBoxLiable
+            // buttonLiable
             // 
-            comboBoxLiable.BackColor = Color.AntiqueWhite;
-            comboBoxLiable.ForeColor = Color.FromArgb(22, 59, 36);
-            comboBoxLiable.FormattingEnabled = true;
-            comboBoxLiable.Items.AddRange(new object[] { "Ürün Kısıt Yönetimi", "Ürün Birim Yönetimi" });
-            comboBoxLiable.Location = new Point(559, 159);
-            comboBoxLiable.Name = "comboBoxLiable";
-            comboBoxLiable.Size = new Size(222, 32);
-            comboBoxLiable.TabIndex = 20;
-            comboBoxLiable.TabStop = false;
-            // 
-            // label4
-            // 
-            label4.Anchor = AnchorStyles.Top;
-            label4.AutoSize = true;
-            label4.BackColor = Color.AntiqueWhite;
-            label4.Font = new Font("Candara", 10F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            label4.ForeColor = Color.FromArgb(22, 56, 39);
-            label4.Location = new Point(562, 162);
-            label4.Name = "label4";
-            label4.Size = new Size(136, 24);
-            label4.TabIndex = 22;
-            label4.Text = "Sorumlu Paneli";
+            buttonLiable.BackColor = Color.FromArgb(22, 56, 39);
+            buttonLiable.ForeColor = Color.AntiqueWhite;
+            buttonLiable.Location = new Point(600, 236);
+            buttonLiable.Name = "buttonLiable";
+            buttonLiable.Size = new Size(209, 47);
+            buttonLiable.TabIndex = 24;
+            buttonLiable.Text = "Sorumlu Paneli";
+            buttonLiable.UseVisualStyleBackColor = false;
+            buttonLiable.Click += buttonLiable_Click;
             // 
             // MainForm
             // 
@@ -309,10 +281,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.AntiqueWhite;
             ClientSize = new Size(1118, 496);
-            Controls.Add(label4);
-            Controls.Add(comboBoxLiable);
-            Controls.Add(label2);
-            Controls.Add(comboBoxManager);
+            Controls.Add(buttonLiable);
+            Controls.Add(buttonAdmin);
             Controls.Add(pictureBox3);
             Controls.Add(panel2);
             Controls.Add(pictureBox2);
@@ -334,7 +304,6 @@
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -355,9 +324,7 @@
         private PictureBox pictureBoxClose;
         private Label label1;
         private Label label8;
-        private Label label2;
-        private ComboBox comboBoxManager;
-        private ComboBox comboBoxLiable;
-        private Label label4;
+        private Button buttonAdmin;
+        private Button buttonLiable;
     }
 }

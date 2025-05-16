@@ -118,8 +118,8 @@ namespace OrderSystem2
                         Zone = rol.ZoneEnum
                     };
 
-                    MessageBox.Show($"{currentUser.RoleType}");
                     MainForm mainForm = new MainForm(currentUser);
+                    this.Hide();
                     mainForm.Show();
                 }
                 else
