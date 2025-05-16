@@ -70,18 +70,20 @@ namespace OrderSystem2.forms.user
                 user.Tc = textBoxTc.Text;
                 user.Phone = textBoxPhone.Text;
                 user.Email = textBoxEmail.Text;
+                user.Password = textBoxPassword.Text;
                 user.Address = textBoxAddress.Text;
 
-                repository.Add(user);
+                repository.AddUser(user);
 
                 MessageBox.Show("Kayıt Eklendi!", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close();
 
                 UserForm userForm = Application.OpenForms.OfType<UserForm>().FirstOrDefault();
                 if (userForm != null)
                 {
                     userForm.LoadData();
                 }
+
+                this.Close();
 
             }
             catch (Exception ex)

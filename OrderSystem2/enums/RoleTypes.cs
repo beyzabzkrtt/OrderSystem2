@@ -6,10 +6,14 @@ using System.Threading.Tasks;
 
 namespace OrderSystem2.enums
 {
+    [Flags]
     public enum RoleTypes
     {
-        Admin = 1,
-        BolgeSorumlusu = 2,
-        SatisPersoneli = 3
+        None = 0,
+        SatisPersoneli = 1 << 0,               // 1
+        BolgeSorumlusu = SatisPersoneli | 1 << 1, // 1 + 2 = 3
+        Admin = BolgeSorumlusu | 1 << 2           // 3 + 4 = 7
     }
 }
+
+//bitwise yaklasim ile hiyerarsik yapi

@@ -20,7 +20,7 @@ public class UserRepository : OrderSystem2.repository.abstracts.IUserRepository
         conn.Execute(sql, entity);
     }
 
-    public void AddUser(OrderSystem2.model.User user)
+    public void AddUser(User user)
     {
         user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
         string query = @"INSERT INTO [User] 
@@ -88,7 +88,19 @@ public class UserRepository : OrderSystem2.repository.abstracts.IUserRepository
 
     public void Update(User entity, int id)
     {
-        throw new NotImplementedException();
+
+        string query = $"UPDATE [User] SET Name=@Name, Surname=@Surname, Tc=@Tc, Email=@Email, Phone=@Phone, Address=@Address WHERE id =@Id";
+
+        var parameters = new DynamicParameters();
+        parameters.Add("@Name", entity.Name);
+        parameters.Add("@Surname", entity.Surname);
+        parameters.Add("@Tc", entity.Tc);
+        parameters.Add("@Email", entity.Email);
+        parameters.Add("@Phone", entity.Phone);
+        parameters.Add("@Address", entity.Address);
+        parameters.Add("@Id", id);
+
+        conn.Execute(query, parameters);
     }
 
     public bool ValidateUser(string email, string password)

@@ -156,7 +156,7 @@ namespace OrderSystem2
 
         private void buttonLiable_Click(object sender, EventArgs e)
         {
-            if(_user.RoleType == RoleTypes.BolgeSorumlusu || _user.RoleType == RoleTypes.Admin)
+            if((_user.RoleType & RoleTypes.BolgeSorumlusu) == RoleTypes.BolgeSorumlusu) //bitwise kullandiğimiz icin ortak bite sahip mi diye kontrol eder
             {
                 LiablePanel liablePanel = new LiablePanel();
                 liablePanel.Show();

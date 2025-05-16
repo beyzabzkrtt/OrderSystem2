@@ -25,6 +25,11 @@ namespace OrderSystem2.service.concretes
            
         }
 
+        public void Update(User user , int id)
+        {
+            userRepository.Update(user , id);
+        }
+
         public bool ValidateUser(string email, string password)
         {
            return userRepository.ValidateUser(email, password);
