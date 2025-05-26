@@ -1,10 +1,10 @@
-﻿using Microsoft.Data.SqlClient;
+﻿
 using OrderSystem2.repository.abstracts;
 using Dapper;
 using System.Data;
 using Constraint = OrderSystem2.entity.Constraint;
 using OrderSystem2.database;
-using OrderSystem2.model;
+using OrderSystem2.entity;
 
 namespace OrderSystem2.repository.concretes
 {

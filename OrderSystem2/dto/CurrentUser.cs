@@ -1,7 +1,6 @@
-﻿
-using OrderSystem2.enums;
+﻿using OrderSystem2.enums;
 
-namespace OrderSystem2.model
+namespace OrderSystem2.dto
 {
     public class CurrentUser
     {
@@ -9,7 +8,7 @@ namespace OrderSystem2.model
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Email { get; set; }
-        public Zones Zone { get; set; }  
+        public Zones Zone { get; set; }
         public RoleTypes RoleType { get; set; }
 
         public bool HasRole(RoleTypes roleType)

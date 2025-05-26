@@ -1,5 +1,5 @@
 ﻿using System.Text.RegularExpressions;
-using OrderSystem2.model;
+using OrderSystem2.entity;
 using OrderSystem2.repository.concretes;
 using OrderSystem2.service.abstracts;
 using OrderSystem2.service.concretes;

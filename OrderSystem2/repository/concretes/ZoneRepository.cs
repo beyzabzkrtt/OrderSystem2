@@ -2,7 +2,7 @@
 using Dapper;
 using Microsoft.Data.SqlClient;
 using OrderSystem2.database;
-using OrderSystem2.model;
+using OrderSystem2.entity;
 using OrderSystem2.repository.abstracts;
 
 namespace OrderSystem2.repository.concretes
@@ -34,7 +34,8 @@ namespace OrderSystem2.repository.concretes
 
         public Zone GetById(int id)
         {
-            throw new NotImplementedException();
+            string query = $"SELECT * Zone {typeof(Zone).Name} WHERE Id = @Id";
+            return conn.QueryFirstOrDefault<Zone>(query, new { Id = id });
         }
 
         public List<Zone> GetZoneByFactory(int id)

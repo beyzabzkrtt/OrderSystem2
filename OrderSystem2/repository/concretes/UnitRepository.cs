@@ -1,8 +1,7 @@
 ﻿using System.Data;
 using Dapper;
-using Microsoft.Data.SqlClient;
 using OrderSystem2.database;
-using OrderSystem2.model;
+using OrderSystem2.entity;
 using OrderSystem2.repository.abstracts;
 
 namespace OrderSystem2.repository.concretes

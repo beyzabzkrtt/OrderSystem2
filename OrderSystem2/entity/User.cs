@@ -1,6 +1,6 @@
 ﻿using OrderSystem2.entity;
 
-namespace OrderSystem2.model
+namespace OrderSystem2.entity
 {
     public class User : BaseModel
     {

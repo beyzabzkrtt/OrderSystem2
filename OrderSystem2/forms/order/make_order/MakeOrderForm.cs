@@ -1,6 +1,5 @@
 ﻿using OrderSystem2.entity;
 using OrderSystem2.forms.order.make_order;
-using OrderSystem2.model;
 using OrderSystem2.repository.concretes;
 using OrderSystem2.service.concretes;
 using System;

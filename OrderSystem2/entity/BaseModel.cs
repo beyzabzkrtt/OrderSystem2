@@ -1,6 +1,6 @@
 ﻿using Dapper.Contrib.Extensions;
 
-namespace OrderSystem2.model
+namespace OrderSystem2.entity
 {
     public class BaseModel
     {

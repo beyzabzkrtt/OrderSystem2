@@ -1,23 +1,26 @@
-﻿using System.Data;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Dapper;
-using Microsoft.Data.SqlClient;
 using OrderSystem2.database;
 using OrderSystem2.entity;
 using OrderSystem2.repository.abstracts;
 
 namespace OrderSystem2.repository.concretes
 {
-    public class FactoryRepository : IFactoryRepository
+    public class RoleTypeRepository : IRoleTypeRepository
     {
         private readonly IDbConnection conn;
 
-        public FactoryRepository()
+        public RoleTypeRepository()
         {
             var dbConnectionFactory = new DbConnection();
             conn = dbConnectionFactory.CreateConnection();
         }
-
-        public void Add(Factory entity)
+        public void Add(RoleType entity)
         {
             throw new NotImplementedException();
         }
@@ -27,23 +30,18 @@ namespace OrderSystem2.repository.concretes
             throw new NotImplementedException();
         }
 
-        public List<Factory> GetAll()
+        public List<RoleType> GetAll()
         {
-                return conn.Query<Factory>($"SELECT * FROM {typeof(Factory).Name} WHERE Status = 1").ToList();
+            return conn.Query<RoleType>($"SELECT * FROM {typeof(RoleType).Name} WHERE Status = 1").ToList();
         }
+        
 
-        public Factory GetById(int id)
+        public RoleType GetById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public List<Category> GetCategories(int factoryId)
-        {
-                string query = "SELECT * FROM Category WHERE FactoryId = @FactoryId";
-                return conn.Query<Category>(query, new { FactoryId = factoryId }).ToList();
-        }
-
-        public void Update(Factory entity, int id)
+        public void Update(RoleType entity, int id)
         {
             throw new NotImplementedException();
         }

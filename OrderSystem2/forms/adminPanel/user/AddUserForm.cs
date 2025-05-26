@@ -1,5 +1,5 @@
 ﻿using System.Text.RegularExpressions;
-using OrderSystem2.model;
+using OrderSystem2.entity;
 using TextBox = System.Windows.Forms.TextBox;
 
 namespace OrderSystem2.forms.user

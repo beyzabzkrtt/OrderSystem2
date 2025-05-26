@@ -7,7 +7,8 @@ using OrderSystem2.entity;
 
 namespace OrderSystem2.repository.abstracts
 {
-    public interface IUnitRepository : IGenericRepository<Unit>
+    public interface IUserRoleRepository : IGenericRepository<UserRole>
     {
-    }
+        String AssignedRole(UserRole entity);
+    }   
 }

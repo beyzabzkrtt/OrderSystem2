@@ -30,9 +30,11 @@
         {
             panel1 = new Panel();
             label1 = new Label();
-            textBoxName = new TextBox();
-            textBoxSurname = new TextBox();
+            textBoxRole = new TextBox();
             label8 = new Label();
+            buttonChange = new Button();
+            buttonDelete = new Button();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxClose).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -43,7 +45,7 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1235, 105);
+            panel1.Size = new Size(445, 105);
             panel1.TabIndex = 9;
             // 
             // label1
@@ -51,31 +53,23 @@
             label1.AutoSize = true;
             label1.Font = new Font("Candara Light", 16F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.AntiqueWhite;
-            label1.Location = new Point(91, 31);
+            label1.Location = new Point(143, 28);
             label1.Name = "label1";
             label1.Size = new Size(167, 39);
             label1.TabIndex = 2;
             label1.Text = "Yetki Detay";
             // 
-            // textBoxName
+            // textBoxRole
             // 
-            textBoxName.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            textBoxName.BackColor = Color.LightYellow;
-            textBoxName.BorderStyle = BorderStyle.FixedSingle;
-            textBoxName.Location = new Point(248, 173);
-            textBoxName.Name = "textBoxName";
-            textBoxName.Size = new Size(306, 31);
-            textBoxName.TabIndex = 80;
-            // 
-            // textBoxSurname
-            // 
-            textBoxSurname.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            textBoxSurname.BackColor = Color.LightYellow;
-            textBoxSurname.BorderStyle = BorderStyle.FixedSingle;
-            textBoxSurname.Location = new Point(248, 225);
-            textBoxSurname.Name = "textBoxSurname";
-            textBoxSurname.Size = new Size(306, 31);
-            textBoxSurname.TabIndex = 81;
+            textBoxRole.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            textBoxRole.BackColor = Color.LightYellow;
+            textBoxRole.BorderStyle = BorderStyle.FixedSingle;
+            textBoxRole.Location = new Point(124, 170);
+            textBoxRole.Name = "textBoxRole";
+            textBoxRole.ReadOnly = true;
+            textBoxRole.Size = new Size(274, 31);
+            textBoxRole.TabIndex = 80;
+            textBoxRole.TabStop = false;
             // 
             // label8
             // 
@@ -83,28 +77,61 @@
             label8.AutoSize = true;
             label8.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.FromArgb(22, 56, 39);
-            label8.Location = new Point(91, 173);
+            label8.Location = new Point(44, 170);
             label8.Margin = new Padding(3, 0, 5, 0);
             label8.Name = "label8";
             label8.Size = new Size(69, 29);
             label8.TabIndex = 79;
             label8.Text = "Yetki:";
             // 
+            // buttonChange
+            // 
+            buttonChange.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            buttonChange.BackColor = Color.FromArgb(22, 56, 39);
+            buttonChange.Font = new Font("Candara", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            buttonChange.ForeColor = Color.AntiqueWhite;
+            buttonChange.Location = new Point(229, 449);
+            buttonChange.Name = "buttonChange";
+            buttonChange.Size = new Size(160, 45);
+            buttonChange.TabIndex = 82;
+            buttonChange.TabStop = false;
+            buttonChange.Text = "Değiştir";
+            buttonChange.UseVisualStyleBackColor = false;
+            buttonChange.Click += buttonChange_Click;
+            // 
+            // buttonDelete
+            // 
+            buttonDelete.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            buttonDelete.BackColor = Color.FromArgb(22, 56, 39);
+            buttonDelete.Font = new Font("Candara", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            buttonDelete.ForeColor = Color.AntiqueWhite;
+            buttonDelete.Location = new Point(50, 449);
+            buttonDelete.Name = "buttonDelete";
+            buttonDelete.Size = new Size(160, 45);
+            buttonDelete.TabIndex = 83;
+            buttonDelete.TabStop = false;
+            buttonDelete.Text = "Sil";
+            buttonDelete.UseVisualStyleBackColor = false;
+            // 
             // UserRoleForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1235, 559);
-            Controls.Add(textBoxName);
-            Controls.Add(textBoxSurname);
+            ClientSize = new Size(445, 559);
+            Controls.Add(buttonDelete);
+            Controls.Add(buttonChange);
+            Controls.Add(textBoxRole);
             Controls.Add(label8);
             Controls.Add(panel1);
             Name = "UserRoleForm";
             Text = "UserRoleForm";
             Controls.SetChildIndex(panel1, 0);
+            Controls.SetChildIndex(pictureBoxClose, 0);
             Controls.SetChildIndex(label8, 0);
-            Controls.SetChildIndex(textBoxSurname, 0);
-            Controls.SetChildIndex(textBoxName, 0);
+            Controls.SetChildIndex(textBoxRole, 0);
+            Controls.SetChildIndex(buttonChange, 0);
+            Controls.SetChildIndex(buttonDelete, 0);
+            ((System.ComponentModel.ISupportInitialize)pictureBoxClose).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
@@ -115,8 +142,9 @@
 
         private Panel panel1;
         private Label label1;
-        private TextBox textBoxName;
-        private TextBox textBoxSurname;
+        private TextBox textBoxRole;
         private Label label8;
+        private Button buttonChange;
+        private Button buttonDelete;
     }
 }

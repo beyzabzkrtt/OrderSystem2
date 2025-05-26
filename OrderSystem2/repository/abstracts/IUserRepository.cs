@@ -1,5 +1,5 @@
 ﻿using OrderSystem2.dto;
-using OrderSystem2.model;
+using OrderSystem2.entity;
 
 namespace OrderSystem2.repository.abstracts
 {

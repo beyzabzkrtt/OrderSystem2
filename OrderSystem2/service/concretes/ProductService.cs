@@ -1,4 +1,4 @@
-﻿using OrderSystem2.model;
+﻿using OrderSystem2.entity;
 using OrderSystem2.repository.abstracts;
 using OrderSystem2.service.abstracts;
 

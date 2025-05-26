@@ -1,5 +1,5 @@
 ﻿using OrderSystem2.forms.order;
-using OrderSystem2.model;
+using OrderSystem2.entity;
 using OrderSystem2.Properties;
 using OrderSystem2.repository.concretes;
 using OrderSystem2.service.concretes;

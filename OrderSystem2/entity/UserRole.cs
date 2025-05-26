@@ -1,4 +1,4 @@
-﻿using OrderSystem2.model;
+﻿
 
 namespace OrderSystem2.entity
 {

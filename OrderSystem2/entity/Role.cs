@@ -1,6 +1,6 @@
 ﻿using OrderSystem2.enums;
 
-namespace OrderSystem2.model
+namespace OrderSystem2.entity
 {
     public class Role : BaseModel
     {

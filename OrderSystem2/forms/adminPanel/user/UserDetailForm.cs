@@ -2,8 +2,6 @@
 
 using OrderSystem2.service.concretes;
 using OrderSystem2.entity;
-using OrderSystem2.model;
-using OrderSystem2.service.abstracts;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 using OrderSystem2.forms.user;
@@ -27,8 +25,13 @@ namespace OrderSystem2.forms.adminPanel.user
             _userService = new UserService(_userRepository);
 
             InitializeComponent();
+            LoadData();
             AttachPanelDragEvents(panel1);
             panel1.SendToBack();
+
+            buttonSave.Enabled = false;
+            buttonSave.Click += buttonSave_Click;
+            buttonRoles.Click += buttonRoles_Click; 
 
             foreach (var control in Controls.OfType<TextBox>())
             {
@@ -40,6 +43,7 @@ namespace OrderSystem2.forms.adminPanel.user
 
         }
 
+
         public void LoadData()
         {
             textBoxUserID.Text = _user.Id.ToString();
@@ -47,6 +51,7 @@ namespace OrderSystem2.forms.adminPanel.user
             textBoxName.Text = _user.Name;
             textBoxSurname.Text = _user.Surname;
             textBoxEmail.Text = _user.Email;
+            textBoxTc.Text = _user.Tc;
             textBoxPhone.Text = _user.Phone;
             textBoxAddress.Text = _user.Address;
         }
@@ -132,10 +137,10 @@ namespace OrderSystem2.forms.adminPanel.user
 
                 LoadData();
 
-                FarmerForm farmerForm = Application.OpenForms.OfType<FarmerForm>().FirstOrDefault();
-                if (farmerForm != null)
+                UserForm userForm = Application.OpenForms.OfType<UserForm>().FirstOrDefault();
+                if (userForm != null)
                 {
-                    farmerForm.LoadFarmer();
+                    userForm.LoadData();
                 }
 
             }
@@ -154,30 +159,35 @@ namespace OrderSystem2.forms.adminPanel.user
                                         MessageBoxIcon.Warning);
 
             if (confirmResult == DialogResult.Yes)
-            {               
-                    try
+            {
+                try
+                {
+                    // _userService.Delete(_user.Id);
+
+                    MessageBox.Show("Kayıt başarıyla silindi!", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    UserForm userForm = Application.OpenForms.OfType<UserForm>().FirstOrDefault();
+                    if (userForm != null)
                     {
-                       // _userService.Delete(_user.Id);
-
-                        MessageBox.Show("Kayıt başarıyla silindi!", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                        UserForm userForm = Application.OpenForms.OfType<UserForm>().FirstOrDefault();
-                        if (userForm != null)
-                        {
-                            userForm.LoadData();
-                        }
-
-                        this.Close();
+                        userForm.LoadData();
                     }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show($"Hata: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                
+
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Hata: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
 
             }
 
         }
 
+        private void buttonRoles_Click(object sender, EventArgs e)
+        {
+            UserRoleForm userRoleForm = new UserRoleForm(_user);
+            userRoleForm.ShowDialog();
+        }
     }
 }

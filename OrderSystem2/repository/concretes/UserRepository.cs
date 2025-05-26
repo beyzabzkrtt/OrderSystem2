@@ -2,9 +2,11 @@
 using Dapper;
 using OrderSystem2.database;
 using OrderSystem2.dto;
-using OrderSystem2.model;
+using OrderSystem2.entity;
+using OrderSystem2.repository.abstracts;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
-public class UserRepository : OrderSystem2.repository.abstracts.IUserRepository
+public class UserRepository : IUserRepository
 {
     private readonly IDbConnection conn;
 
@@ -44,7 +46,8 @@ public class UserRepository : OrderSystem2.repository.abstracts.IUserRepository
 
     public User GetById(int id)
     {
-        throw new NotImplementedException();
+        string query = $"SELECT * FROM [User] WHERE Id = @Id";
+        return conn.QueryFirstOrDefault<User>(query, new { Id = id });
     }
 
      public string GetRole(int UserId)

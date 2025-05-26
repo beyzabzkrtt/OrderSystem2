@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OrderSystem2.model;
+﻿
+using OrderSystem2.entity;
 using OrderSystem2.repository.abstracts;
 
 namespace OrderSystem2.service.concretes
@@ -23,6 +19,11 @@ namespace OrderSystem2.service.concretes
             user.Status = true;
             userRepository.AddUser(user);
            
+        }
+
+        public String GetRole(int id)
+        {
+            return userRepository.GetRole(id);
         }
 
         public void Update(User user , int id)

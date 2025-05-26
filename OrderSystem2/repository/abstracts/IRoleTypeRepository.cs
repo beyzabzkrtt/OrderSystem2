@@ -5,10 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using OrderSystem2.entity;
 
-namespace OrderSystem2.service.abstracts
+namespace OrderSystem2.repository.abstracts
 {
-    public interface IFieldService : IGenericService<Field>
+    public interface IRoleTypeRepository : IGenericRepository<RoleType>
     {
-        public void SetUsed(int id, bool inUsed);
     }
 }

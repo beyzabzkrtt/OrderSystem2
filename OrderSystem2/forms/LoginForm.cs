@@ -1,5 +1,6 @@
 ﻿using System.Data;
-using OrderSystem2.model;
+using OrderSystem2.dto;
+using OrderSystem2.entity;
 using OrderSystem2.service.concretes;
 
 namespace OrderSystem2

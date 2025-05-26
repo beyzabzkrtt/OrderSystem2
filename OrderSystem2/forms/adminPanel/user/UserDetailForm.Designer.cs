@@ -46,7 +46,7 @@
             label4 = new Label();
             label3 = new Label();
             label2 = new Label();
-            button1 = new Button();
+            buttonRoles = new Button();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -108,6 +108,7 @@
             textBoxName.Name = "textBoxName";
             textBoxName.Size = new Size(306, 31);
             textBoxName.TabIndex = 76;
+            textBoxName.KeyPress += TextBoxName_KeyPress;
             // 
             // textBoxSurname
             // 
@@ -118,6 +119,7 @@
             textBoxSurname.Name = "textBoxSurname";
             textBoxSurname.Size = new Size(306, 31);
             textBoxSurname.TabIndex = 77;
+            textBoxSurname.KeyPress += TextBoxSurname_KeyPress;
             // 
             // textBoxTc
             // 
@@ -129,6 +131,7 @@
             textBoxTc.Name = "textBoxTc";
             textBoxTc.Size = new Size(306, 31);
             textBoxTc.TabIndex = 78;
+            textBoxTc.KeyPress += TextBoxTc_KeyPress;
             // 
             // textBoxEmail
             // 
@@ -139,6 +142,7 @@
             textBoxEmail.Name = "textBoxEmail";
             textBoxEmail.Size = new Size(306, 31);
             textBoxEmail.TabIndex = 79;
+            textBoxEmail.KeyPress += TextBoxEmail_KeyPress;
             // 
             // textBoxPhone
             // 
@@ -172,6 +176,7 @@
             textBoxUserID.Size = new Size(306, 31);
             textBoxUserID.TabIndex = 82;
             textBoxUserID.TabStop = false;
+            textBoxUserID.ReadOnly = true;
             // 
             // label8
             // 
@@ -264,26 +269,30 @@
             label2.TabIndex = 68;
             label2.Text = "Kullanıcı No:";
             // 
-            // button1
+            // buttonRoles
             // 
-            button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            button1.BackColor = Color.FromArgb(22, 56, 39);
-            button1.Font = new Font("Candara", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button1.ForeColor = Color.AntiqueWhite;
-            button1.Location = new Point(932, 423);
-            button1.Name = "button1";
-            button1.Size = new Size(256, 45);
-            button1.TabIndex = 83;
-            button1.TabStop = false;
-            button1.Text = "Yetkiler";
-            button1.UseVisualStyleBackColor = false;
+            buttonRoles.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            buttonRoles.BackColor = Color.FromArgb(22, 56, 39);
+            buttonRoles.Font = new Font("Candara", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            buttonRoles.ForeColor = Color.AntiqueWhite;
+            buttonRoles.Location = new Point(932, 423);
+            buttonRoles.Name = "buttonRoles";
+            buttonRoles.Size = new Size(256, 45);
+            buttonRoles.TabIndex = 83;
+            buttonRoles.TabStop = false;
+            buttonRoles.Text = "Yetkiler";
+            buttonRoles.UseVisualStyleBackColor = false;
+            buttonRoles.Click += buttonRoles_Click;
+
+
+
             // 
             // UserDetailForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1235, 559);
-            Controls.Add(button1);
+            Controls.Add(buttonRoles);
             Controls.Add(buttonDelete);
             Controls.Add(buttonSave);
             Controls.Add(textBoxName);
@@ -320,11 +329,49 @@
             Controls.SetChildIndex(textBoxName, 0);
             Controls.SetChildIndex(buttonSave, 0);
             Controls.SetChildIndex(buttonDelete, 0);
-            Controls.SetChildIndex(button1, 0);
+            Controls.SetChildIndex(buttonRoles, 0);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
+
+        }
+
+        private void TextBoxEmail_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void TextBoxPhone_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void TextBoxTc_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void TextBoxSurname_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void TextBoxName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) && e.KeyChar != ' ')
+            {
+                e.Handled = true;
+            }
         }
 
         #endregion
@@ -347,6 +394,6 @@
         private Label label4;
         private Label label3;
         private Label label2;
-        private Button button1;
+        private Button buttonRoles;
     }
 }
