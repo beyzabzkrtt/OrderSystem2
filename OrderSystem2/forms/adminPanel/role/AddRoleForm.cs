@@ -82,7 +82,6 @@ namespace OrderSystem2.forms.adminPanel.role
             string roleName = roleType.Name;
             textBoxRole.Text = $"{zoneName}" + $" {roleName}";
 
-            // Role oluşturuluyor
             roleService.AddRole(selectedZoneId, selectedRoleTypeId);
         }
 
