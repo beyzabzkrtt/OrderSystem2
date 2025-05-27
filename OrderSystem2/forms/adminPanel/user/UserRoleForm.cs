@@ -22,7 +22,7 @@ namespace OrderSystem2.forms.adminPanel.user
             _user = user;
 
             AttachPanelDragEvents(panel1);
-            panel1.SendToBack();         
+            panel1.SendToBack();
 
             _userRepository = new UserRepository();
             _userService = new UserService(_userRepository);
@@ -36,16 +36,7 @@ namespace OrderSystem2.forms.adminPanel.user
 
         public void LoadData(User user)
         {
-            string role = _userService.GetRole(user.Id);
-            if (role == null)
-            {
-                MessageBox.Show("Kullanıcının rolü yok ya da veri gelmedi.");
-            }
-            else
-            {
-                textBoxRole.Text = role;
-            }
-
+            textBoxRole.Text = _userService.GetRole(user.Id);         
         }
 
         private void buttonChange_Click(object sender, EventArgs e)
@@ -73,6 +64,10 @@ namespace OrderSystem2.forms.adminPanel.user
             }
         }
 
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
 
     }
 }

@@ -34,7 +34,7 @@ namespace OrderSystem2.repository.concretes
 
         public Zone GetById(int id)
         {
-            string query = $"SELECT * Zone {typeof(Zone).Name} WHERE Id = @Id";
+            string query = $"SELECT * FROM Zone WHERE Id = @Id";
             return conn.QueryFirstOrDefault<Zone>(query, new { Id = id });
         }
 

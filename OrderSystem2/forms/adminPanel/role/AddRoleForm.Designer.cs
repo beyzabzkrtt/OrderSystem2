@@ -101,7 +101,7 @@
             buttonSave.TabStop = false;
             buttonSave.Text = "Kaydet";
             buttonSave.UseVisualStyleBackColor = false;
-            buttonSave.Click += buttonSave_Click;
+           
             // 
             // comboBoxRole
             // 

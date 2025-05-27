@@ -17,6 +17,11 @@ namespace OrderSystem2.service.concretes
             _userRoleRepository = userRoleRepository;
         }
 
+        public string AssignedRole(UserRole entity)
+        {
+           return _userRoleRepository.AssignedRole(entity);
+        }
+
         public void Add(UserRole userRole)
         {
             _userRoleRepository.Add(userRole);

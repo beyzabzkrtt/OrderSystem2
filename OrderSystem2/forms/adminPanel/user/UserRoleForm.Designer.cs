@@ -28,36 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            panel1 = new Panel();
-            label1 = new Label();
             textBoxRole = new TextBox();
             label8 = new Label();
             buttonChange = new Button();
             buttonDelete = new Button();
+            label1 = new Label();
+            panel1 = new Panel();
+            pictureBox1 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBoxClose).BeginInit();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
-            // 
-            // panel1
-            // 
-            panel1.BackColor = Color.FromArgb(22, 56, 39);
-            panel1.Controls.Add(label1);
-            panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(0, 0);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(445, 105);
-            panel1.TabIndex = 9;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Candara Light", 16F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.AntiqueWhite;
-            label1.Location = new Point(143, 28);
-            label1.Name = "label1";
-            label1.Size = new Size(167, 39);
-            label1.TabIndex = 2;
-            label1.Text = "Yetki Detay";
             // 
             // textBoxRole
             // 
@@ -112,6 +93,40 @@
             buttonDelete.TabStop = false;
             buttonDelete.Text = "Sil";
             buttonDelete.UseVisualStyleBackColor = false;
+            buttonDelete.Click += buttonDelete_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Candara Light", 16F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.AntiqueWhite;
+            label1.Location = new Point(143, 28);
+            label1.Name = "label1";
+            label1.Size = new Size(167, 39);
+            label1.TabIndex = 2;
+            label1.Text = "Yetki Detay";
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.FromArgb(22, 56, 39);
+            panel1.Controls.Add(pictureBox1);
+            panel1.Controls.Add(label1);
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(445, 105);
+            panel1.TabIndex = 9;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources.close_button;
+            pictureBox1.Location = new Point(411, 0);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(34, 34);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 84;
+            pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
             // 
             // UserRoleForm
             // 
@@ -126,25 +141,26 @@
             Name = "UserRoleForm";
             Text = "UserRoleForm";
             Controls.SetChildIndex(panel1, 0);
-            Controls.SetChildIndex(pictureBoxClose, 0);
             Controls.SetChildIndex(label8, 0);
             Controls.SetChildIndex(textBoxRole, 0);
             Controls.SetChildIndex(buttonChange, 0);
             Controls.SetChildIndex(buttonDelete, 0);
+            Controls.SetChildIndex(pictureBoxClose, 0);
             ((System.ComponentModel.ISupportInitialize)pictureBoxClose).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private Panel panel1;
-        private Label label1;
         private TextBox textBoxRole;
         private Label label8;
         private Button buttonChange;
         private Button buttonDelete;
+        private Label label1;
+        private Panel panel1;
+        private PictureBox pictureBox1;
     }
 }

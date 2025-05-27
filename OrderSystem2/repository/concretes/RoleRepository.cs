@@ -50,9 +50,9 @@ namespace OrderSystem2.repository.concretes
                 // SQL komutu
                 string insertSql = @"
                 INSERT INTO Role 
-                (ZoneId, RoleTypeId, RoleName, Status, CreatedBy, CreatedAt, UpdatedBy, UpdatedAt)
+                (ZoneId, RoleTypeId, RoleName,Status)
                 VALUES 
-                (@ZoneId, @RoleTypeId, @RoleName, @Status, @CreatedBy, @CreatedAt, @UpdatedBy, @UpdatedAt)
+                (@ZoneId, @RoleTypeId, @RoleName,@Status)
                 ";
 
                 conn.Execute(insertSql, new
@@ -60,13 +60,13 @@ namespace OrderSystem2.repository.concretes
                     ZoneId = zoneId,
                     RoleTypeId = roleTypeId,
                     RoleName = roleName,
+                    Status = true
+                   
                 });
             }
             
         }
         
-
-
         public void Delete(int id)
         {
             throw new NotImplementedException();

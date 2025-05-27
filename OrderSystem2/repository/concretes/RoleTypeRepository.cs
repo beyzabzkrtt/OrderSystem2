@@ -38,7 +38,8 @@ namespace OrderSystem2.repository.concretes
 
         public RoleType GetById(int id)
         {
-            throw new NotImplementedException();
+            string query = $"SELECT * FROM RoleType WHERE Id = @Id";
+            return conn.QueryFirstOrDefault<RoleType>(query, new { Id = id });
         }
 
         public void Update(RoleType entity, int id)

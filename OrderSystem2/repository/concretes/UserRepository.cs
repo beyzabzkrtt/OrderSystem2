@@ -76,10 +76,11 @@ public class UserRepository : IUserRepository
 
     public List<UserDto> GetUserDto()
     {
-        return conn.Query<UserDto>(@"SELECT U.Id, U.Name, U.Surname, R.RoleName, U.Email FROM [User] U 
-                                                        JOIN UserRole UR ON U.Id=UR.UserId
-                                                        JOIN [Role] R ON UR.RoleId=R.Id").ToList();
-       
+        return conn.Query<UserDto>(
+            @"SELECT U.Id, U.Name, U.Surname, R.RoleName, U.Email 
+          FROM [User] U 
+          LEFT JOIN UserRole UR ON U.Id = UR.UserId
+          LEFT JOIN [Role] R ON UR.RoleId = R.Id").ToList();
     }
 
     public bool IsEmailExist(string email)
