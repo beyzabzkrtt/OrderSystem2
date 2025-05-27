@@ -43,7 +43,7 @@ namespace OrderSystem2.forms.adminPanel.role
             AttachPanelDragEvents(panel1);
             panel1.SendToBack();
 
-            buttonSave.Click += buttonSave_Click;
+            buttonSave.Click += buttonSave_Click; 
         }
 
         public void LoadData()
