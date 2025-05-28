@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            pictureBox1 = new PictureBox();
-            labelMakeOrder = new Label();
-            label1 = new Label();
-            label2 = new Label();
             label3 = new Label();
+            label2 = new Label();
+            label1 = new Label();
+            labelMakeOrder = new Label();
+            pictureBox1 = new PictureBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -52,15 +52,42 @@
             panel1.Size = new Size(1235, 114);
             panel1.TabIndex = 9;
             // 
-            // pictureBox1
+            // label3
             // 
-            pictureBox1.Image = Properties.Resources.logo;
-            pictureBox1.Location = new Point(60, 18);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(73, 75);
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
+            label3.Anchor = AnchorStyles.Top;
+            label3.AutoSize = true;
+            label3.Font = new Font("Candara Light", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.AntiqueWhite;
+            label3.Location = new Point(833, 44);
+            label3.Name = "label3";
+            label3.Size = new Size(163, 27);
+            label3.TabIndex = 6;
+            label3.Text = "Fabrika Yönetimi";
+            // 
+            // label2
+            // 
+            label2.Anchor = AnchorStyles.Top;
+            label2.AutoSize = true;
+            label2.Font = new Font("Candara Light", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.AntiqueWhite;
+            label2.Location = new Point(647, 44);
+            label2.Name = "label2";
+            label2.Size = new Size(150, 27);
+            label2.TabIndex = 5;
+            label2.Text = "Bölge Yönetimi";
+            label2.Click += label2_Click;
+            // 
+            // label1
+            // 
+            label1.Anchor = AnchorStyles.Top;
+            label1.AutoSize = true;
+            label1.Font = new Font("Candara Light", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.AntiqueWhite;
+            label1.Location = new Point(471, 45);
+            label1.Name = "label1";
+            label1.Size = new Size(128, 27);
+            label1.TabIndex = 4;
+            label1.Text = "Rol Yönetimi";
             // 
             // labelMakeOrder
             // 
@@ -75,41 +102,15 @@
             labelMakeOrder.Text = "Kullanıcı Yönetimi";
             labelMakeOrder.Click += labelMakeOrder_Click;
             // 
-            // label1
+            // pictureBox1
             // 
-            label1.Anchor = AnchorStyles.Top;
-            label1.AutoSize = true;
-            label1.Font = new Font("Candara Light", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.AntiqueWhite;
-            label1.Location = new Point(471, 45);
-            label1.Name = "label1";
-            label1.Size = new Size(128, 27);
-            label1.TabIndex = 4;
-            label1.Text = "Rol Yönetimi";
-            // 
-            // label2
-            // 
-            label2.Anchor = AnchorStyles.Top;
-            label2.AutoSize = true;
-            label2.Font = new Font("Candara Light", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.AntiqueWhite;
-            label2.Location = new Point(647, 44);
-            label2.Name = "label2";
-            label2.Size = new Size(150, 27);
-            label2.TabIndex = 5;
-            label2.Text = "Bölge Yönetimi";
-            // 
-            // label3
-            // 
-            label3.Anchor = AnchorStyles.Top;
-            label3.AutoSize = true;
-            label3.Font = new Font("Candara Light", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.AntiqueWhite;
-            label3.Location = new Point(833, 44);
-            label3.Name = "label3";
-            label3.Size = new Size(163, 27);
-            label3.TabIndex = 6;
-            label3.Text = "Fabrika Yönetimi";
+            pictureBox1.Image = Properties.Resources.logo;
+            pictureBox1.Location = new Point(60, 18);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(73, 75);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 0;
+            pictureBox1.TabStop = false;
             // 
             // adminPanel
             // 

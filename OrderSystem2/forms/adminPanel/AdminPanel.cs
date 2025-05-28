@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using OrderSystem2.forms.adminPanel.zone;
 using OrderSystem2.forms.user;
 
 namespace OrderSystem2.forms.adminPanel
@@ -24,6 +25,12 @@ namespace OrderSystem2.forms.adminPanel
         {
             UserForm userForm = new UserForm();
             userForm.Show();
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            ZoneForm zoneForm = new ZoneForm();
+            zoneForm.Show();
         }
     }
 }
