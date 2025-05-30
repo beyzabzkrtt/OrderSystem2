@@ -1,4 +1,5 @@
 ﻿
+using System.Windows.Forms;
 using OrderSystem2.repository.concretes;
 using OrderSystem2.service.concretes;
 
@@ -38,7 +39,33 @@ namespace OrderSystem2.forms.adminPanel.zone
 
             dataGridZones.DataSource = zones;
             dataGridZones.ReadOnly = true;
+
+            DataGridViewButtonColumn btnColumn = new DataGridViewButtonColumn();
+            btnColumn.HeaderText = "İşlem";
+            btnColumn.Text = "Sil";
+            btnColumn.Name = "btnSil";
+            btnColumn.UseColumnTextForButtonValue = true;
+
+            dataGridZones.Columns.Add(btnColumn);
         }
 
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridZones.Columns[e.ColumnIndex].Name == "btnSil" && e.RowIndex >= 0)
+            {
+                int id = Convert.ToInt32(dataGridZones.Rows[e.RowIndex].Cells["Id"].Value); // ID hücresine göre
+                var result = MessageBox.Show("Bu kaydı silmek istiyor musunuz?", "Onay", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    zoneService.Delete(id);
+                }
+            }
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            AddZone addZone = new AddZone();
+            addZone.ShowDialog();
+        }
     }
 }

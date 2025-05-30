@@ -19,12 +19,14 @@ namespace OrderSystem2.repository.concretes
 
         public void Add(Zone entity)
         {
-            throw new NotImplementedException();
+            string sql = "INSERT INTO Zone (FactoryId,Name,Status,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt) VALUES (@FactoryId,@Name, @Status, @CreatedBy, @CreatedAt, @UpdatedBy, @UpdatedAt)";
+            conn.Execute(sql, entity);
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            string query = $"UPDATE Zone SET Status = 0 WHERE Id = @Id";
+            conn.Execute(query, new { Id = id });
         }
 
         public List<Zone> GetAll()

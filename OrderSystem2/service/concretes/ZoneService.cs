@@ -16,12 +16,12 @@ namespace OrderSystem2.service.concretes
 
         public void Add(Zone entity)
         {
-            throw new NotImplementedException();
+            zoneRepository.Add(entity);
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            zoneRepository.Delete(id);
         }
 
         public List<Zone> GetAll()
