@@ -41,6 +41,10 @@
             panel1.SuspendLayout();
             SuspendLayout();
             // 
+            // pictureBoxClose
+            // 
+            pictureBoxClose.Click += pictureBoxClose_Click_1;
+            // 
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(22, 56, 39);
@@ -101,7 +105,6 @@
             buttonSave.TabStop = false;
             buttonSave.Text = "Kaydet";
             buttonSave.UseVisualStyleBackColor = false;
-           
             // 
             // comboBoxRole
             // 

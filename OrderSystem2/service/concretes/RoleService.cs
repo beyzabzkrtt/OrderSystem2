@@ -15,9 +15,9 @@ namespace OrderSystem2.service.concretes
             this.repository = repository;
         }
 
-        public void AddRole(int zoneId, int roleTypeId)
+        public int AddRole(int zoneId, int roleTypeId)
         {
-            repository.AddRole(zoneId, roleTypeId);
+            return repository.AddRole(zoneId, roleTypeId);
         }
     }
 }

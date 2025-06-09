@@ -1,5 +1,6 @@
 ﻿
 using OrderSystem2.entity;
+using OrderSystem2.forms.user;
 using OrderSystem2.repository.concretes;
 using OrderSystem2.service.concretes;
 
@@ -16,7 +17,7 @@ namespace OrderSystem2.forms.adminPanel.role
         private UserRoleRepository userRoleRepository;
         private UserRoleService userRoleService;
 
-        private RoleRepository roleRepository;  
+        private RoleRepository roleRepository;
         private RoleService roleService;
 
         User _user;
@@ -43,7 +44,8 @@ namespace OrderSystem2.forms.adminPanel.role
             AttachPanelDragEvents(panel1);
             panel1.SendToBack();
 
-            buttonSave.Click += buttonSave_Click; 
+            buttonSave.Click += buttonSave_Click;
+            comboBoxRole.SelectedIndexChanged += ComboBoxRole_SelectedIndexChanged;
         }
 
         public void LoadData()
@@ -60,7 +62,6 @@ namespace OrderSystem2.forms.adminPanel.role
 
             _role = new Role();
 
-            comboBoxRole.SelectedIndexChanged += ComboBoxRole_SelectedIndexChanged;
 
         }
 
@@ -82,19 +83,24 @@ namespace OrderSystem2.forms.adminPanel.role
             string roleName = roleType.Name;
             textBoxRole.Text = $"{zoneName}" + $" {roleName}";
 
-            roleService.AddRole(selectedZoneId, selectedRoleTypeId);
+            _role.Id = roleService.AddRole(selectedZoneId, selectedRoleTypeId);
         }
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            UserRole userRole = new UserRole
-            {
-                UserId = _user.Id,
-                RoleId = _role.Id
-            };
-
-            string mess = userRoleService.AssignedRole(userRole);
+            string mess = userRoleService.AssignedRole(_user.Id, _role.Id);
             MessageBox.Show(mess);
+            UserForm userform = Application.OpenForms.OfType<UserForm>().FirstOrDefault();
+            if (userform != null)
+            {
+                userform.LoadData();
+            }
+            this.Close();
+        }
+
+        private void pictureBoxClose_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
