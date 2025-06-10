@@ -36,7 +36,8 @@ public class UserRepository : IUserRepository
 
     public void Delete(int id)
     {
-        throw new NotImplementedException();
+        string query = $"DELETE [User]  WHERE UserId = @id";
+        conn.Execute(query, new { Id = id });
     }
 
     public List<User> GetAll()
@@ -81,6 +82,15 @@ public class UserRepository : IUserRepository
           FROM [User] U 
           LEFT JOIN UserRole UR ON U.Id = UR.UserId
           LEFT JOIN [Role] R ON UR.RoleId = R.Id").ToList();
+    }
+
+    public bool HasRole(int userId)
+    {
+        string sql = "SELECT COUNT(1) FROM UserRole WHERE UserId = @UserId";
+
+        int count = conn.ExecuteScalar<int>(sql, new { UserId = userId });
+
+        return count > 0;
     }
 
     public bool IsEmailExist(string email)

@@ -10,5 +10,7 @@ namespace OrderSystem2.repository.abstracts
     public interface IUserRoleRepository : IGenericRepository<UserRole>
     {
         String AssignedRole(int UserId,int RoleId);
+
+       
     }   
 }

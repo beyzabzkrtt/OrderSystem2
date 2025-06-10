@@ -41,6 +41,8 @@ namespace OrderSystem2.forms.adminPanel.user
 
             SaveInitialValues();
 
+            buttonDelete.Click += buttonDelete_Click;
+
         }
 
 
@@ -160,25 +162,31 @@ namespace OrderSystem2.forms.adminPanel.user
 
             if (confirmResult == DialogResult.Yes)
             {
-                try
+                if (_userService.HasRole(_user.Id))
                 {
-                    // _userService.Delete(_user.Id);
-
-                    MessageBox.Show("Kayıt başarıyla silindi!", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    UserForm userForm = Application.OpenForms.OfType<UserForm>().FirstOrDefault();
-                    if (userForm != null)
+                    try
                     {
-                        userForm.LoadData();
+                        _userService.Delete(_user.Id);
+
+                        MessageBox.Show("Kayıt başarıyla silindi!", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        UserForm userForm = Application.OpenForms.OfType<UserForm>().FirstOrDefault();
+                        if (userForm != null)
+                        {
+                            userForm.LoadData();
+                        }
+
+                        this.Close();
                     }
-
-                    this.Close();
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Hata: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show($"Hata: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Kullanıcının yetkisi bulunmakta. Lütfen önce yetkisini kaldırın.");
                 }
-
 
             }
 

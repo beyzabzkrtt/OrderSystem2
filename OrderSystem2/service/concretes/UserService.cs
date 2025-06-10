@@ -21,6 +21,16 @@ namespace OrderSystem2.service.concretes
            
         }
 
+        public bool HasRole(int userId)
+        {
+            return userRepository.HasRole(userId);
+        }
+
+        public void Delete(int id)
+        {
+            userRepository.Delete(id);
+        }
+
         public String GetRole(int id)
         {
             return userRepository.GetRole(id);

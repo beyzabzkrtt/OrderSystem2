@@ -11,6 +11,7 @@ namespace OrderSystem2.repository.abstracts
         bool VerifyPassword(string inputPassword, string storedHash);
         string GetRole(int id);
         User GetUserByEmail(string email);
-        bool IsEmailExist(string email);    
+        bool IsEmailExist(string email);
+        public bool HasRole(int userId);
     }
 }
