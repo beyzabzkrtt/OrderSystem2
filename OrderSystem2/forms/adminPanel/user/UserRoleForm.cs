@@ -46,6 +46,7 @@ namespace OrderSystem2.forms.adminPanel.user
             this.Close();
         }
 
+
         private void buttonDelete_Click(object sender, EventArgs e)
         {
             var result = MessageBox.Show("Yetkiyi kaldırmak istediğinize emin misiniz?", "Onay", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
