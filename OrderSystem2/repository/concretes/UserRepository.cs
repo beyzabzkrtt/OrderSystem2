@@ -36,7 +36,7 @@ public class UserRepository : IUserRepository
 
     public void Delete(int id)
     {
-        string query = $"DELETE [User]  WHERE UserId = @id";
+        string query = $"DELETE [User]  WHERE Id = @id";
         conn.Execute(query, new { Id = id });
     }
 
@@ -86,7 +86,7 @@ public class UserRepository : IUserRepository
 
     public bool HasRole(int userId)
     {
-        string sql = "SELECT COUNT(1) FROM UserRole WHERE UserId = @UserId";
+        string sql = "SELECT COUNT(1) FROM UserRole WHERE UserId = @userId";
 
         int count = conn.ExecuteScalar<int>(sql, new { UserId = userId });
 

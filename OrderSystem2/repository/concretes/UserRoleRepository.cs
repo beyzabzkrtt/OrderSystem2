@@ -72,7 +72,7 @@ namespace OrderSystem2.repository.concretes
         public void Delete(int userId)
         {
             string query = $"DELETE UserRole  WHERE UserId = @userId";
-            conn.Execute(query, new { Id = userId });
+            conn.Execute(query, new { UserId = userId });
         }
 
         public List<UserRole> GetAll()

@@ -162,7 +162,7 @@ namespace OrderSystem2.forms.adminPanel.user
 
             if (confirmResult == DialogResult.Yes)
             {
-                if (_userService.HasRole(_user.Id))
+                if (!_userService.HasRole(_user.Id))
                 {
                     try
                     {
@@ -185,7 +185,7 @@ namespace OrderSystem2.forms.adminPanel.user
                 }
                 else
                 {
-                    MessageBox.Show("Kullanıcının yetkisi bulunmakta. Lütfen önce yetkisini kaldırın.");
+                    MessageBox.Show("Kullanıcının yetkisi bulunmakta. Lütfen önce yetkisini kaldırın.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
             }

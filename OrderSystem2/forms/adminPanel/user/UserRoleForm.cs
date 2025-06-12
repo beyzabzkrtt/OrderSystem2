@@ -43,6 +43,7 @@ namespace OrderSystem2.forms.adminPanel.user
         {
             AddRoleForm addRoleForm = new AddRoleForm(_user);
             addRoleForm.ShowDialog();
+            this.Close();
         }
 
         private void buttonDelete_Click(object sender, EventArgs e)
@@ -55,6 +56,10 @@ namespace OrderSystem2.forms.adminPanel.user
                 {
                     _userRoleService.Delete(_user.Id);
                     MessageBox.Show("Yetki kaldırıldı!", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
+                    LoadData(_user);
+
+                    
                 }
                 catch (Exception ex)
                 {
